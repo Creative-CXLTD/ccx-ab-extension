@@ -11,18 +11,18 @@
     desktop: [
       {
         iconText: '3 € RABATT',
-        heading: "70 Lose (+2 Gratis Lose)",
+        heading: "20 Lose",
         emojiContainerIcon: '🎉',
         emojiContainerText: '1 Bonus Verlosung',
         emojiContainerSpan: 'inklusive',
-        strikeThroughPrice: "35 €",
-        newPrice: "32 €",
+        strikeThroughPrice: "10 €",
+        newPrice: "7 €",
         buttonText: 'Jetzt mitmachen',
         buttonLink: 'https://omaze.de/cart/51859472842933:1?discount=TSTD3EU&storefront=true'
       },
       {
         iconText: '3 € RABATT',
-        heading: "50 Lose (+2 Gratis Lose)",
+        heading: "50 Lose (+1 Gratis Lose)",
         emojiContainerIcon: '🎉',
         emojiContainerText: '1 Bonus Verlosung',
         emojiContainerSpan: 'inklusive',
@@ -33,12 +33,12 @@
       },
       {
         iconText: '3 € RABATT',
-        heading: "20 Lose",
+        heading: "70 Lose (+2 Gratis Lose)",
         emojiContainerIcon: '🎉',
         emojiContainerText: '1 Bonus Verlosung',
         emojiContainerSpan: 'inklusive',
-        strikeThroughPrice: "10 €",
-        newPrice: "7 €",
+        strikeThroughPrice: "35 €",
+        newPrice: "32 €",
         buttonText: 'Jetzt mitmachen',
         buttonLink: 'https://omaze.de/cart/51859472908469:1?discount=TSTD3EU&storefront=true'
       },
@@ -58,7 +58,7 @@
       },
       {
         iconText: '3 € RABATT',
-        heading: "20 Lose",
+        heading: "50 Lose",
         subHeading: "(+1 Gratis Los)",
         emojiContainerIcon: '🎉',
         emojiContainerText: '1 Bonus Verlosung',
@@ -343,7 +343,7 @@
         padding-right: 4px;
         padding-bottom: 4px;
         padding-left: 10px;
-        gap: 7px;
+        gap: 3px;
         border-radius: 99px;
         display: flex;
         justify-content: center;
@@ -525,7 +525,6 @@
     if (ccxMobileCard) return;
 
     const parentContainer = controlMobileCardElements[0].parentElement;
-    console.log(parentContainer);
 
     cardsData.mobile.forEach(card => {
       const cardElement = document.createElement('div');
@@ -568,7 +567,6 @@
     if (ccxDesktopCard) return;
 
     const parentContainer = controlDesktopCardElements[0].parentElement;
-    console.log(parentContainer);
 
     cardsData.desktop.forEach(card => {
       const cardElement = document.createElement('div');
