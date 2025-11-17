@@ -1,7 +1,7 @@
 (function () {
-  const LOG_ENABLED = true;
+  const LOG_ENABLED = false;
   const TEST_ID = "DE11";
-  const TEST_NAME = "Multi-Video Hero Test on House Landing Page";
+  const TEST_NAME = "Simplified Carts Page";
   const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
   const SOURCE_TYPE = "NO SOURCE";
@@ -97,9 +97,10 @@
       display: none !important;
     }
     .ccx-paragraph-container {
-      max-width: 380px !important;
+      max-width: 1040px;
       width: 100%;
       margin: 1rem auto;
+      padding: 1rem;
     }
     .ccx-paragraph-container .ccx-paragraph {
       margin: 0;
@@ -208,9 +209,10 @@
       font-family: Gellix;
       font-weight: 700;
       font-size: 16px;
-      line-height: 100%;
       text-align: center;
       vertical-align: bottom;
+      color: #C06717;
+      font-weight: 700;
     }
     
     .ccx-mobile-card .ccx-card-inner .emoji-container .emoji-container-span {
@@ -357,6 +359,8 @@
       .ccx-desktop-card .ccx-card-inner .emoji-container-text {
         font-family: Gellix;
         font-size: 16px;
+        font-weight: 700;
+        color: #C06717;
       }
       .ccx-desktop-card .ccx-card-inner .emoji-container-span {
         font-family: Gellix;

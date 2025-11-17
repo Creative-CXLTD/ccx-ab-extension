@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "2-3";
   const TEST_NAME = " Entries Page Content Hierarchy";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-3";
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
@@ -136,7 +136,7 @@
 
           CONTROL_SUBSCRIPTIONS_CONTAINER_CARDS.forEach(card => {
             const lastChild = card.querySelector('.text-white > div:last-child');
-            const lastChildStyles = "background: #FFDD00 !important; padding: 0.25rem 0.75rem !important;";
+            const lastChildStyles = "background: #FFC394 !important; padding: 0.25rem 0.75rem !important;";
             lastChild.setAttribute("style", lastChildStyles);
 
             const lastChildIcon = lastChild.querySelector('svg');

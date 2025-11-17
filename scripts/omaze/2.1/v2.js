@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "2-2";
   const TEST_NAME = " Entries Page Content Hierarchy";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-2";
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
@@ -11,7 +11,7 @@
     CONTROL_SUBSCRIPTIONS_CONTAINER_CARDS: '#enter-now-material-tab-buttons-design > [id*=nav-latest] [id*=subscription-tab-pane] [data-test="card-variant-subscription"]',
   }
 
-    const SVG_HOUSE = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_HOUSE = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_273_3648" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
 <rect width="24" height="24" fill="#D9D9D9"/>
 </mask>
@@ -38,13 +38,19 @@
 </svg>
 `;
 
-const SVG_CALENDAR = `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_CALENDAR = `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_256_39631" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="24" height="24">
 <rect x="1" y="1" width="24" height="24" fill="#D9D9D9"/>
 </mask>
 <g mask="url(#mask0_256_39631)">
 <path d="M6 9.80777H20V7.30777C20 7.23077 19.9679 7.16026 19.9038 7.09626C19.8398 7.0321 19.7693 7.00002 19.6923 7.00002H6.30775C6.23075 7.00002 6.16025 7.0321 6.09625 7.09626C6.03208 7.16026 6 7.23077 6 7.30777V9.80777ZM6.30775 22.5C5.80258 22.5 5.375 22.325 5.025 21.975C4.675 21.625 4.5 21.1974 4.5 20.6923V7.30777C4.5 6.8026 4.675 6.37502 5.025 6.02502C5.375 5.67502 5.80258 5.50002 6.30775 5.50002H7.69225V4.15377C7.69225 3.9346 7.76567 3.7516 7.9125 3.60477C8.05933 3.4581 8.24233 3.38477 8.4615 3.38477C8.68083 3.38477 8.86383 3.4581 9.0105 3.60477C9.15733 3.7516 9.23075 3.9346 9.23075 4.15377V5.50002H16.8078V4.13477C16.8078 3.92193 16.8795 3.74368 17.023 3.60002C17.1667 3.45652 17.3449 3.38477 17.5578 3.38477C17.7706 3.38477 17.9488 3.45652 18.0923 3.60002C18.2359 3.74368 18.3078 3.92193 18.3078 4.13477V5.50002H19.6923C20.1974 5.50002 20.625 5.67502 20.975 6.02502C21.325 6.37502 21.5 6.8026 21.5 7.30777V12.0213C21.5 12.2341 21.4282 12.4123 21.2845 12.5558C21.141 12.6994 20.9628 12.7713 20.75 12.7713C20.5372 12.7713 20.359 12.6994 20.2155 12.5558C20.0718 12.4123 20 12.2341 20 12.0213V11.3078H6V20.6923C6 20.7693 6.03208 20.8398 6.09625 20.9038C6.16025 20.9679 6.23075 21 6.30775 21H12.425C12.6378 21 12.8161 21.0718 12.9598 21.2155C13.1033 21.359 13.175 21.5372 13.175 21.75C13.175 21.9628 13.1033 22.141 12.9598 22.2845C12.8161 22.4282 12.6378 22.5 12.425 22.5H6.30775ZM19.1923 23.5C17.9436 23.5 16.8814 23.0622 16.0058 22.1865C15.1301 21.3108 14.6923 20.2487 14.6923 19C14.6923 17.7513 15.1301 16.6892 16.0058 15.8135C16.8814 14.9378 17.9436 14.5 19.1923 14.5C20.4411 14.5 21.5033 14.9378 22.3788 15.8135C23.2544 16.6892 23.6923 17.7513 23.6923 19C23.6923 20.2487 23.2544 21.3108 22.3788 22.1865C21.5033 23.0622 20.4411 23.5 19.1923 23.5ZM19.6348 18.8193V16.5C19.6348 16.3795 19.5911 16.2757 19.5038 16.1885C19.4166 16.1013 19.3128 16.0578 19.1923 16.0578C19.0718 16.0578 18.9679 16.1013 18.8808 16.1885C18.7936 16.2757 18.75 16.3795 18.75 16.5V18.8038C18.75 18.9243 18.7718 19.039 18.8155 19.148C18.859 19.257 18.9276 19.3583 19.0213 19.452L20.5463 20.977C20.6334 21.0642 20.7357 21.1094 20.853 21.1125C20.9702 21.1157 21.0756 21.0705 21.1693 20.977C21.2629 20.8834 21.3098 20.7795 21.3098 20.6655C21.3098 20.5513 21.2629 20.4474 21.1693 20.3538L19.6348 18.8193Z" fill="#081F28"/>
 </g>
+</svg>
+`;
+
+const SVG_CHECKBOX = `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.0001 23.8334C14.423 23.8351 15.8322 23.5557 17.1468 23.0112C18.4614 22.4666 19.6555 21.6677 20.6603 20.6603C21.6678 19.6554 22.4667 18.4614 23.0112 17.1468C23.5558 15.8322 23.8352 14.4229 23.8334 13C23.8352 11.5771 23.5558 10.1679 23.0112 8.85329C22.4667 7.5387 21.6678 6.34466 20.6603 5.33978C19.6555 4.33237 18.4614 3.53344 17.1468 2.9889C15.8322 2.44436 14.423 2.16494 13.0001 2.1667C11.5772 2.16494 10.1679 2.44436 8.85336 2.9889C7.53876 3.53344 6.34472 4.33237 5.33984 5.33978C4.33243 6.34466 3.5335 7.5387 2.98896 8.85329C2.44442 10.1679 2.165 11.5771 2.16676 13C2.165 14.4229 2.44442 15.8322 2.98896 17.1468C3.5335 18.4614 4.33243 19.6554 5.33984 20.6603C6.34472 21.6677 7.53876 22.4666 8.85336 23.0112C10.1679 23.5557 11.5772 23.8351 13.0001 23.8334Z" fill="#00A3A8" stroke="#00A3A8" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M8.66675 13L11.9167 16.25L18.4167 9.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
@@ -200,9 +206,17 @@ CARDS INFO CONTAINER
 .ccx-header-top,
 .ccx-header-bottom {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
   font-size: 16px;
+  gap: 10px;
+  opacity: 1;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 9px;
+  border-width: 1px;
+  background: #F8F8F8;
+  border: 1px solid #0193A799;
 }
 
 .ccx-price {
@@ -224,7 +238,7 @@ CARDS INFO CONTAINER
         type: 'house',
         icon: SVG_HOUSE,
         title: 'HOUSE DRAW',
-        text: `<span>100 entries</span> into every <span>Grand Prize House Draw</span> and Early Bird draw`
+        text: `<span>100 entries</span> into into every Early Bird and Grand Prize draw`
       },
       {
         type: 'money',
@@ -238,7 +252,7 @@ CARDS INFO CONTAINER
         type: 'house',
         icon: SVG_HOUSE,
         title: 'HOUSE DRAW',
-        text: `<span>200 entries</span> into every <span>Grand Prize House Draw</span> and Early Bird draw`
+        text: `<span>200 entries</span> into into every Early Bird and Grand Prize draw`
       },
       {
         type: 'money',
@@ -258,7 +272,7 @@ CARDS INFO CONTAINER
         type: 'house',
         icon: SVG_HOUSE,
         title: 'HOUSE DRAW',
-        text: `<span>640 entries</span> into every <span>Grand Prize House Draw</span> and Early Bird draw`
+        text: `<span>640 entries</span> into into every Early Bird and Grand Prize draw`
       },
       {
         type: 'money',
@@ -395,18 +409,17 @@ CARDS INFO CONTAINER
     const ccxCardContainer = document.createElement('div');
     ccxCardContainer.classList.add('ccx-card-container');
 
-var cardElements = subscriptionCardDetails.map(function(cardDetail) {
-  return (
-    '<div class="subscription-card-item subscription-card-item-' + cardDetail.type + '">' +
-      '<div class="icon">' + cardDetail.icon + '</div>' +
-      '<div class="content">' +
+    var cardElements = subscriptionCardDetails.map(function (cardDetail) {
+      return (
+        '<div class="subscription-card-item subscription-card-item-' + cardDetail.type + '">' +
+        '<div class="icon">' + cardDetail.icon + '</div>' +
+        '<div class="content">' +
         '<h3 class="title">' + cardDetail.title + '</h3>' +
         '<p class="text">' + cardDetail.text + '</p>' +
-      '</div>' +
-    '</div>'
-  );
-}).join('');
-
+        '</div>' +
+        '</div>'
+      );
+    }).join('');
 
     ccxCardContainer.innerHTML = cardElements;
 
@@ -414,33 +427,32 @@ var cardElements = subscriptionCardDetails.map(function(cardDetail) {
   }
 
   const addHeaderContainer = (CONTROL_SUBSCRIPTIONS_CONTAINER, cardId, price, dateText) => {
-  const CONTROL_CARD = CONTROL_SUBSCRIPTIONS_CONTAINER.querySelector(cardId);
-  if (!CONTROL_CARD) return;
+    const CONTROL_CARD = CONTROL_SUBSCRIPTIONS_CONTAINER.querySelector(cardId);
+    if (!CONTROL_CARD) return;
 
-   const innerContainer = CONTROL_CARD.querySelector('.text-left');
+    const innerContainer = CONTROL_CARD.querySelector('.text-left');
     // customLog('innerContainer', innerContainer);
 
     if (!innerContainer) return;
 
-var headerHTML =
-  '<header class="ccx-subscription-header" role="banner">' +
-    '<div class="ccx-header-top">' +
-      '<span class="ccx-header-icon" aria-hidden="true">' + SVG_CLOSE + '</span>' +
-      '<span class="ccx-header-text">Cancel at any time</span>' +
-    '</div>' +
-    '<div class="ccx-header-bottom">' +
-      '<span class="ccx-header-icon" aria-hidden="true">' + SVG_CALENDAR + '</span>' +
-      '<div class="ccx-date">' +
-        '<span class="ccx-price">' +
-          '<strong>£' + price + '/month</strong> ' + dateText +
-        '</span>' +
+    var headerHTML =
+      '<header class="ccx-subscription-header" role="banner">' +
+      '<div class="ccx-header-top">' +
+      '<span class="ccx-header-icon" aria-hidden="true">' + SVG_CHECKBOX + '</span>' +
+      '<span class="ccx-header-text">Cancel or pause at any time</span>' +
       '</div>' +
-    '</div>' +
-  '</header>';
+      // '<div class="ccx-header-bottom">' +
+      // '<span class="ccx-header-icon" aria-hidden="true">' + SVG_CALENDAR + '</span>' +
+      // '<div class="ccx-date">' +
+      // '<span class="ccx-price">' +
+      // '<strong>£' + price + '/month</strong> ' + dateText +
+      // '</span>' +
+      // '</div>' +
+      // '</div>' +
+      '</header>';
 
-  innerContainer.insertAdjacentHTML("afterbegin", headerHTML);
-};
-
+    innerContainer.insertAdjacentHTML("afterbegin", headerHTML);
+  };
 
   const init = () => {
     try {

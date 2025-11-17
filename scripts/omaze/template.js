@@ -90,7 +90,9 @@
     document.head.appendChild(style);
   };
 
-  const addBodyClass = (bodyClass) => {
+ const addBodyClass = () => {
+    const bodyClass = 'ccx-' + TEST_ID.toLowerCase() + '-' + VARIATION.toLowerCase().replace(/\s+/g, '-') + '';
+
     // If the class for this variation already exists, don't add again
     if (!document.body.classList.contains(bodyClass)) {
       document.body.classList.add(bodyClass); // Add class to the body element
@@ -129,7 +131,7 @@
 
           // Add styles
           addStyles(STYLES, VARIATION);
-          addBodyClass(bodyClass);
+          addBodyClass();
 
           const FIRST_ELEMENT = results[0].elements[0];
           if (!FIRST_ELEMENT) return;

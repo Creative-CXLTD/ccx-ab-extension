@@ -1,15 +1,14 @@
 (function () {
-  const LOG_ENABLED = true;
+  const LOG_ENABLED = false;
   const TEST_ID = "DE14";
-  const TEST_NAME = "";
+  const TEST_NAME = "Simplified Carts Page";
   const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
-  const SOURCE_TYPE = "NO SOURCE";
-  const IS_STAGING_ENV = CURRENT_URL.includes('staging');
 
   const SELECTORS = {
     CONTROL_FORM_CART_LOGIN_WIDGET: '#begin-checkout > .grid > div:nth-child(2) cart-login-widget',
-    CONTROL_FORM_CART_LOGIN_WIDGET_PRICE_ELEMENT: '#begin-checkout > .grid > div:nth-child(2) cart-login-widget .total-price strong.text-3xl',
+    CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT: '#begin-checkout > .grid [data-promo-price]',
+    CONTROL_FORM_CART_LOGIN_WIDGET_RIGHT_PRICE_ELEMENT: '#begin-checkout > .grid > div:nth-child(2) cart-login-widget .total-price strong.text-3xl',
   }
 
   const STYLES = `
@@ -159,7 +158,9 @@
     document.head.appendChild(style);
   };
 
-  const addBodyClass = (bodyClass) => {
+  const addBodyClass = () => {
+    const bodyClass = 'ccx-' + TEST_ID.toLowerCase() + '-' + VARIATION.toLowerCase().replace(/\s+/g, '-') + '';
+
     // If the class for this variation already exists, don't add again
     if (!document.body.classList.contains(bodyClass)) {
       document.body.classList.add(bodyClass); // Add class to the body element
@@ -184,7 +185,9 @@
       .catch(() => { });
   }
 
-  const createCCXContainerElement = (CONTROL_FORM_CART_LOGIN_WIDGET) => {
+  const createCCXContainerElement = (CONTROL_FORM_CART_LOGIN_WIDGET, CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT) => {
+    customLog({CONTROL_FORM_CART_LOGIN_WIDGET, CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT});
+
     // Create the container div
     const container = document.createElement('div');
     container.classList.add('ccx-container');
@@ -201,14 +204,12 @@
 
     const rightSpan = document.createElement('span');
     rightSpan.classList.add('ccx-right-text');
-
-    const totalPriceElement = CONTROL_FORM_CART_LOGIN_WIDGET.querySelector('.total-price strong.text-3xl');
-    if (totalPriceElement) {
-      rightSpan.textContent = totalPriceElement.textContent.trim();
-      // customLog('[CCX] Found total price element:', totalPriceElement.textContent.trim());
+    if (CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT) {
+      rightSpan.textContent = CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT.textContent.trim();
+      customLog('[CCX] Price element added:', rightSpan.textContent);
     } else {
       rightSpan.textContent = '—';
-      console.warn('[CCX] Total price element not found.');
+      customLog('[CCX] Total price element not found.');
     }
 
     infoElement.appendChild(leftSpan);
@@ -233,7 +234,7 @@
       targetElement.classList.add('ccx-account-question');
       // customLog('[CCX] Moved target checkout element after the button.');
     } else {
-      console.warn('[CCX] Target checkout element not found.');
+      customLog('[CCX] Target checkout element not found.');
     }
 
     // --- NEW: Grab two more elements and append them to the end of the container ---
@@ -245,14 +246,14 @@
       firstElement.classList.add('ccx-available-payments-text')
       // customLog('[CCX] Appended first element (<p>) to the container.');
     } else {
-      console.warn('[CCX] First element (<p>) not found.');
+      customLog('[CCX] First element (<p>) not found.');
     }
 
     if (secondElement) {
       container.appendChild(secondElement);
       // customLog('[CCX] Appended second element (<div>) to the container.');
     } else {
-      console.warn('[CCX] Second element (<div>) not found.');
+      customLog('[CCX] Second element (<div>) not found.');
     }
 
     // customLog('[CCX] Container build complete.');
@@ -278,20 +279,21 @@
       waitForElements(
         [
           { selector: SELECTORS.CONTROL_FORM_CART_LOGIN_WIDGET, count: 1 },
-          { selector: SELECTORS.CONTROL_FORM_CART_LOGIN_WIDGET_PRICE_ELEMENT, count: 1 },
+          { selector: SELECTORS.CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT, count: 1 },
+          { selector: SELECTORS.CONTROL_FORM_CART_LOGIN_WIDGET_RIGHT_PRICE_ELEMENT, count: 1 },
         ],
         function (results) {
           // Add styles
           addStyles(STYLES, VARIATION);
 
           // Add body class
-          const bodyClass = 'ccx-' + TEST_ID.toLowerCase() + '-' + VARIATION.toLowerCase().replace(/\s+/g, '-') + '';
-          addBodyClass(bodyClass);
+          addBodyClass();
 
           const CONTROL_FORM_CART_LOGIN_WIDGET = results[0].elements[0];
-          if (!CONTROL_FORM_CART_LOGIN_WIDGET) return;
+          const CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT = results[1].elements[0];
+          const CONTROL_FORM_CART_LOGIN_WIDGET_RIGHT_PRICE_ELEMENT = results[2].elements[0];
 
-          createCCXContainerElement(CONTROL_FORM_CART_LOGIN_WIDGET);
+          createCCXContainerElement(CONTROL_FORM_CART_LOGIN_WIDGET, CONTROL_FORM_CART_LOGIN_WIDGET_LEFT_PRICE_ELEMENT);
 
           attachEventListeners();
         }

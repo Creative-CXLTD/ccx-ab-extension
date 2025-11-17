@@ -140,7 +140,7 @@
   .ccx-banner-component {
     flex-flow: row;
     gap: 2rem;
-    bottom: 0;
+    bottom: 0.5rem;
   }
   .ccx-guaranteed-winner__text {
     font-size: 14px;
@@ -1048,6 +1048,10 @@
         document.querySelector('.campaign-hero__content .yellow-btn');
 
       if (targetBtn) {
+        DY.API("event", {
+          name: "de12-modal-cta-click"
+        });
+        customLog('[bindEvents] Logged de12-modal-cta-click event for controlInput.');
         targetBtn.click(); // trigger the real button click
       }
 
@@ -1113,10 +1117,17 @@
           // ==========================
           const heroVideo = document.querySelector('.home--banner #hero-video');
           const bannerComponent = document.querySelector('.ccx-banner-component');
+          const control_bannerControls = document.querySelector('.banner-controls');
 
           if (heroVideo && bannerComponent) {
             const toggleBannerVisibility = () => {
               bannerComponent.style.display = heroVideo.classList.contains('active') ? 'flex' : 'none';
+
+              if (heroVideo.classList.contains('active')) {
+                control_bannerControls.style.bottom = '4rem';
+              } else {
+                control_bannerControls.style.bottom = '40px';
+              }
             };
 
             // Initial check

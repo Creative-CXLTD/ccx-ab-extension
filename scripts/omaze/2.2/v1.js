@@ -9,7 +9,11 @@
     CONTROL_PAYG_CONTAINER: '#enter-now-material-tab-buttons-design > [id*=nav-latest] [id*=single-purchase-tab-pane]',
   }
 
-  const STYLES = ``;
+  const STYLES = `
+  #enter-now-material-tab-buttons-design [id*=single-purchase-tab-pane] {
+    padding-top: 3rem !important;
+  }
+  `;
 
   const customLog = (...messages) => {
     if (!LOG_ENABLED) return;
