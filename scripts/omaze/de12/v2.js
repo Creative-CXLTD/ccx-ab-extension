@@ -1224,7 +1224,7 @@
       iconHTML +
       '</div>' +
       '<div class="ccx-checkodds__text">' +
-      'Gewinnchancen prüfen: <span class="ccx-checkodds__value">1 zu ' + oddsValue + '</span>' +
+      'Gewinnchancen prüfen: <span class="ccx-checkodds__value">1 zu X' + oddsValue + '</span>' +
       '</div>' +
       '</div>';
 
@@ -1244,8 +1244,8 @@
     };
 
     // Create two independent components
-    const mobileComponent = createCheckOddsComponent('225K', 'mobile');
-    const desktopComponent = createCheckOddsComponent('225K', 'desktop');
+    const mobileComponent = createCheckOddsComponent('', 'mobile');
+    const desktopComponent = createCheckOddsComponent('', 'desktop');
 
     // Insert after mobile element
     const mobileTarget = document.querySelector(SELECTORS.CONTROL_MOBILE_IMAGE_TEXT);
@@ -1359,7 +1359,7 @@
       '<span class="ccx-card-title">Paket mit 20 Losen</span>' +
       '</div>' +
       '<div class="ccx-card-content__right">' +
-      '<p class="ccx-card-odds">1 zu 225K</p>' +
+      '<p class="ccx-card-odds">1 zu X</p>' +
       '</div>' +
       '</div>' +
 

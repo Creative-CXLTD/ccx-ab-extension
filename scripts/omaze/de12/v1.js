@@ -980,7 +980,7 @@
       '<span class="ccx-card-title">Paket mit 20 Losen</span>' +
       '</div>' +
       '<div class="ccx-card-content__right">' +
-      '<p class="ccx-card-odds">1 zu 225K</p>' +
+      '<p class="ccx-card-odds">1 zu X</p>' +
       '</div>' +
       '</div>' +
 

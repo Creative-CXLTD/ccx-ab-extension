@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "payg-entries-economy-pricing";
   const TEST_NAME = "PAYG Entries Economy Pricing MVT Brief";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-2";
   const CURRENT_URL = window.location.href;
   const IS_STAGING_ENV = CURRENT_URL.includes('staging');
 
@@ -121,64 +121,76 @@
       .catch(() => { });
   };
 
-  const handleCardUpdates = (CONTROL_NO_SOURCE_PAYG_CARDS) => {
-    customLog('[handleCardUpdates] called');
+const handleNoSourcePaygCards = (CONTROL_NO_SOURCE_PAYG_CARDS) => {
+  customLog('[handleNoSourcePaygCards] called');
 
-    const entryMap = {
-      "20": { newCount: 50, url: "http://omaze.co.uk/cart/43654946816086:1?storefront=true" },
-      "45": { newCount: 100, url: "http://omaze.co.uk/cart/43654946848854:1?storefront=true" },
-      "85": { newCount: 250, url: "http://omaze.co.uk/cart/43654946881622:1?storefront=true" },
-      "320": { newCount: 1000, url: "http://omaze.co.uk/cart/43654946914390:1?storefront=true" }
-    };
-
-    CONTROL_NO_SOURCE_PAYG_CARDS.elements.forEach(originalButton => {
-      try {
-        const card = originalButton.closest("[data-test]");
-        if (!card) return;
-
-        const oldAmount = originalButton.getAttribute("data-entries-amount");
-        const mapping = entryMap[oldAmount];
-        if (!mapping) return;
-
-        const { newCount, url } = mapping;
-
-        const entryCountEl = card.querySelector('[data-test="entry-count"]');
-        if (entryCountEl) {
-          entryCountEl.textContent = newCount + ' Entries';
-        }
-
-        const isMobileButton =
-          originalButton.classList.contains("w-[131px]") ||
-          originalButton.classList.contains("h-[43px]");
-
-        const newBtnClass = isMobileButton
-          ? "ccx-button-mobile-price"
-          : "ccx-button-desktop-price";
-
-        const newButton = document.createElement("button");
-        newButton.type = "button";
-        newButton.className = originalButton.className + " " + newBtnClass;
-
-        newButton.innerHTML = `
-          <span class="btn-text">Buy Now</span>
-          <div class="spinner-border" role="status" style="display: none;">
-            <span class="sr-only">Loading...</span>
-          </div>
-        `;
-
-        newButton.addEventListener("click", () => {
-          window.location.href = url;
-        });
-
-        originalButton.style.display = "none";
-        originalButton.insertAdjacentElement("afterend", newButton);
-
-        customLog('[' + 'handleCards' + '] Updated card: ' + oldAmount + ' → ' + newCount);
-      } catch (err) {
-        customLog("[handleCards] Error:", err);
-      }
-    });
+  const entryMap = {
+    "20": { newCount: 50, url: "http://omaze.co.uk/cart/43654946816086:1?storefront=true" },
+    "45": { newCount: 100, url: "http://omaze.co.uk/cart/43654946848854:1?storefront=true" },
+    "85": { newCount: 250, url: "http://omaze.co.uk/cart/43654946881622:1?storefront=true" },
+    "320": { newCount: 1000, url: "http://omaze.co.uk/cart/43654946914390:1?storefront=true" }
   };
+
+  CONTROL_NO_SOURCE_PAYG_CARDS.elements.forEach(originalButton => {
+    try {
+      const card = originalButton.closest("[data-test]");
+      if (!card) return;
+
+      const oldAmount = originalButton.getAttribute("data-entries-amount");
+
+      // -----------------------------
+      // NEW: HIDE ANY 320 ENTRY CARDS
+      // -----------------------------
+      if (oldAmount === "320") {
+        customLog("[handleCards] Hiding 320-entry card");
+        card.setAttribute("style", "display: none !important;");
+        return; // Completely skip adjustments for this card
+      }
+      // -----------------------------
+
+      const mapping = entryMap[oldAmount];
+      if (!mapping) return;
+
+      const { newCount, url } = mapping;
+
+      const entryCountEl = card.querySelector('[data-test="entry-count"]');
+      if (entryCountEl) {
+        entryCountEl.textContent = newCount + ' Entries';
+      }
+
+      const isMobileButton =
+        originalButton.classList.contains("w-[131px]") ||
+        originalButton.classList.contains("h-[43px]");
+
+      const newBtnClass = isMobileButton
+        ? "ccx-button-mobile-price"
+        : "ccx-button-desktop-price";
+
+      const newButton = document.createElement("button");
+      newButton.type = "button";
+      newButton.className = originalButton.className + " " + newBtnClass;
+
+      newButton.innerHTML = `
+        <span class="btn-text">Buy Now</span>
+        <div class="spinner-border" role="status" style="display: none;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      `;
+
+      newButton.addEventListener("click", () => {
+        window.location.href = url;
+      });
+
+      originalButton.style.display = "none";
+      originalButton.insertAdjacentElement("afterend", newButton);
+
+      customLog('[handleCards] Updated card: ' + oldAmount + ' → ' + newCount);
+    } catch (err) {
+      customLog("[handleCards] Error:", err);
+    }
+  });
+};
+
 
   const getSourceType = () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -238,7 +250,7 @@
           customLog('[init] Buttons and scoped entry-counts ready:', results);
 
           // Run the existing handler against the button group
-          handleCardUpdates(cardResult);
+          handleNoSourcePaygCards(cardResult);
         }
       );
 

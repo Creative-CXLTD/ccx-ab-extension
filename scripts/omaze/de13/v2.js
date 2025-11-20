@@ -153,9 +153,6 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
 }
 .ccx-bottom-image,
 .ccx-trustpilot {
@@ -166,7 +163,7 @@
 
 @media (max-width: 576px) {
   .ccx-slider-wrapper {
-    min-height: 17rem;
+    min-height: 12rem;
   }
 }
 

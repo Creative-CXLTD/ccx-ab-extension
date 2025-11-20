@@ -54,6 +54,22 @@ HEADER BULLET POINTS
   letter-spacing: 0;
 }
 
+[id*=subscription-tab-pane] {
+    padding-top: 2rem !important;
+}
+
+@media screen and (max-width: 375px) {
+  .ccx-subscription-banner-bullet-points {
+    max-width: 18rem !important;
+    flex-flow: column;
+    padding: 1rem 0;
+    gap: 0.5rem;
+  }
+  .ccx-bullet-point-item {
+    height: auto;
+  }
+}
+
 
 @media screen and (min-width: 992px) {
   .ccx-subscription-banner-bullet-points {

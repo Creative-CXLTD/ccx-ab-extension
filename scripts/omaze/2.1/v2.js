@@ -230,6 +230,10 @@ CARDS INFO CONTAINER
 
 .ccx-subscription-header .ccx-header-top .ccx-header-text {
   line-height: normal;
+  font-family: Gellix;
+  font-size: 15px;
+  letter-spacing: 0;
+  vertical-align: initial;
 }
 
 .ccx-price {
@@ -251,7 +255,7 @@ CARDS INFO CONTAINER
         type: 'house',
         icon: SVG_HOUSE,
         title: 'HOUSE DRAW',
-        text: `<span>100 entries</span> into into every Early Bird and Grand Prize draw`
+        text: `<span>100 entries</span> into every Early Bird and Grand Prize draw`
       },
       {
         type: 'money',
@@ -265,7 +269,7 @@ CARDS INFO CONTAINER
         type: 'house',
         icon: SVG_HOUSE,
         title: 'HOUSE DRAW',
-        text: `<span>200 entries</span> into into every Early Bird and Grand Prize draw`
+        text: `<span>200 entries</span> into every Early Bird and Grand Prize draw`
       },
       {
         type: 'money',
@@ -285,7 +289,7 @@ CARDS INFO CONTAINER
         type: 'house',
         icon: SVG_HOUSE,
         title: 'HOUSE DRAW',
-        text: `<span>640 entries</span> into into every Early Bird and Grand Prize draw`
+        text: `<span>640 entries</span> into every Early Bird and Grand Prize draw`
       },
       {
         type: 'money',
