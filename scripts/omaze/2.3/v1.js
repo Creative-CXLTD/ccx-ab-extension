@@ -6,10 +6,32 @@
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
-    CONTROL_TOP_CONTAINER: '#enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child',
+    CONTROL_TOP_CONTAINER: '#enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child'
   }
 
-  const STYLES = ``;
+  const STYLES = `
+    #enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child {
+      margin-top: 4rem !important;
+      margin-bottom: 0 !important;
+    }
+    #enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child h1 {
+      font-weight: 500;
+      font-size: 27px !important;
+    }
+    #enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child p {
+      margin: 0 !important;
+      margin-bottom: 1rem !important;
+    }
+    @media screen and (min-width: 768px) {
+      #enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child h1 {
+        font-size: 45px !important;
+      }
+      #enter-now-material-tab-buttons-design > [id*=nav-latest] > div:first-child {
+        margin-top: 3rem !important;
+      }
+    }
+
+  `;
 
   const customLog = (...messages) => {
     if (!LOG_ENABLED) return;

@@ -198,7 +198,7 @@
     // Create the button
     const button = document.createElement('a');
     button.classList.add('ccx-button');
-    button.href = 'https://omaze.de/account/register?return_to=/cart';
+    button.href = 'https://omaze.de/account/login?return_to=/cart';
     button.textContent = 'Weiter';
     container.appendChild(button);
     customLog('[CCX] Added "Weiter" button.');

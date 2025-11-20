@@ -233,7 +233,7 @@ function handleResize() {
           }
 
           customLog(HOME_BANNER_VIDEO);
-          getAndSetVideoURLForThisVariant(HOME_BANNER_VIDEO);
+          getAndSetVideoURLForThisVariant(HOME_BANNER_VIDEO, 'variant1');
           attachEventListeners(results);
           handleResize();
         }

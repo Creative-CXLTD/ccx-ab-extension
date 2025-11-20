@@ -198,7 +198,6 @@ CARDS INFO CONTAINER
   font-weight: 500;
   color: #081F28;
   font-size: 16px;
-  line-height: 28px;
   letter-spacing: 0;
   margin-bottom: 1rem;
 }
@@ -217,6 +216,20 @@ CARDS INFO CONTAINER
   border-width: 1px;
   background: #F8F8F8;
   border: 1px solid #0193A799;
+}
+
+.ccx-header-top .ccx-header-icon {
+  flex-basis: 15%;
+}
+
+@media screen and (min-width: 992px) {
+  .ccx-header-top .ccx-header-icon {
+    flex-basis: 10%;
+  }
+}
+
+.ccx-subscription-header .ccx-header-top .ccx-header-text {
+  line-height: normal;
 }
 
 .ccx-price {
@@ -441,14 +454,6 @@ CARDS INFO CONTAINER
       '<span class="ccx-header-icon" aria-hidden="true">' + SVG_CHECKBOX + '</span>' +
       '<span class="ccx-header-text">Cancel or pause at any time</span>' +
       '</div>' +
-      // '<div class="ccx-header-bottom">' +
-      // '<span class="ccx-header-icon" aria-hidden="true">' + SVG_CALENDAR + '</span>' +
-      // '<div class="ccx-date">' +
-      // '<span class="ccx-price">' +
-      // '<strong>£' + price + '/month</strong> ' + dateText +
-      // '</span>' +
-      // '</div>' +
-      // '</div>' +
       '</header>';
 
     innerContainer.insertAdjacentHTML("afterbegin", headerHTML);

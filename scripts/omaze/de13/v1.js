@@ -170,6 +170,12 @@
   justify-content: center;
 }
 
+@media (max-width: 576px) {
+  .ccx-slider-wrapper {
+    min-height: 17rem;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .ccx-slider-wrapper {
     display: none !important;
