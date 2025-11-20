@@ -127,9 +127,7 @@
           { selector: SELECTORS.FIRST_ELEMENT, count: 1 },
         ],
         function (results) {
-          const bodyClass = 'ccx-' + TEST_ID.toLowerCase() + '-' + VARIATION.toLowerCase().replace(/\s+/g, '-') + '';
 
-          // Add styles
           addStyles(STYLES, VARIATION);
           addBodyClass();
 
