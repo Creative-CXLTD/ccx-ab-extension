@@ -121,75 +121,75 @@
       .catch(() => { });
   };
 
-const handleNoSourcePaygCards = (CONTROL_NO_SOURCE_PAYG_CARDS) => {
-  customLog('[handleNoSourcePaygCards] called');
+  const handleNoSourcePaygCards = (CONTROL_NO_SOURCE_PAYG_CARDS) => {
+    customLog('[handleNoSourcePaygCards] called');
 
-  const entryMap = {
-    "20": { newCount: 50, url: "http://omaze.co.uk/cart/43654946816086:1?storefront=true" },
-    "45": { newCount: 100, url: "http://omaze.co.uk/cart/43654946848854:1?storefront=true" },
-    "85": { newCount: 250, url: "http://omaze.co.uk/cart/43654946881622:1?storefront=true" },
-    "320": { newCount: 1000, url: "http://omaze.co.uk/cart/43654946914390:1?storefront=true" }
-  };
+    const entryMap = {
+      "20": { newCount: 50, url: "http://omaze.co.uk/cart/43654946816086:1?storefront=true" },
+      "45": { newCount: 100, url: "http://omaze.co.uk/cart/43654946848854:1?storefront=true" },
+      "85": { newCount: 250, url: "http://omaze.co.uk/cart/43654946881622:1?storefront=true" },
+      "320": { newCount: 1000, url: "http://omaze.co.uk/cart/43654946914390:1?storefront=true" }
+    };
 
-  CONTROL_NO_SOURCE_PAYG_CARDS.elements.forEach(originalButton => {
-    try {
-      const card = originalButton.closest("[data-test]");
-      if (!card) return;
+    CONTROL_NO_SOURCE_PAYG_CARDS.elements.forEach(originalButton => {
+      try {
+        const card = originalButton.closest("[data-test]");
+        if (!card) return;
 
-      const oldAmount = originalButton.getAttribute("data-entries-amount");
+        const oldAmount = originalButton.getAttribute("data-entries-amount");
 
-      // -----------------------------
-      // NEW: HIDE ANY 320 ENTRY CARDS
-      // -----------------------------
-      if (oldAmount === "320") {
-        customLog("[handleCards] Hiding 320-entry card");
-        card.setAttribute("style", "display: none !important;");
-        return; // Completely skip adjustments for this card
-      }
-      // -----------------------------
+        // -----------------------------
+        // NEW: HIDE ANY 320 ENTRY CARDS
+        // -----------------------------
+        if (oldAmount === "320") {
+          customLog("[handleCards] Hiding 320-entry card");
+          card.setAttribute("style", "display: none !important;");
+          return; // Completely skip adjustments for this card
+        }
+        // -----------------------------
 
-      const mapping = entryMap[oldAmount];
-      if (!mapping) return;
+        const mapping = entryMap[oldAmount];
+        if (!mapping) return;
 
-      const { newCount, url } = mapping;
+        const { newCount, url } = mapping;
 
-      const entryCountEl = card.querySelector('[data-test="entry-count"]');
-      if (entryCountEl) {
-        entryCountEl.textContent = newCount + ' Entries';
-      }
+        const entryCountEl = card.querySelector('[data-test="entry-count"]');
+        if (entryCountEl) {
+          entryCountEl.textContent = newCount + ' Entries';
+        }
 
-      const isMobileButton =
-        originalButton.classList.contains("w-[131px]") ||
-        originalButton.classList.contains("h-[43px]");
+        const isMobileButton =
+          originalButton.classList.contains("w-[131px]") ||
+          originalButton.classList.contains("h-[43px]");
 
-      const newBtnClass = isMobileButton
-        ? "ccx-button-mobile-price"
-        : "ccx-button-desktop-price";
+        const newBtnClass = isMobileButton
+          ? "ccx-button-mobile-price"
+          : "ccx-button-desktop-price";
 
-      const newButton = document.createElement("button");
-      newButton.type = "button";
-      newButton.className = originalButton.className + " " + newBtnClass;
+        const newButton = document.createElement("button");
+        newButton.type = "button";
+        newButton.className = originalButton.className + " " + newBtnClass;
 
-      newButton.innerHTML = `
+        newButton.innerHTML = `
         <span class="btn-text">Buy Now</span>
         <div class="spinner-border" role="status" style="display: none;">
           <span class="sr-only">Loading...</span>
         </div>
       `;
 
-      newButton.addEventListener("click", () => {
-        window.location.href = url;
-      });
+        newButton.addEventListener("click", () => {
+          window.location.href = url;
+        });
 
-      originalButton.style.display = "none";
-      originalButton.insertAdjacentElement("afterend", newButton);
+        originalButton.style.display = "none";
+        originalButton.insertAdjacentElement("afterend", newButton);
 
-      customLog('[handleCards] Updated card: ' + oldAmount + ' → ' + newCount);
-    } catch (err) {
-      customLog("[handleCards] Error:", err);
-    }
-  });
-};
+        customLog('[handleCards] Updated card: ' + oldAmount + ' → ' + newCount);
+      } catch (err) {
+        customLog("[handleCards] Error:", err);
+      }
+    });
+  };
 
 
   const getSourceType = () => {
@@ -207,52 +207,110 @@ const handleNoSourcePaygCards = (CONTROL_NO_SOURCE_PAYG_CARDS) => {
     return "OTHER";
   };
 
+  // const init = () => {
+  //   try {
+  //     customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
+  //     customLog('[init] Current URL: ' + CURRENT_URL);
+
+  //     const sourceType = getSourceType();
+  //     customLog('[init] Source Type: ' + sourceType);
+
+  //     let cardSelector;
+  //     let entryCountSelector;
+  //     const expectedCount = 8;
+
+  //     if (sourceType === "FACEBOOK") {
+  //       cardSelector = SELECTORS.CONTROL_FACEBOOK_SOURCE_PAYG_CARDS;
+  //       entryCountSelector = SELECTORS.FACEBOOK_ENTRY_COUNTS;
+  //     } else if (sourceType === "OTHER") {
+  //       cardSelector = SELECTORS.CONTROL_OTHER_SOURCE_SOURCE_PAYG_CARDS;
+  //       entryCountSelector = SELECTORS.OTHER_SOURCE_ENTRY_COUNTS;
+  //     } else {
+  //       cardSelector = SELECTORS.CONTROL_NO_SOURCE_PAYG_CARDS;
+  //       entryCountSelector = SELECTORS.NO_SOURCE_ENTRY_COUNTS;
+  //     }
+
+  //     waitForElements(
+  //       [
+  //         { selector: cardSelector, count: expectedCount },
+  //         { selector: entryCountSelector, count: expectedCount }
+  //       ],
+  //       function (results) {
+  //         addStyles(STYLES, VARIATION);
+  //         addBodyClass();
+
+  //         const cardResult = results[0];
+  //         const entryCountResult = results[1];
+
+  //         if (!cardResult || !entryCountResult) {
+  //           customLog('[init] Missing required results. Aborting.');
+  //           return;
+  //         }
+
+  //         customLog('[init] Buttons and scoped entry-counts ready:', results);
+
+  //         // Run the existing handler against the button group
+  //         handleNoSourcePaygCards(cardResult);
+  //       }
+  //     );
+
+  //   } catch (error) {
+  //     customLog(error);
+  //   }
+  // };
+
+
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
       customLog('[init] Current URL: ' + CURRENT_URL);
 
-      const sourceType = getSourceType();
-      customLog('[init] Source Type: ' + sourceType);
+      addStyles(STYLES, VARIATION);
+      addBodyClass();
 
-      let cardSelector;
-      let entryCountSelector;
       const expectedCount = 8;
 
-      if (sourceType === "FACEBOOK") {
-        cardSelector = SELECTORS.CONTROL_FACEBOOK_SOURCE_PAYG_CARDS;
-        entryCountSelector = SELECTORS.FACEBOOK_ENTRY_COUNTS;
-      } else if (sourceType === "OTHER") {
-        cardSelector = SELECTORS.CONTROL_OTHER_SOURCE_SOURCE_PAYG_CARDS;
-        entryCountSelector = SELECTORS.OTHER_SOURCE_ENTRY_COUNTS;
-      } else {
-        cardSelector = SELECTORS.CONTROL_NO_SOURCE_PAYG_CARDS;
-        entryCountSelector = SELECTORS.NO_SOURCE_ENTRY_COUNTS;
-      }
-
-      waitForElements(
-        [
-          { selector: cardSelector, count: expectedCount },
-          { selector: entryCountSelector, count: expectedCount }
-        ],
-        function (results) {
-          addStyles(STYLES, VARIATION);
-          addBodyClass();
-
-          const cardResult = results[0];
-          const entryCountResult = results[1];
-
-          if (!cardResult || !entryCountResult) {
-            customLog('[init] Missing required results. Aborting.');
-            return;
-          }
-
-          customLog('[init] Buttons and scoped entry-counts ready:', results);
-
-          // Run the existing handler against the button group
-          handleNoSourcePaygCards(cardResult);
+      const configs = [
+        {
+          name: "NO_SOURCE",
+          buttonSelector: SELECTORS.CONTROL_NO_SOURCE_PAYG_CARDS,
+          countSelector: SELECTORS.NO_SOURCE_ENTRY_COUNTS
+        },
+        {
+          name: "FACEBOOK",
+          buttonSelector: SELECTORS.CONTROL_FACEBOOK_SOURCE_PAYG_CARDS,
+          countSelector: SELECTORS.FACEBOOK_ENTRY_COUNTS
+        },
+        {
+          name: "OTHER",
+          buttonSelector: SELECTORS.CONTROL_OTHER_SOURCE_SOURCE_PAYG_CARDS,
+          countSelector: SELECTORS.OTHER_SOURCE_ENTRY_COUNTS
         }
-      );
+      ];
+
+      configs.forEach(cfg => {
+        waitForElements(
+          [
+            { selector: cfg.buttonSelector, count: expectedCount },
+            { selector: cfg.countSelector, count: expectedCount }
+          ],
+          function (results) {
+
+            customLog(`[init] Ready for ${cfg.name}`, results);
+
+            const cardResult = results[0];
+            const entryCountResult = results[1];
+
+            if (!cardResult || !entryCountResult) {
+              customLog(`[init] Missing results for ${cfg.name}. Skipping.`);
+              return;
+            }
+
+            // Apply handler to each group independently
+            handleNoSourcePaygCards(cardResult);
+          }
+        );
+      });
 
     } catch (error) {
       customLog(error);

@@ -195,57 +195,113 @@
     return "OTHER";
   };
 
+  // const init = () => {
+  //   try {
+  //     customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
+  //     customLog('[init] Current URL: ' + CURRENT_URL);
+
+  //     const sourceType = getSourceType();
+  //     customLog('[init] Source Type: ' + sourceType);
+
+  //     let cardSelector;
+  //     let entryCountSelector;
+  //     const expectedCount = 8;
+
+  //     if (sourceType === "FACEBOOK") {
+  //       cardSelector = SELECTORS.CONTROL_FACEBOOK_SOURCE_PAYG_CARDS;
+  //       entryCountSelector = SELECTORS.FACEBOOK_ENTRY_COUNTS;
+  //     } else if (sourceType === "OTHER") {
+  //       cardSelector = SELECTORS.CONTROL_OTHER_SOURCE_SOURCE_PAYG_CARDS;
+  //       entryCountSelector = SELECTORS.OTHER_SOURCE_ENTRY_COUNTS;
+  //     } else {
+  //       cardSelector = SELECTORS.CONTROL_NO_SOURCE_PAYG_CARDS;
+  //       entryCountSelector = SELECTORS.NO_SOURCE_ENTRY_COUNTS;
+  //     }
+
+  //     waitForElements(
+  //       [
+  //         { selector: cardSelector, count: expectedCount },
+  //         { selector: entryCountSelector, count: expectedCount }
+  //       ],
+  //       function (results) {
+  //         addStyles(STYLES, VARIATION);
+  //         addBodyClass();
+
+  //         const cardResult = results[0];
+  //         const entryCountResult = results[1];
+
+  //         if (!cardResult || !entryCountResult) {
+  //           customLog('[init] Missing required results. Aborting.');
+  //           return;
+  //         }
+
+  //         customLog('[init] Buttons and scoped entry-counts ready:', results);
+
+  //         // Run the existing handler against the button group
+  //         handleCardUpdates(cardResult);
+  //       }
+  //     );
+
+  //   } catch (error) {
+  //     customLog(error);
+  //   }
+  // };
+
+
   const init = () => {
-    try {
-      customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
-      customLog('[init] Current URL: ' + CURRENT_URL);
+  try {
+    customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
+    customLog('[init] Current URL: ' + CURRENT_URL);
 
-      const sourceType = getSourceType();
-      customLog('[init] Source Type: ' + sourceType);
+    addStyles(STYLES, VARIATION);
+    addBodyClass();
 
-      let cardSelector;
-      let entryCountSelector;
-      const expectedCount = 8;
+    const expectedCount = 8;
 
-      if (sourceType === "FACEBOOK") {
-        cardSelector = SELECTORS.CONTROL_FACEBOOK_SOURCE_PAYG_CARDS;
-        entryCountSelector = SELECTORS.FACEBOOK_ENTRY_COUNTS;
-      } else if (sourceType === "OTHER") {
-        cardSelector = SELECTORS.CONTROL_OTHER_SOURCE_SOURCE_PAYG_CARDS;
-        entryCountSelector = SELECTORS.OTHER_SOURCE_ENTRY_COUNTS;
-      } else {
-        cardSelector = SELECTORS.CONTROL_NO_SOURCE_PAYG_CARDS;
-        entryCountSelector = SELECTORS.NO_SOURCE_ENTRY_COUNTS;
+    const configs = [
+      {
+        name: "NO_SOURCE",
+        buttonSelector: SELECTORS.CONTROL_NO_SOURCE_PAYG_CARDS,
+        countSelector: SELECTORS.NO_SOURCE_ENTRY_COUNTS
+      },
+      {
+        name: "FACEBOOK",
+        buttonSelector: SELECTORS.CONTROL_FACEBOOK_SOURCE_PAYG_CARDS,
+        countSelector: SELECTORS.FACEBOOK_ENTRY_COUNTS
+      },
+      {
+        name: "OTHER",
+        buttonSelector: SELECTORS.CONTROL_OTHER_SOURCE_SOURCE_PAYG_CARDS,
+        countSelector: SELECTORS.OTHER_SOURCE_ENTRY_COUNTS
       }
+    ];
 
+    configs.forEach(cfg => {
       waitForElements(
         [
-          { selector: cardSelector, count: expectedCount },
-          { selector: entryCountSelector, count: expectedCount }
+          { selector: cfg.buttonSelector, count: expectedCount },
+          { selector: cfg.countSelector, count: expectedCount }
         ],
         function (results) {
-          addStyles(STYLES, VARIATION);
-          addBodyClass();
+          customLog(`[init] Ready for ${cfg.name}:`, results);
 
-          const cardResult = results[0];
+          const buttonResult = results[0];
           const entryCountResult = results[1];
 
-          if (!cardResult || !entryCountResult) {
-            customLog('[init] Missing required results. Aborting.');
+          if (!buttonResult || !entryCountResult) {
+            customLog(`[init] Missing elements for ${cfg.name}, skipping.`);
             return;
           }
 
-          customLog('[init] Buttons and scoped entry-counts ready:', results);
-
-          // Run the existing handler against the button group
-          handleCardUpdates(cardResult);
+          handleCardUpdates(buttonResult);
         }
       );
+    });
 
-    } catch (error) {
-      customLog(error);
-    }
-  };
+  } catch (error) {
+    customLog(error);
+  }
+};
 
   init();
 })();
