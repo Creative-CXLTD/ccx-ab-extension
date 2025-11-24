@@ -168,7 +168,7 @@
       gap: 10px;
     }
     .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-left {
-      width: 117px;
+      min-width: 117px;
       height: 38px;
       min-width: 44px;
       opacity: 1;
@@ -332,6 +332,40 @@
       .catch(() => { });
   }
 
+const getRemainingDaysNumber = () => {
+  const remaining = getRemainingTimeText(); // e.g. "6 Tagen" or "< 24 Std."
+
+  // If less than 24 hours
+  if (remaining.includes("< 24")) {
+    return "< 24";  // Variation-3 wants "< 24"
+  }
+
+  // Otherwise extract the number
+  const match = remaining.match(/\d+/);
+  return match ? match[0] : "0"; 
+};
+
+
+  const getRemainingTimeText = () => {
+    // End date in CET (Germany)
+    const endDate = new Date(Date.UTC(2025, 10, 24, 22, 59, 59));
+
+    const now = new Date();
+
+    const diffMs = endDate.getTime() - now.getTime();
+
+    if (diffMs <= 0) return "< 24 Std.";
+
+    const diffHours = diffMs / (1000 * 60 * 60);
+
+    if (diffHours <= 24) return "< 24 Std.";
+
+    const diffDays = Math.floor(diffHours / 24);
+
+    return diffDays + ' Tagen';
+  };
+
+
   const createCountdownContainer = (CONTROL_NAVBAR_TOGGLE_MENU) => {
     const countdownContainer = document.createElement('div');
     countdownContainer.classList.add('ccx-countdown-container');
@@ -444,73 +478,60 @@
     CONTROL_NAVBAR_TOGGLE_MENU.insertAdjacentElement('beforebegin', countdownContainer);
   };
 
-  // const attachEventListeners = () => {
-  //   customLog('[attachEventListeners] Attaching event listeners.');
+  // Update countdown text dynamically for V1 + V2
+  const updateCountdownText = () => {
+    const remaining = getRemainingTimeText();
 
-  //   if (VARIATION === 'variation-2') {
-  //     const ccxSecondVariantButtonElement = document.querySelector('.ccx-de16-variation-2 .ccx-second-container');
-  //     if (!ccxSecondVariantButtonElement) {
-  //       customLog('[attachEventListeners] ccxSecondVariantButtonElement not found.');
-  //     }
-  //     ccxSecondVariantButtonElement.addEventListener('click', () => {
-  //       const controlCTA = document.querySelector('.campaign-hero__content .yellow-btn');
-  //       if (!controlCTA) {
-  //         customLog('[attachEventListeners] controlCTA not found.');
-  //       }
-  //       controlCTA.click();
-  //     })
-  //   }
+    if (VARIATION === 'variation-1') {
+      const span = document.querySelector('.ccx-de16-variation-1 .ccx-bottom-row span:nth-child(2)');
+      if (span) span.textContent = remaining;
+    }
 
-  //   if (VARIATION === 'variation-3') {
-  //     const ccxThirdVariantButtonElement = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-right-btn');
-  //     if (!ccxThirdVariantButtonElement) {
-  //       customLog('[attachEventListeners] ccxThirdVariantButtonElement not found.');
-  //     }
-  //     ccxThirdVariantButtonElement.addEventListener('click', () => {
-  //       const controlCTA = document.querySelector('.campaign-hero__content .yellow-btn');
-  //       if (!controlCTA) {
-  //         customLog('[attachEventListeners] controlCTA not found.');
-  //       }
-  //       controlCTA.click();
-  //     })
-  //   }
+    if (VARIATION === 'variation-2') {
+      const span = document.querySelector('.ccx-de16-variation-2 .ccx-top-row span:nth-child(2)');
+      if (span) span.textContent = remaining.toUpperCase();
+    }
 
-  // }
+    if (VARIATION === 'variation-3') {
+      const numberSpan = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-left span:nth-child(1)');
+      if (numberSpan) numberSpan.textContent = getRemainingDaysNumber();
+    }
+  };
 
   const attachEventListeners = () => {
-  customLog('[attachEventListeners] Attaching event listeners.');
+    customLog('[attachEventListeners] Attaching event listeners.');
 
-  // Shared CTA handler
-  const triggerControlCTA = () => {
-    const controlCTA = document.querySelector('.campaign-hero__content .yellow-btn');
-    if (!controlCTA) {
-      customLog('[attachEventListeners] controlCTA not found.');
-      return;
+    // Shared CTA handler
+    const triggerControlCTA = () => {
+      const controlCTA = document.querySelector('.campaign-hero__content .yellow-btn');
+      if (!controlCTA) {
+        customLog('[attachEventListeners] controlCTA not found.');
+        return;
+      }
+      controlCTA.click();
+    };
+
+    // Helper to safely bind listeners
+    const bindClick = (element, variationLabel) => {
+      if (!element) {
+        customLog('Button element not found for ' + variationLabel + '.');
+        return;
+      }
+
+      element.addEventListener('click', triggerControlCTA);
+      customLog('[attachEventListeners] Click listener attached for ' + variationLabel + '.');
+    };
+
+    if (VARIATION === 'variation-2') {
+      const button = document.querySelector('.ccx-de16-variation-2 .ccx-second-container');
+      bindClick(button, 'variation-2');
     }
-    controlCTA.click();
-  };
 
-  // Helper to safely bind listeners
-  const bindClick = (element, variationLabel) => {
-    if (!element) {
-      customLog(`[attachEventListeners] Button element not found for ${variationLabel}.`);
-      return;
+    if (VARIATION === 'variation-3') {
+      const button = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-right-btn');
+      bindClick(button, 'variation-3');
     }
-
-    element.addEventListener('click', triggerControlCTA);
-    customLog(`[attachEventListeners] Click listener attached for ${variationLabel}.`);
   };
-
-  if (VARIATION === 'variation-2') {
-    const button = document.querySelector('.ccx-de16-variation-2 .ccx-second-container');
-    bindClick(button, 'variation-2');
-  }
-
-  if (VARIATION === 'variation-3') {
-    const button = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-right-btn');
-    bindClick(button, 'variation-3');
-  }
-};
 
   const init = () => {
     try {
@@ -532,6 +553,8 @@
           customLog(CONTROL_NAVBAR_TOGGLE_MENU);
 
           createCountdownContainer(CONTROL_NAVBAR_TOGGLE_MENU);
+
+          updateCountdownText();
 
           attachEventListeners();
         }
