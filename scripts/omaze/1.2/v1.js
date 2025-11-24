@@ -535,15 +535,17 @@
         // MAIN TEXT (inside quotes)
         // ============================
         const formatted = slide.mainText.replace(/😊/g, '<span class="no-italic">😊</span>');
-        pMain.innerHTML = `“${formatted}”`;
+        const pMain = document.getElementById('pMain');
+        pMain.innerHTML = '“' + formatted + '”';
 
         // ============================
         // DESCRIPTION AREA
         // ============================
+        const pDesc = document.getElementById('pDesc');
         pDesc.innerHTML =
-          `<strong>${slide.name}</strong> from ${slide.location} won ` +
-          `<strong>${slide.prize}</strong> in the ` +
-          `<strong>${slide.month} Monthly Millionaire Draw.</strong>`;
+          '<strong>' + slide.name + '</strong> from ' + slide.location + ' won ' +
+          '<strong>' + slide.prize + '</strong> in the ' +
+          '<strong>' + slide.month + ' Monthly Millionaire Draw.</strong>';
       });
     };
 
