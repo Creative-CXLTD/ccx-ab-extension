@@ -102,7 +102,10 @@
 
   const waitForElements = (configs, callback) => {
     if (!configs || !Array.isArray(configs) || configs.length === 0) return;
-    if (!window.DYO || !DYO.waitForElementAsync) return;
+    if (!window.DYO || !DYO.waitForElementAsync) {
+      console.warn('[waitForElements] DYO.waitForElementAsync not available');
+      return;
+    }
 
     const promises = configs.map(cfg => {
       const { selector, count } = cfg;
@@ -114,7 +117,9 @@
       .then(results => {
         if (typeof callback === 'function') callback(results);
       })
-      .catch(() => { });
+      .catch(() => {
+        console.error('[waitForElements] error:', err);
+      });
   }
 
   const init = () => {

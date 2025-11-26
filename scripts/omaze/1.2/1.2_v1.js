@@ -1,14 +1,16 @@
 (function () {
   const LOG_ENABLED = true;
   const TEST_ID = "1-2";
-  const TEST_NAME = "PROD 1.2 - MM LP Winners Hero Video [Social Proof & Authority]";
+  const TEST_NAME = "Emotional Video on Hero Homepage";
   const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
-  let resizeTimer;
+  const MM_LOGO = 'https://cdn-eu.dynamicyield.com/api/9881830/images/5c8c4934af20.png';
   let isAnimating = false;
 
   const SELECTORS = {
     CONTROL_HERO_VIDEO_ELEMENT: '.campaign-hero-video-container video',
+    CONTROL_HERO_LOGO_DESKTOP: '.campaign-hero-overlay .campaign-logo-desktop',
+    CONTROL_HERO_LOGO_MOBILE: '.campaign-hero-overlay .campaign-logo-mobile',
     CONTROL_HMA_LAST_H3: '.campaign-hero-overlay .campaign-hero-title',
   }
 
@@ -19,7 +21,7 @@
       location: "Worcestershire",
       prize: "£1,000,000",
       month: "August",
-      mainText: "Winning a million pounds is beyond transformational, it's incredible, utterly life-changing for our family."
+      mainText: "Winning a million pounds is beyond transformational, it\'s incredible, utterly life-changing for our family."
     },
     {
       image: "https://cdn-eu.dynamicyield.com/api/9881830/images/635dd55a7431.png",
@@ -27,7 +29,7 @@
       location: "XXX",
       prize: "£1,000,000",
       month: "September",
-      mainText: "Absolutely shocked. It's a lot to take in. It's genuinely life-changing and now we no longer need to worry about the heating bill."
+      mainText: "It\'s just lifted such a weight. We can pay off our overdraft and stop worrying about money every month - it\'s the best feeling in the world."
     },
     {
       image: "https://cdn-eu.dynamicyield.com/api/9881830/images/17bf03fbb789.jpg",
@@ -35,22 +37,52 @@
       location: "XXX",
       prize: "£1,000,000",
       month: "October",
-      mainText: "ncksdcbnksdjnkjdsncksdcbnksdjnkjdsncksdcbnksdjnkjdsncksdcbnksdjnkjsdncksdcbnksdjnkjdsncksdcbnksdjnkjdsncksdcbnksdjnkjds"
+      mainText: "I just can\'t believe it\'s happened to us. You don\'t think it\'s ever going to be you. Seeing the money land in my account was a moment I\'ll never forget!"
     }
   ];
 
-  const ARROW_LEFT = `<svg width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M1.82747 7.00414L6.75663 1.97199C6.92428 1.80083 7.00532 1.59829 6.99973 1.36437C6.99414 1.13045 6.90752 0.927904 6.73986 0.756742C6.5722 0.585581 6.37381 0.5 6.14467 0.5C5.91554 0.5 5.71714 0.585581 5.54949 0.756742L0.402379 6.02852C0.268252 6.16545 0.167658 6.31949 0.100595 6.49066C0.0335312 6.66182 0 6.83298 0 7.00414C0 7.1753 0.0335312 7.34646 0.100595 7.51763C0.167658 7.68879 0.268252 7.84283 0.402379 7.97976L5.56625 13.2515C5.73391 13.4227 5.92951 13.5054 6.15306 13.4997C6.3766 13.494 6.5722 13.4056 6.73986 13.2344C6.90752 13.0633 6.99135 12.8607 6.99135 12.6268C6.99135 12.3929 6.90752 12.1903 6.73986 12.0192L1.82747 7.00414Z" fill="white"/>
-</svg>`;
-
-  const ARROW_RIGHT = `<svg width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
-  <path d="M1.82747 7.00414L6.75663 1.97199C6.92428 1.80083 7.00532 1.59829 6.99973 1.36437C6.99414 1.13045 6.90752 0.927904 6.73986 0.756742C6.5722 0.585581 6.37381 0.5 6.14467 0.5C5.91554 0.5 5.71714 0.585581 5.54949 0.756742L0.402379 6.02852C0.268252 6.16545 0.167658 6.31949 0.100595 6.49066C0.0335312 6.66182 0 6.83298 0 7.00414C0 7.1753 0.0335312 7.34646 0.100595 7.51763C0.167658 7.68879 0.268252 7.84283 0.402379 7.97976L5.56625 13.2515C5.73391 13.4227 5.92951 13.5054 6.15306 13.4997C6.3766 13.494 6.5722 13.4056 6.73986 13.2344C6.90752 13.0633 6.99135 12.8607 6.99135 12.6268C6.99135 12.3929 6.90752 12.1903 6.73986 12.0192L1.82747 7.00414Z" fill="white"/>
-</svg>`;
-
   const STYLES = `
-        /* ===============================
-   SLIDER COMPONENT
-=============================== */
+    .campaign-hero-overlay {
+      // padding: 0 !important;
+    }
+    .campaign-hero-overlay .campaign-hero-title {
+      display: none !important;
+    }
+    .campaign-hero-subtext p > br {
+      display: none !important;
+    }
+    .ccx-heading-container .ccx-heading-mobile {
+      font-family: Showtime;
+      font-weight: 500;
+      color: #FFFFFF;
+      font-size: clamp(45px, 8vw, 60px);
+      line-height: 100%;
+      letter-spacing: 0;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .ccx-heading-container .ccx-heading-desktop {
+      display: none;
+    }
+    .ccx-heading-container .ccx-amount {
+      font-family: Showtime;
+      font-weight: 500;
+      color: #FFDD00;
+      font-size: clamp(45px, 8vw, 60px);
+      letter-spacing: 0;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .ccx-mm-logo {
+      width: 146px;
+    }
+
+
+    /* ===============================
+      SLIDER COMPONENT
+    =============================== */
 .no-italic {
   font-style: normal !important;
   display: inline;
@@ -163,12 +195,6 @@
   justify-content: center;
 }
 
-@media (max-width: 576px) {
-  .ccx-slider-wrapper {
-    min-height: 10rem;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
   .ccx-slider-wrapper {
     display: none !important;
@@ -180,8 +206,9 @@
     width: 483px;
     margin: 0 auto;
     min-height: auto;
-    border: 2px solid #ffdd00;
-    background: #081f28a6;
+    background: #081F28;
+    border: 1px solid #FFDD00;
+    margin-bottom: 2rem;
   }
   .ccx-slider-top {
     min-height: 6rem;
@@ -190,7 +217,50 @@
     padding-right: 1rem;
   }
 }  
+
+
+
+  @media screen and (min-width: 768px) {
+    .campaign-hero-overlay {
+      top: 0 !important;
+    }
+    .campaign-hero-subtext {
+      display: initial !important;
+      margin-bottom: 2rem !important;
+    }
+    .ccx-mm-logo {
+      width: 163px;
+    }
+    .ccx-heading-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      white-space: nowrap;
+    }
+    .ccx-heading-container .ccx-heading-mobile {
+      display: none;
+    }
+    .ccx-heading-container .ccx-heading-desktop {
+      display: initial;
+      font-family: Showtime;
+      font-weight: 500;
+      color: white;
+      font-size: 60px;
+      line-height: 80px;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
   `;
+
+  const ARROW_LEFT = `<svg width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1.82747 7.00414L6.75663 1.97199C6.92428 1.80083 7.00532 1.59829 6.99973 1.36437C6.99414 1.13045 6.90752 0.927904 6.73986 0.756742C6.5722 0.585581 6.37381 0.5 6.14467 0.5C5.91554 0.5 5.71714 0.585581 5.54949 0.756742L0.402379 6.02852C0.268252 6.16545 0.167658 6.31949 0.100595 6.49066C0.0335312 6.66182 0 6.83298 0 7.00414C0 7.1753 0.0335312 7.34646 0.100595 7.51763C0.167658 7.68879 0.268252 7.84283 0.402379 7.97976L5.56625 13.2515C5.73391 13.4227 5.92951 13.5054 6.15306 13.4997C6.3766 13.494 6.5722 13.4056 6.73986 13.2344C6.90752 13.0633 6.99135 12.8607 6.99135 12.6268C6.99135 12.3929 6.90752 12.1903 6.73986 12.0192L1.82747 7.00414Z" fill="white"/>
+</svg>`;
+
+  const ARROW_RIGHT = `<svg width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);">
+  <path d="M1.82747 7.00414L6.75663 1.97199C6.92428 1.80083 7.00532 1.59829 6.99973 1.36437C6.99414 1.13045 6.90752 0.927904 6.73986 0.756742C6.5722 0.585581 6.37381 0.5 6.14467 0.5C5.91554 0.5 5.71714 0.585581 5.54949 0.756742L0.402379 6.02852C0.268252 6.16545 0.167658 6.31949 0.100595 6.49066C0.0335312 6.66182 0 6.83298 0 7.00414C0 7.1753 0.0335312 7.34646 0.100595 7.51763C0.167658 7.68879 0.268252 7.84283 0.402379 7.97976L5.56625 13.2515C5.73391 13.4227 5.92951 13.5054 6.15306 13.4997C6.3766 13.494 6.5722 13.4056 6.73986 13.2344C6.90752 13.0633 6.99135 12.8607 6.99135 12.6268C6.99135 12.3929 6.90752 12.1903 6.73986 12.0192L1.82747 7.00414Z" fill="white"/>
+</svg>`;
 
   const customLog = (...messages) => {
     if (!LOG_ENABLED) return;
@@ -296,12 +366,7 @@
       .catch(() => { });
   }
 
-  const getVideoVariantKey = (variation) => {
-    // variation-1 → variant1, variation-2 → variant2, etc.
-    return variation.replace('variation-', 'variant');
-  };
-
-  const replaceHeroVideoSrc = (videoEl, variantKey) => {
+  const replaceHeroVideoSrc = (videoEl, variantKey = 'variant1') => {
     customLog('[replaceHeroVideoSrc] Running… using', variantKey);
 
     if (!window.MMLPVideos || !window.MMLPVideos[variantKey]) {
@@ -323,39 +388,6 @@
     videoEl.load();
 
     customLog('[replaceHeroVideoSrc] Video src replaced:', videoEl);
-  };
-
-  const attachVideoResizeListener = (videoEl, variantKey) => {
-    customLog('[attachVideoResizeListener] Initializing resize watcher… using', variantKey);
-
-    if (!window.MMLPVideos || !window.MMLPVideos[variantKey]) {
-      customLog('[attachVideoResizeListener] No MMLPVideos data for', variantKey);
-      return;
-    }
-
-    const { desktop, mobile } = window.MMLPVideos[variantKey];
-
-    let isMobile = window.matchMedia("(max-width: 767px)").matches;
-
-    const updateOnResize = () => {
-      const nowMobile = window.matchMedia("(max-width: 767px)").matches;
-
-      if (nowMobile !== isMobile) {
-        isMobile = nowMobile;
-        const newSrc = isMobile ? mobile : desktop;
-
-        customLog('[attachVideoResizeListener] Breakpoint changed — updating video to:', newSrc);
-
-        videoEl.src = newSrc;
-        videoEl.setAttribute("src", newSrc);
-        videoEl.setAttribute("data-src", newSrc);
-        videoEl.load();
-      }
-    };
-
-    window.addEventListener('resize', updateOnResize);
-
-    customLog('[attachVideoResizeListener] Listener added');
   };
 
   const fadeSwap = (container, updateFn) => {
@@ -421,8 +453,37 @@
     render();
   };
 
+  const handleSlideshowPosition = () => {
+    const slideshowWrapper = document.querySelector('.ccx-slider-wrapper');
+    const heroContent = document.querySelector('#hero-video > .campaign-hero__content');
+    const mobileSubtext = document.querySelector('.campaign-hero-overlay .campaign-hero-subtext');
+
+    if (!slideshowWrapper) {
+      customLog('[handleSlideshowPosition] Slideshow wrapper not found');
+      return;
+    }
+
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth >= 992) {
+      // DESKTOP → inside hero content
+      if (heroContent && heroContent.lastElementChild !== slideshowWrapper) {
+        customLog('[handleSlideshowPosition] Moving slideshow to desktop hero content');
+        heroContent.appendChild(slideshowWrapper);
+      }
+    } else {
+      // MOBILE → after .campaign-hero-subtext
+      if (mobileSubtext && mobileSubtext.nextElementSibling !== slideshowWrapper) {
+        customLog('[handleSlideshowPosition] Moving slideshow after .campaign-hero-subtext (mobile)');
+        mobileSubtext.insertAdjacentElement('afterend', slideshowWrapper);
+      }
+    }
+  };
+
   function createCCXSlider(CONTROL_HMA_LAST_H3, SLIDE_DATA, ARROW_LEFT, ARROW_RIGHT) {
     if (!CONTROL_HMA_LAST_H3) return;
+
+    console.log(CONTROL_HMA_LAST_H3)
 
     // === Helper: get user initials ===
     const getInitials = (name) => {
@@ -534,17 +595,15 @@
         // MAIN TEXT (inside quotes)
         // ============================
         const formatted = slide.mainText.replace(/😊/g, '<span class="no-italic">😊</span>');
-        const pMain = document.getElementById('pMain');
-        pMain.innerHTML = '“' + formatted + '”';
+        const pMainEl = copy.querySelector('.ccx-maintext');
+        pMainEl.innerHTML = '“' + formatted + '”';
 
-        // ============================
-        // DESCRIPTION AREA
-        // ============================
-        const pDesc = document.getElementById('pDesc');
-        pDesc.innerHTML =
+        const pDescEl = copy.querySelector('.ccx-desc');
+        pDescEl.innerHTML =
           '<strong>' + slide.name + '</strong> from ' + slide.location + ' won ' +
           '<strong>' + slide.prize + '</strong> in the ' +
           '<strong>' + slide.month + ' Monthly Millionaire Draw.</strong>';
+
       });
     };
 
@@ -556,33 +615,6 @@
     rightBtn.addEventListener('click', () => handleNextClick(state, render));
   }
 
-  const handleSlideshowPosition = () => {
-    const slideshowWrapper = document.querySelector('.ccx-slider-wrapper');
-    const heroContent = document.querySelector('#hero-video > .campaign-hero__content');
-    const mobileSubtext = document.querySelector('.campaign-hero-overlay .campaign-hero-subtext');
-
-    if (!slideshowWrapper) {
-      customLog('[handleSlideshowPosition] Slideshow wrapper not found');
-      return;
-    }
-
-    const screenWidth = window.innerWidth;
-
-    if (screenWidth >= 992) {
-      // DESKTOP → inside hero content
-      if (heroContent && heroContent.lastElementChild !== slideshowWrapper) {
-        customLog('[handleSlideshowPosition] Moving slideshow to desktop hero content');
-        heroContent.appendChild(slideshowWrapper);
-      }
-    } else {
-      // MOBILE → after .campaign-hero-subtext
-      if (mobileSubtext && mobileSubtext.nextElementSibling !== slideshowWrapper) {
-        customLog('[handleSlideshowPosition] Moving slideshow after .campaign-hero-subtext (mobile)');
-        mobileSubtext.insertAdjacentElement('afterend', slideshowWrapper);
-      }
-    }
-  };
-
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -590,44 +622,83 @@
 
       waitForElements(
         [
+          { selector: SELECTORS.CONTROL_HERO_LOGO_DESKTOP, count: 1 },
+          { selector: SELECTORS.CONTROL_HERO_LOGO_MOBILE, count: 1 },
           { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
           { selector: SELECTORS.CONTROL_HMA_LAST_H3, count: 1 },
         ],
         function (results) {
 
-          console.log(results);
-
           addStyles(STYLES, VARIATION);
           addBodyClass();
 
-          const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
-          if (!CONTROL_HERO_VIDEO_ELEMENT) return;
+          const CONTROL_HERO_LOGO_DESKTOP = results[0].elements[0];
+          // customLog(CONTROL_HERO_LOGO_DESKTOP);
+          CONTROL_HERO_LOGO_DESKTOP.style.display = 'none';
 
-          customLog(CONTROL_HERO_VIDEO_ELEMENT);
+          const CONTROL_HERO_LOGO_MOBILE = results[1].elements[0];
+          // customLog(CONTROL_HERO_LOGO_MOBILE);
+          CONTROL_HERO_LOGO_MOBILE.style.display = 'none';
 
-          const variantKey = getVideoVariantKey(VARIATION);
+          const CONTROL_HERO_VIDEO_ELEMENT = results[2].elements[0];
+          // customLog(CONTROL_HERO_VIDEO_ELEMENT);
+          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
 
-          customLog('[init] Using variant key:', variantKey);
+          const CONTROL_HMA_LAST_H3 = results[3].elements[0];
 
-          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT, variantKey);
-          attachVideoResizeListener(CONTROL_HERO_VIDEO_ELEMENT, variantKey);
+          // After CONTROL_HERO_LOGO_MOBILE, create an image element
+          const image = document.createElement('img');
+          image.src = MM_LOGO;
+          image.classList.add('ccx-mm-logo');
 
-          const CONTROL_HMA_LAST_H3 = results?.[1]?.elements?.[0];
-          if (!CONTROL_HMA_LAST_H3) return;
-          customLog('CONTROL_HMA_LAST_H3', CONTROL_HMA_LAST_H3);
+          const ccxOmazeLogoExists = document.querySelector('.ccx-mm-logo');
+          if (!ccxOmazeLogoExists) {
+            CONTROL_HERO_LOGO_MOBILE.insertAdjacentElement('afterend', image);
+          }
+
+          const ccxHeadingContainer = document.querySelector('.ccx-heading-container');
+
+          if (!ccxHeadingContainer && document.querySelector('.ccx-mm-logo')) {
+            const ccxContainer = document.createElement('div');
+            ccxContainer.classList.add('ccx-heading-container');
+
+            const textHeadingMobile = document.createElement('h1');
+            textHeadingMobile.classList.add('ccx-heading-mobile');
+            textHeadingMobile.textContent = 'Your Chance to Win';
+
+            const textHeadingDesktop = document.createElement('h1');
+            textHeadingDesktop.classList.add('ccx-heading-desktop');
+            textHeadingDesktop.textContent = 'Your chance to win'
+
+            const textAmount = document.createElement('h1');
+            textAmount.classList.add('ccx-amount');
+            textAmount.textContent = '£1,000,000';
+
+            ccxContainer.appendChild(textHeadingMobile);
+            ccxContainer.appendChild(textHeadingDesktop);
+            ccxContainer.appendChild(textAmount);
+            document.querySelector('.ccx-mm-logo').insertAdjacentElement('afterend', ccxContainer);
+          }
 
           // ==========================
           // Component Creation
           // ==========================
-          createCCXSlider(
-            CONTROL_HMA_LAST_H3,
+          customLog(
+            SELECTORS.CONTROL_HMA_LAST_H3,
             SLIDE_DATA,
             ARROW_LEFT,
             ARROW_RIGHT,
             VARIATION
           );
+          createCCXSlider(
+            CONTROL_HMA_LAST_H3,
+            SLIDE_DATA,
+            ARROW_LEFT,
+            ARROW_RIGHT
+          );
 
           handleSlideshowPosition(CONTROL_HMA_LAST_H3);
+
           // Listen for window resize with debouncing
           window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
@@ -637,7 +708,6 @@
           });
         }
       );
-
     } catch (error) {
       customLog(error);
     }

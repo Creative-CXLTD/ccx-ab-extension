@@ -283,13 +283,13 @@
           { selector: cfg.countSelector, count: expectedCount }
         ],
         function (results) {
-          customLog(`[init] Ready for ${cfg.name}:`, results);
+          customLog('[init] Ready for ' + cfg.name + ':', results);
 
           const buttonResult = results[0];
           const entryCountResult = results[1];
 
           if (!buttonResult || !entryCountResult) {
-            customLog(`[init] Missing elements for ${cfg.name}, skipping.`);
+            customLog('[init] Missing elements for ' + cfg.name + ', skipping.');
             return;
           }
 

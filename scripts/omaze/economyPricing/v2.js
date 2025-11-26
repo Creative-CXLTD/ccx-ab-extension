@@ -296,13 +296,13 @@
           ],
           function (results) {
 
-            customLog(`[init] Ready for ${cfg.name}`, results);
+            customLog('[init] Ready for ' + cfg.name, results);
 
             const cardResult = results[0];
             const entryCountResult = results[1];
 
             if (!cardResult || !entryCountResult) {
-              customLog(`[init] Missing results for ${cfg.name}. Skipping.`);
+              customLog('[init] Missing results for ' + cfg.name + '. Skipping.');
               return;
             }
 

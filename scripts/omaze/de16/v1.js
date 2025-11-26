@@ -20,154 +20,374 @@
   `;
 
   const STYLES = `
-    .ccx-countdown-container {
-        display: none;
-        color: #F5F5F5;
+  /* ============================================================
+     Base Containers
+  ============================================================ */
+  .ccx-desktop-countdown-container {
+    display: none;
+    color: #F5F5F5;
+  }
+
+  .ccx-desktop-countdown-container p {
+    margin: 0;
+  }
+
+  .ccx-mobile-countdown {
+    height: 5rem;
+    width: 100%;
+  }
+
+  .ccx-mobile-title {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .ccx-mobile-sub {
+    margin: 0;
+  }
+
+  /* ============================================================
+     Mobile Styles
+  ============================================================ */
+  @media screen and (max-width: 768px) {
+    .ccx-mobile-countdown {
+      display: block;
     }
-    .ccx-countdown-container p {
-        margin: 0;
+
+    /* -------------------------------------
+       Variation 1 Mobile
+    ------------------------------------- */
+    .ccx-de16-variation-1 .ccx-mobile-countdown {
+      background: #081F2899;
+      position: fixed;
+      bottom: 3.25rem;
+      height: 70px;
+      padding-top: 8px;
+      padding-right: 16px;
+      padding-bottom: 8px;
+      padding-left: 16px;
+      opacity: 1;
     }
-    @media screen and (min-width: 1255px){
-      .ccx-countdown-container {
-          display: initial;
-      }
 
+    .ccx-de16-variation-1 .ccx-mobile-title {
+      font-family: Gellix;
+      font-weight: 700;
+      color: #F5F5F5;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0;
+      text-align: center;
+      vertical-align: middle;
+    }
 
+    .ccx-de16-variation-1 .ccx-mobile-sub {
+      font-family: Gellix;
+      font-weight: 400;
+      color: #F5F5F5;
+      font-size: 18px;
+      line-height: 30px;
+      letter-spacing: 0;
+      text-align: center;
+      vertical-align: middle;
+    }
 
-      .ccx-de16-variation-1 .ccx-top-row p {
-        font-family: Gellix;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0;
-        vertical-align: middle;
-        color: #F5F5F5;
-      }
-      .ccx-de16-variation-1 .ccx-bottom-row {
-        color: #F5F5F5;
-      }
-      .ccx-de16-variation-1 .ccx-bottom-row p {
-        font-family: Gellix;
-        font-weight: 400;
-        font-size: 20px;
-        letter-spacing: 0;
-      }
-      .ccx-de16-variation-1 .ccx-bottom-row span:nth-child(1) {
-        font-family: Gellix;
-        font-weight: 700;
-        font-style: Bold;
-        font-size: 20px;
-        letter-spacing: 0;
-      }
-      .ccx-de16-variation-1 .ccx-bottom-row span:nth-child(2) {
-        font-family: Gellix;
-        font-weight: 700;
-        font-style: Bold;
-        font-size: 20px;
-        letter-spacing: 0;
-        text-decoration: underline;
-        text-decoration-style: solid;
-        text-decoration-offset: 0%;
-        text-decoration-thickness: 0%;
-        text-decoration-skip-ink: auto;
-        text-decoration-color: #F5F5F5;
-      }
+    .ccx-de16-variation-1 .ccx-mobile-sub span {
+      font-family: Gellix;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 30px;
+      letter-spacing: 0;
+      text-align: center;
+    }
 
+    /* -------------------------------------
+       Variation 2 Mobile
+    ------------------------------------- */
+    .ccx-de16-variation-2 .ccx-mobile-countdown {
+      margin-bottom: 1rem;
+      background: #FFFFFF;
+      border: 1px solid #F5F5F5;
+      box-shadow: 0px 3px 19px 0px #00000033;
+      height: auto;
+      opacity: 1;
+      border-radius: 16px;
+      border-width: 1px;
+      padding: 16px;
+    }
 
+    .ccx-de16-variation-2 .ccx-mobile-title {
+      font-family: Gellix;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      letter-spacing: 0;
+      text-align: center;
+      vertical-align: middle;
+    }
 
-      .ccx-de16-variation-2 .ccx-countdown-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .ccx-de16-variation-2 .ccx-first-container {
-        background: #FFFFFF;
-        border: 1px solid #F5F5F5;
-        min-height: 49px;
-        opacity: 1;
-        padding-right: 16px;
-        padding-left: 16px;
-        border-radius: 24px;
-        border-width: 1px;
-        border-style: dashed;
-        display: flex;
-        padding-top: 0;
-        padding-bottom: 0;
-        align-items: center;
-        gap: 10px;
-        justify-content: space-between;
-      }
-      .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-top-row p {
-        color: #081F28;
-        font-family: Gellix;
-        font-weight: 400;
-        font-size: 14px;
-        letter-spacing: 0;
-      }
-      .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-top-row p > span{
-        color: #081F28;
-        font-family: Gellix;
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 0px;
-      }
-      .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-top-row p > span:nth-child(2) {
-        font-family: Gellix;
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 0;
-        text-decoration: underline;
-        text-decoration-style: solid;
-        text-decoration-thickness: 0%;
-      }
-      .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-bottom-row p {
-        font-family: Gellix;
-        font-weight: 400;
-        color: #626262;
-        font-size: 12px;
-        letter-spacing: 0px;
-      }
-      .ccx-de16-variation-2 .ccx-second-container {
-        min-width: 175px;
-        max-height: 41px;
-        opacity: 1;
-        padding-top: 12px;
-        padding-right: 1rem;
-        padding-bottom: 12px;
-        padding-left: 1rem;
-        border-radius: 24px;
-        border-width: 1px;
-        background: #FFD400;
-        border: 1px solid #E1E4E6;
-        display: flex;
-        justify-content: space-around;
-      }
-      .ccx-de16-variation-2 .ccx-second-container .ccx-btn-right-text > p {
-        font-family: Gellix;
-        font-weight: 700;
-        color: #081F28;
-        font-size: 14px;
-        letter-spacing: 0;
-        line-height: 14px;
-      }
+    .ccx-de16-variation-2 .ccx-mobile-sub {
+      font-family: Gellix;
+      font-weight: 400;
+      font-size: clamp(14px, 2vw + 8px, 18px);
+      line-height: clamp(20px, 3vw + 12px, 30px);
+      white-space: nowrap;
+      letter-spacing: 0;
+      text-align: center;
+      vertical-align: middle;
+      color: #081F28;
+    }
 
+    .ccx-de16-variation-2 .ccx-mobile-sub span {
+      font-family: Gellix;
+      font-weight: 700;
+      font-size: clamp(14px, 2vw + 8px, 18px);
+      line-height: clamp(20px, 3vw + 12px, 30px);
+      white-space: nowrap;
+      letter-spacing: 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
 
+    /* -------------------------------------
+       Variation 3 Mobile
+    ------------------------------------- */
+    .ccx-de16-variation-3 .ccx-mobile-btn {
+      margin-top: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: white;
+      border: none;
+      font-family: Gellix;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 100%;
+      letter-spacing: 0px;
+      vertical-align: middle;
+      width: 175px;
+      height: 50px;
+      min-width: 44px;
+      padding-top: 12px;
+      padding-right: 16px;
+      padding-bottom: 12px;
+      padding-left: 16px;
+      opacity: 1;
+      border-radius: 44px;
+    }
 
+    .ccx-de16-variation-3 .ccx-mobile-btn span:first-child {
+      color: #081F28;
+      font-size: 16px;
+      font-weight: 700;
+    }
 
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-top-container {
+    .ccx-de16-variation-3 .ccx-mobile-btn span:nth-child(2) {
+      color: #081F28;
+      font-family: Gellix;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 100%;
+      letter-spacing: 0px;
+      text-align: right;
+      vertical-align: top;
+    }
+
+    .ccx-de16-variation-3 .ccx-mobile-countdown {
+      position: fixed;
+      text-align: center;
+      padding-top: 8px;
+      padding-right: 16px;
+      padding-bottom: 1rem;
+      padding-left: 16px;
+      opacity: 1;
+      background: #081F2899;
+      bottom: 3rem;
+      height: auto;
+    }
+
+    .ccx-de16-variation-3 .ccx-mobile-title {
+      font-family: Gellix;
+      font-weight: 700;
+      color: #F5F5F5;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    /* -------------------------------------
+       Mobile Position Helpers
+    ------------------------------------- */
+    .ccx-mobile-position-abs {
+      position: absolute;
+      bottom: 3.25rem;
+    }
+
+    .ccx-mobile-position-rel {
+      position: relative;
+    }
+  }
+
+  /* ============================================================
+     Desktop Styles
+  ============================================================ */
+  @media screen and (min-width: 1255px) {
+    .ccx-desktop-countdown-container {
+      display: initial;
+    }
+
+    /* -------------------------------------
+       Variation 1 Desktop
+    ------------------------------------- */
+    .ccx-de16-variation-1 .ccx-top-row p {
+      font-family: Gellix;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0;
+      vertical-align: middle;
+      color: #F5F5F5;
+    }
+
+    .ccx-de16-variation-1 .ccx-bottom-row {
+      color: #F5F5F5;
+    }
+
+    .ccx-de16-variation-1 .ccx-bottom-row p {
+      font-family: Gellix;
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .ccx-de16-variation-1 .ccx-bottom-row span:nth-child(1) {
+      font-family: Gellix;
+      font-weight: 700;
+      font-style: Bold;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .ccx-de16-variation-1 .ccx-bottom-row span:nth-child(2) {
+      font-family: Gellix;
+      font-weight: 700;
+      font-style: Bold;
+      font-size: 20px;
+      letter-spacing: 0;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      text-decoration-offset: 0%;
+      text-decoration-thickness: 0%;
+      text-decoration-skip-ink: auto;
+      text-decoration-color: #F5F5F5;
+    }
+
+    /* -------------------------------------
+       Variation 2 Desktop
+    ------------------------------------- */
+    .ccx-de16-variation-2 .ccx-desktop-countdown-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .ccx-de16-variation-2 .ccx-first-container {
+      background: #FFFFFF;
+      border: 1px solid #F5F5F5;
+      min-height: 49px;
+      opacity: 1;
+      padding-right: 16px;
+      padding-left: 16px;
+      border-radius: 24px;
+      border-width: 1px;
+      border-style: dashed;
+      display: flex;
+      padding-top: 0;
+      padding-bottom: 0;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-top-row p {
+      color: #081F28;
+      font-family: Gellix;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-top-row p > span {
+      color: #081F28;
+      font-family: Gellix;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0px;
+    }
+
+    .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-top-row p > span:nth-child(2) {
+      font-family: Gellix;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      text-decoration-thickness: 0%;
+    }
+
+    .ccx-de16-variation-2 .ccx-first-container .ccx-right-text .ccx-bottom-row p {
+      font-family: Gellix;
+      font-weight: 400;
+      color: #626262;
+      font-size: 12px;
+      letter-spacing: 0px;
+    }
+
+    .ccx-de16-variation-2 .ccx-second-container {
+      min-width: 175px;
+      max-height: 41px;
+      opacity: 1;
+      padding-top: 12px;
+      padding-right: 1rem;
+      padding-bottom: 12px;
+      padding-left: 1rem;
+      border-radius: 24px;
+      border-width: 1px;
+      background: #FFD400;
+      border: 1px solid #E1E4E6;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .ccx-de16-variation-2 .ccx-second-container .ccx-btn-right-text > p {
+      font-family: Gellix;
+      font-weight: 700;
+      color: #081F28;
+      font-size: 14px;
+      letter-spacing: 0;
+      line-height: 14px;
+    }
+
+    /* -------------------------------------
+       Variation 3 Desktop
+    ------------------------------------- */
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-top-container {
       margin-bottom: 10px;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-top-container p {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-top-container p {
       font-family: Gellix;
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 0px;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container {
       display: flex;
       gap: 10px;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-left {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-left {
       min-width: 117px;
       height: 38px;
       min-width: 44px;
@@ -178,7 +398,8 @@
       display: flex;
       align-items: center;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-left p {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-left p {
       font-family: Gellix;
       font-weight: 600;
       color: #626262;
@@ -186,7 +407,8 @@
       letter-spacing: 0px;
       text-align: center;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-left span:nth-child(1) {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-left span:nth-child(1) {
       font-family: Gellix;
       font-weight: 700;
       font-style: Bold;
@@ -195,7 +417,8 @@
       text-align: center;
       color: #081F28;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-left span:nth-child(2) {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-left span:nth-child(2) {
       font-family: Gellix;
       font-weight: 600;
       font-size: 10px;
@@ -204,7 +427,8 @@
       color: #081F28;
       display: inline-block;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-right-btn {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-right-btn {
       width: 142px;
       height: 38px;
       opacity: 1;
@@ -219,14 +443,16 @@
       align-items: center;
       display: flex;
     }
-    .ccx-de16-variation-3 .ccx-countdown-container .ccx-bottom-container .ccx-bottom-right-btn .ccx-btn-right-text p {
+
+    .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-right-btn .ccx-btn-right-text p {
       font-family: Gellix;
       font-weight: 700;
       color: #081F28;
       font-size: 12px;
       letter-spacing: 0;
     }
-  `;
+  }
+`;
 
   const customLog = (...messages) => {
     if (!LOG_ENABLED) return;
@@ -317,7 +543,10 @@
 
   const waitForElements = (configs, callback) => {
     if (!configs || !Array.isArray(configs) || configs.length === 0) return;
-    if (!window.DYO || !DYO.waitForElementAsync) return;
+    if (!window.DYO || !DYO.waitForElementAsync) {
+      console.warn('[waitForElements] DYO.waitForElementAsync not available');
+      return;
+    }
 
     const promises = configs.map(cfg => {
       const { selector, count } = cfg;
@@ -329,22 +558,23 @@
       .then(results => {
         if (typeof callback === 'function') callback(results);
       })
-      .catch(() => { });
+      .catch(() => {
+        console.error('[waitForElements] error:', err);
+      });
   }
 
-const getRemainingDaysNumber = () => {
-  const remaining = getRemainingTimeText(); // e.g. "6 Tagen" or "< 24 Std."
+  const getRemainingDaysNumber = () => {
+    const remaining = getRemainingTimeText(); // e.g. "6 Tagen" or "< 24 Std."
 
-  // If less than 24 hours
-  if (remaining.includes("< 24")) {
-    return "< 24";  // Variation-3 wants "< 24"
-  }
+    // If less than 24 hours
+    if (remaining.includes("< 24")) {
+      return "< 24";  // Variation-3 wants "< 24"
+    }
 
-  // Otherwise extract the number
-  const match = remaining.match(/\d+/);
-  return match ? match[0] : "0"; 
-};
-
+    // Otherwise extract the number
+    const match = remaining.match(/\d+/);
+    return match ? match[0] : "0";
+  };
 
   const getRemainingTimeText = () => {
     // End date in CET (Germany)
@@ -365,10 +595,56 @@ const getRemainingDaysNumber = () => {
     return diffDays + ' Tagen';
   };
 
+  const updateCountdownText = () => {
+    const remaining = getRemainingTimeText();
 
-  const createCountdownContainer = (CONTROL_NAVBAR_TOGGLE_MENU) => {
+    if (VARIATION === 'variation-1') {
+      const span = document.querySelector('.ccx-de16-variation-1 .ccx-bottom-row span:nth-child(2)');
+      if (span) span.textContent = remaining;
+    }
+
+    if (VARIATION === 'variation-2') {
+      const span = document.querySelector('.ccx-de16-variation-2 .ccx-top-row span:nth-child(2)');
+      if (span) span.textContent = remaining.toUpperCase();
+    }
+
+    if (VARIATION === 'variation-3') {
+      const numberSpan = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-left span:nth-child(1)');
+      if (numberSpan) numberSpan.textContent = getRemainingDaysNumber();
+    }
+  };
+
+  const attachEventListeners = () => {
+    customLog('[attachEventListeners] Attaching event listeners.');
+
+    // The new unified click handler
+    const goToPromoPage = () => {
+      window.location.href = "https://omaze.de/pages/oberbayern-haus-lose";
+    };
+
+    // Collects desktop and mobile buttons for ALL variants
+    const buttons = [
+      // Desktop buttons
+      document.querySelector('.ccx-de16-variation-1 .ccx-bottom-row'),
+      document.querySelector('.ccx-de16-variation-2 .ccx-second-container'),
+      document.querySelector('.ccx-de16-variation-3 .ccx-bottom-right-btn'),
+
+      // Mobile buttons
+      document.querySelector('.ccx-de16-variation-1 .ccx-mobile-countdown'),
+      document.querySelector('.ccx-de16-variation-2 .ccx-mobile-countdown'),
+      document.querySelector('.ccx-de16-variation-3 .ccx-mobile-btn'),
+    ];
+
+    buttons.forEach((btn, index) => {
+      if (!btn) return;
+      btn.addEventListener('click', goToPromoPage);
+      customLog(`[attachEventListeners] Listener attached to button #${index + 1}`);
+    });
+  };
+
+  const createDesktopCountdownContainer = (CONTROL_NAVBAR_TOGGLE_MENU) => {
     const countdownContainer = document.createElement('div');
-    countdownContainer.classList.add('ccx-countdown-container');
+    countdownContainer.classList.add('ccx-desktop-countdown-container');
 
     if (VARIATION === 'variation-1') {
       const topRow = document.createElement('div');
@@ -478,58 +754,49 @@ const getRemainingDaysNumber = () => {
     CONTROL_NAVBAR_TOGGLE_MENU.insertAdjacentElement('beforebegin', countdownContainer);
   };
 
-  // Update countdown text dynamically for V1 + V2
-  const updateCountdownText = () => {
+  const createMobileCountdownContainer = () => {
+    const mobileBox = document.createElement("div");
+    mobileBox.classList.add("ccx-mobile-countdown");
+
     const remaining = getRemainingTimeText();
+    const remainingNumber = getRemainingDaysNumber();
 
-    if (VARIATION === 'variation-1') {
-      const span = document.querySelector('.ccx-de16-variation-1 .ccx-bottom-row span:nth-child(2)');
-      if (span) span.textContent = remaining;
+    if (VARIATION === "variation-1" || VARIATION === "variation-2") {
+      mobileBox.innerHTML = `
+      <p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>
+      <p class="ccx-mobile-sub">
+        Bonus-Verlosung <span>Endet in</span> <span>${remaining}</span>
+      </p>
+    `;
     }
 
-    if (VARIATION === 'variation-2') {
-      const span = document.querySelector('.ccx-de16-variation-2 .ccx-top-row span:nth-child(2)');
-      if (span) span.textContent = remaining.toUpperCase();
+    if (VARIATION === "variation-3") {
+      const unitLabel = remaining.includes("< 24") ? "Std." : "Tagen";
+
+      mobileBox.innerHTML = `
+    <p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>
+    <button class="ccx-mobile-btn">
+      Noch <span>${remainingNumber}</span> <span>${unitLabel}</span>
+    </button>
+  `;
     }
 
-    if (VARIATION === 'variation-3') {
-      const numberSpan = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-left span:nth-child(1)');
-      if (numberSpan) numberSpan.textContent = getRemainingDaysNumber();
-    }
-  };
 
-  const attachEventListeners = () => {
-    customLog('[attachEventListeners] Attaching event listeners.');
-
-    // Shared CTA handler
-    const triggerControlCTA = () => {
-      const controlCTA = document.querySelector('.campaign-hero__content .yellow-btn');
-      if (!controlCTA) {
-        customLog('[attachEventListeners] controlCTA not found.');
-        return;
+    // Insert depending on variation
+    if (VARIATION === "variation-1" || VARIATION === "variation-3") {
+      const anchor = document.querySelector(".visible-xs.sticky-cta.hide-on-desktop");
+      if (anchor) {
+        mobileBox.classList.add("ccx-mobile-position-abs");
+        anchor.insertAdjacentElement("beforebegin", mobileBox);
       }
-      controlCTA.click();
-    };
-
-    // Helper to safely bind listeners
-    const bindClick = (element, variationLabel) => {
-      if (!element) {
-        customLog('Button element not found for ' + variationLabel + '.');
-        return;
-      }
-
-      element.addEventListener('click', triggerControlCTA);
-      customLog('[attachEventListeners] Click listener attached for ' + variationLabel + '.');
-    };
-
-    if (VARIATION === 'variation-2') {
-      const button = document.querySelector('.ccx-de16-variation-2 .ccx-second-container');
-      bindClick(button, 'variation-2');
     }
 
-    if (VARIATION === 'variation-3') {
-      const button = document.querySelector('.ccx-de16-variation-3 .ccx-bottom-right-btn');
-      bindClick(button, 'variation-3');
+    if (VARIATION === "variation-2") {
+      const anchor = document.querySelector(".hero-mobile-addendum > .hma-content > h3");
+      if (anchor) {
+        mobileBox.classList.add("ccx-mobile-position-rel");
+        anchor.insertAdjacentElement("afterend", mobileBox);
+      }
     }
   };
 
@@ -543,20 +810,26 @@ const getRemainingDaysNumber = () => {
           { selector: SELECTORS.CONTROL_NAVBAR_TOGGLE_MENU, count: 1 },
         ],
         function (results) {
-
-          addStyles(STYLES, VARIATION);
-          addBodyClass();
-
           const CONTROL_NAVBAR_TOGGLE_MENU = results[0].elements[0];
           if (!CONTROL_NAVBAR_TOGGLE_MENU) return;
 
           customLog(CONTROL_NAVBAR_TOGGLE_MENU);
 
-          createCountdownContainer(CONTROL_NAVBAR_TOGGLE_MENU);
+          const desktopCountdownContainer = document.querySelector('.ccx-desktop-countdown-container');
 
-          updateCountdownText();
+          if (!desktopCountdownContainer) {
+            addStyles(STYLES, VARIATION);
+            addBodyClass();
+            createDesktopCountdownContainer(CONTROL_NAVBAR_TOGGLE_MENU);
+            updateCountdownText();
+            attachEventListeners();
+          }
 
-          attachEventListeners();
+          const mobileCountdownContainer = document.querySelector('.ccx-mobile-countdown');
+
+          if (!mobileCountdownContainer) {
+            createMobileCountdownContainer();
+          }
         }
       );
 
