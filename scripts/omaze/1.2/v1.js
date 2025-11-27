@@ -648,10 +648,6 @@
           customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
 
           replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
-
-          window.addEventListener("resize", () => {
-            replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
-          });
         }
       );
 

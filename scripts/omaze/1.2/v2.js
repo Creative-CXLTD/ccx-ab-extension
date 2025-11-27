@@ -194,7 +194,10 @@
   }
 
   const replaceHeroVideoSrc = (videoEl, variant = "variant1") => {
-    let finalVideoUrl = MM_VIDEO_URL; // fallback
+    // fallback video URL if something fails
+    let fallback = typeof MM_VIDEO_URL !== "undefined" ? MM_VIDEO_URL : "";
+
+    let finalVideoUrl = fallback;
 
     try {
       const isMobile = window.innerWidth <= 768;
@@ -203,19 +206,29 @@
         const variantObj = window.MMLPVideos[variant];
 
         finalVideoUrl = isMobile
-          ? variantObj.mobile || finalVideoUrl
-          : variantObj.desktop || finalVideoUrl;
+          ? (variantObj.mobile || fallback)
+          : (variantObj.desktop || fallback);
       }
     } catch (err) {
-      console.warn("Error reading MMLPVideos:", err);
+      console.warn("[replaceHeroVideoSrc] Error reading MMLPVideos:", err);
     }
 
-    // Apply the URL
-    videoEl.src = finalVideoUrl;
-    videoEl.setAttribute("src", finalVideoUrl);
-    videoEl.setAttribute("data-src", finalVideoUrl);
+    // Apply the video URL
+    if (finalVideoUrl) {
+      videoEl.src = finalVideoUrl;
+      videoEl.setAttribute("data-src", finalVideoUrl);
+    }
 
+    // Reload and restart video playback
     videoEl.load();
+
+    // Try to autoplay
+    const playPromise = videoEl.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        console.warn("Autoplay failed, will rely on user interaction.");
+      });
+    }
 
     customLog("[replaceHeroVideoSrc] Video src replaced:", finalVideoUrl);
   };
@@ -274,8 +287,6 @@
           addBodyClass();
 
           console.log(results);
-
-          // return;
 
           // SECOND .shopify-section
           const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];

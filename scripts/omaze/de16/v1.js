@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "DE16";
   const TEST_NAME = "BV CLOSEDATE IN THE NAVBAR";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-2";
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
@@ -58,6 +58,7 @@
        Variation 1 Mobile
     ------------------------------------- */
     .ccx-de16-variation-1 .ccx-mobile-countdown {
+      z-index: 10;
       background: #081F2899;
       position: fixed;
       bottom: 3.25rem;
@@ -172,6 +173,7 @@
       padding-left: 16px;
       opacity: 1;
       border-radius: 44px;
+      cursor: initial;
     }
 
     .ccx-de16-variation-3 .ccx-mobile-btn span:first-child {
@@ -577,8 +579,8 @@
   };
 
   const getRemainingTimeText = () => {
-    // End date in CET (Germany)
-    const endDate = new Date(Date.UTC(2025, 10, 24, 22, 59, 59));
+    // const endDate = new Date(Date.UTC(2025, 10, 28, 13, 59, 59));
+    const endDate = new Date(Date.UTC(2025, 11, 7, 22, 59, 59));  // Sunday 7th Dec at 23:59:59pm
 
     const now = new Date();
 
@@ -637,8 +639,14 @@
 
     buttons.forEach((btn, index) => {
       if (!btn) return;
-      btn.addEventListener('click', goToPromoPage);
-      customLog(`[attachEventListeners] Listener attached to button #${index + 1}`);
+      // btn.addEventListener('click', goToPromoPage);
+      btn.addEventListener('click', function (e) {
+        window.DY.API("event", {
+          name: "de16_modal_click"
+        });
+        window.location.href = "https://omaze.de/pages/oberbayern-haus-lose";
+      })
+      customLog('[attachEventListeners] Listener attached to button #' + (index + 1));
     });
   };
 
@@ -762,25 +770,20 @@
     const remainingNumber = getRemainingDaysNumber();
 
     if (VARIATION === "variation-1" || VARIATION === "variation-2") {
-      mobileBox.innerHTML = `
-      <p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>
-      <p class="ccx-mobile-sub">
-        Bonus-Verlosung <span>Endet in</span> <span>${remaining}</span>
-      </p>
-    `;
+      mobileBox.innerHTML = '<p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>' +
+        '<p class="ccx-mobile-sub">' +
+        'Bonus-Verlosung <span>Endet in</span> <span>' + remaining + '</span>' +
+        '</p>';
     }
 
     if (VARIATION === "variation-3") {
       const unitLabel = remaining.includes("< 24") ? "Std." : "Tagen";
 
-      mobileBox.innerHTML = `
-    <p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>
-    <button class="ccx-mobile-btn">
-      Noch <span>${remainingNumber}</span> <span>${unitLabel}</span>
-    </button>
-  `;
+      mobileBox.innerHTML = '<p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>' +
+        '<button class="ccx-mobile-btn">' +
+        'Noch <span>' + remainingNumber + '</span> <span>' + unitLabel + '</span>' +
+        '</button>';
     }
-
 
     // Insert depending on variation
     if (VARIATION === "variation-1" || VARIATION === "variation-3") {
