@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "1-2";
   const TEST_NAME = "MM LP Winners Hero Video [Social Proof & Authority]";
-  const VARIATION = "variation-1";
+  const VARIATION = "new-control";
   const CURRENT_URL = window.location.href;
 
   const MM_LOGO = 'https://cdn-eu.dynamicyield.com/api/9881830/images/5c8c4934af20.png';
@@ -73,10 +73,13 @@
       padding: 1rem;
       background: #0a2028;
     }
+    .ccx-slider-container button {
+      display: none;
+    }
     .ccx-slider {
       max-width: 500px;
       margin: 0 auto;
-      padding: 1rem 2rem;
+      padding: 1rem 1rem;
       box-sizing: border-box;
       position: relative;
       border: 2px solid #ffcf00;
@@ -146,7 +149,7 @@
       font-family: Gellix;
       font-weight: 500;
       font-size: 14px;
-      line-height: 120%;
+      line-height: inherit;
       letter-spacing: 0;
       text-align: left;
       font-style: italic;
@@ -324,33 +327,16 @@
     }
   }
 
-  const replaceHeroVideoSrc = (videoEl, variant = "variant1") => {
-    let finalVideoUrl = MM_VIDEO_URL; // fallback
+  const replaceHeroVideoSrc = (videoEl) => {
 
-    try {
-      const isMobile = window.innerWidth <= 768;
-
-      if (window.MMLPVideos && window.MMLPVideos[variant]) {
-        const variantObj = window.MMLPVideos[variant];
-
-        finalVideoUrl = isMobile
-          ? variantObj.mobile || finalVideoUrl
-          : variantObj.desktop || finalVideoUrl;
-      }
-    } catch (err) {
-      console.warn("Error reading MMLPVideos:", err);
-    }
-
-    // Apply the URL
-    videoEl.src = finalVideoUrl;
-    videoEl.setAttribute("src", finalVideoUrl);
-    videoEl.setAttribute("data-src", finalVideoUrl);
+    videoEl.src = MM_VIDEO_URL;
+    videoEl.setAttribute("src", MM_VIDEO_URL);
+    videoEl.setAttribute("data-src", MM_VIDEO_URL);
 
     videoEl.load();
 
-    customLog("[replaceHeroVideoSrc] Video src replaced:", finalVideoUrl);
+    customLog('[replaceHeroVideoSrc] Video src replaced:', videoEl);
   };
-
 
   function insertSliderContainerBefore(targetEl, position = 'beforebegin', className) {
     if (!(targetEl instanceof Element)) {
@@ -445,6 +431,7 @@
     renderSlide(currentIndex);
   }
 
+
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -524,21 +511,7 @@
               meta: "Naomi from Worcestershire won £1,000,000 cash in the August Monthly Millionaire Draw.",
               highlightName: "Naomi",
               highlightAmount: "£1,000,000"
-            },
-            {
-              image: TESTIMONIAL_IMAGE_URL,
-              quote: "It's just lifted such a weight. We can pay off our overdraft and stop worrying about money every month - it's the best feeling in the world.",
-              meta: "Mark from Dundee won £1,000,000 cash in the September Monthly Millionaire Draw.",
-              highlightName: "Mark",
-              highlightAmount: "£1,000,000"
-            },
-            {
-              image: TESTIMONIAL_IMAGE_URL,
-              quote: "I just can't believe it's happened to us. You don't think it's ever going to be you. Seeing the money land in my account was a moment I'll never forget!",
-              meta: "Christian from Teesside won £1,000,000 cash in the October Monthly Millionaire Draw.",
-              highlightName: "Christian",
-              highlightAmount: "£1,000,000"
-            },
+            }
           ]);
         }
       );
@@ -578,26 +551,12 @@
               meta: "Naomi from Worcestershire won £1,000,000 cash in the August Monthly Millionaire Draw.",
               highlightName: "Naomi",
               highlightAmount: "£1,000,000"
-            },
-            {
-              image: TESTIMONIAL_IMAGE_URL,
-              quote: "It's just lifted such a weight. We can pay off our overdraft and stop worrying about money every month - it's the best feeling in the world.",
-              meta: "Mark from Dundee won £1,000,000 cash in the September Monthly Millionaire Draw.",
-              highlightName: "Mark",
-              highlightAmount: "£1,000,000"
-            },
-            {
-              image: TESTIMONIAL_IMAGE_URL,
-              quote: "I just can't believe it's happened to us. You don't think it's ever going to be you. Seeing the money land in my account was a moment I'll never forget!",
-              meta: "Christian from Teesside won £1,000,000 cash in the October Monthly Millionaire Draw.",
-              highlightName: "Christian",
-              highlightAmount: "£1,000,000"
-            },
+            }
           ]);
         }
       );
 
-      // Wait for CONTROL_HERO_VIDEO_ELEMENT to load
+      // Wait for CONTROL_DESKTOP_HERO_CTA to load
       waitForElements(
         [
           { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
