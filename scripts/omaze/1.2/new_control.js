@@ -28,6 +28,12 @@
   }
 
   const STYLES = `
+    .ccx-slider-container--mobile + .shopify-section > .section-text-container {
+      padding-top: 4rem !important;
+    }
+    .ccx-slider-container--mobile + .shopify-section > .section-text-container > .section-text-content {
+      max-width: 800px !important;
+    }
     .ccx-slider-container--desktop {
       display: none;
     }
@@ -35,12 +41,13 @@
       gap: 2rem !important;
     }
     .campaign-hero-overlay .campaign-logo-desktop {
-      width: 146px !important;
-      height: 72px !important;
+      width: 220px !important;
+      margin-bottom: 0 !important;
     }
     .campaign-hero-overlay .campaign-logo-mobile {
       width: 163px;
       height: 80px;
+      margin-bottom: 0 !important;
     }
     .campaign-hero-title {
       margin-bottom: 0 !important;

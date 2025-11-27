@@ -28,16 +28,20 @@
   }
 
   const STYLES = `
+    main .shopify-section:nth-child(2) .section-text-content {
+      max-width: 800px !important;
+    }
     .campaign-hero-overlay {
       gap: 2rem !important;
     }
     .campaign-hero-overlay .campaign-logo-desktop {
-      width: 163px !important;
-      height: 80px !important;
+      width: 220px !important;
+      margin-bottom: 0 !important;
     }
     .campaign-hero-overlay .campaign-logo-mobile {
       width: 163px;
       height: 80px;
+      margin-bottom: 0 !important;
     }
     .campaign-hero-title {
       margin-bottom: 0 !important;

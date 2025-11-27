@@ -1,7 +1,7 @@
 (function () {
   const LOG_ENABLED = true;
   const TEST_ID = "DE12";
-  const TEST_NAME = "TRUST LAYER ENHANCEMENT";
+  const TEST_NAME = "ODDS LAYER ENHANCEMENT";
   const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
   let resizeTimer;
@@ -129,6 +129,10 @@
   text-decoration-skip-ink: auto;
 }
 
+.ccx-banner-component--desktop {
+  display: none;
+}
+
 /* Responsive layout adjustments */
 @media screen and (max-width: 767px) {
   .home--banner .banner-controls {
@@ -137,6 +141,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .ccx-banner-component--desktop {
+    display: flex;
+  }
   .ccx-banner-component {
     flex-flow: row;
     gap: 2rem;
@@ -686,11 +693,12 @@
       .catch(() => { });
   }
 
-  const createGuaranteedWinnerAndOddsComponent = (CONTROL_HOME_BANNER_CONTROLS) => {
+  const createGuaranteedWinnerAndOddsComponent = (CONTROL_HOME_BANNER_CONTROLS, className) => {
     customLog('[createGuaranteedWinnerAndOddsComponent] Creating guaranteed winner & odds component...');
 
     const component = document.createElement('div');
     component.classList.add('ccx-banner-component');
+    if (className) component.classList.add(className);
     component.innerHTML =
       '<div class="ccx-guaranteed-winner">' +
       '<div class="ccx-guaranteed-winner__icon">' +
@@ -1093,24 +1101,24 @@
           // ==========================
           // Component Creation
           // ==========================
-          createGuaranteedWinnerAndOddsComponent(CONTROL_HOME_BANNER_CONTROLS);
-          createCCXSlider(
-            CONTROL_HMA_LAST_H3,
-            SLIDE_DATA,
-            ARROW_LEFT,
-            ARROW_RIGHT,
-            TRUST_PILOT_HTML,
-            VARIATION
-          );
+          createGuaranteedWinnerAndOddsComponent(CONTROL_HOME_BANNER_CONTROLS, 'ccx-banner-component--desktop');
+          // createCCXSlider(
+          //   CONTROL_HMA_LAST_H3,
+          //   SLIDE_DATA,
+          //   ARROW_LEFT,
+          //   ARROW_RIGHT,
+          //   TRUST_PILOT_HTML,
+          //   VARIATION
+          // );
 
-          handleSlideshowPosition(CONTROL_HMA_LAST_H3);
-          // Listen for window resize with debouncing
-          window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-              handleSlideshowPosition();
-            }, 150);
-          });
+          // handleSlideshowPosition(CONTROL_HMA_LAST_H3);
+          // // Listen for window resize with debouncing
+          // window.addEventListener('resize', () => {
+          //   clearTimeout(resizeTimer);
+          //   resizeTimer = setTimeout(() => {
+          //     handleSlideshowPosition();
+          //   }, 150);
+          // });
 
           // ==========================
           // Hero Video Observer
@@ -1121,7 +1129,7 @@
 
           if (heroVideo && bannerComponent) {
             const toggleBannerVisibility = () => {
-              bannerComponent.style.display = heroVideo.classList.contains('active') ? 'flex' : 'none';
+              // bannerComponent.style.display = heroVideo.classList.contains('active') ? 'flex' : 'none';
 
               if (heroVideo.classList.contains('active')) {
                 control_bannerControls.style.bottom = '4rem';

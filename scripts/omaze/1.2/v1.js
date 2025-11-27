@@ -17,6 +17,8 @@
 `;
 
   const TESTIMONIAL_IMAGE_URL = `https://cdn-eu.dynamicyield.com/api/9881830/images/88a919c5cf4c.jpg`;
+  const TESTIMONIAL_IMAGE_URL_2 = `https://cdn-eu.dynamicyield.com/api/9881830/images/6545cc842df2.png`;
+  const TESTIMONIAL_IMAGE_URL_3 = `https://cdn-eu.dynamicyield.com/api/9881830/images/17bf03fbb789.jpg`;
 
   const SELECTORS = {
     CONTROL_HERO_VIDEO_ELEMENT: '.campaign-hero-video-container video',
@@ -28,6 +30,15 @@
   }
 
   const STYLES = `
+    img[src="https://cdn-eu.dynamicyield.com/api/9881830/images/6545cc842df2.png"] {
+      border: none;
+    }
+    .ccx-slider-container--mobile + .shopify-section > .section-text-container {
+      padding-top: 4rem !important;
+    }
+    .ccx-slider-container--mobile + .shopify-section > .section-text-container > .section-text-content {
+      max-width: 800px !important;
+    }
     .ccx-slider-container--desktop {
       display: none;
     }
@@ -35,12 +46,13 @@
       gap: 2rem !important;
     }
     .campaign-hero-overlay .campaign-logo-desktop {
-      width: 146px !important;
-      height: 72px !important;
+      width: 220px !important;
+      margin-bottom: 0 !important;
     }
     .campaign-hero-overlay .campaign-logo-mobile {
       width: 163px;
       height: 80px;
+      margin-bottom: 0 !important;
     }
     .campaign-hero-title {
       margin-bottom: 0 !important;
@@ -169,6 +181,9 @@
 
     /* RESPONSIVE */      
     @media (min-width: 768px) {
+      .ccx-slider {
+        padding: 1rem 3rem;
+      }
       .ccx-slider-container--mobile {
         display: none;
       }
@@ -325,7 +340,10 @@
   }
 
   const replaceHeroVideoSrc = (videoEl, variant = "variant1") => {
-    let finalVideoUrl = MM_VIDEO_URL; // fallback
+    // fallback video URL if something fails
+    let fallback = typeof MM_VIDEO_URL !== "undefined" ? MM_VIDEO_URL : "";
+
+    let finalVideoUrl = fallback;
 
     try {
       const isMobile = window.innerWidth <= 768;
@@ -334,23 +352,32 @@
         const variantObj = window.MMLPVideos[variant];
 
         finalVideoUrl = isMobile
-          ? variantObj.mobile || finalVideoUrl
-          : variantObj.desktop || finalVideoUrl;
+          ? (variantObj.mobile || fallback)
+          : (variantObj.desktop || fallback);
       }
     } catch (err) {
-      console.warn("Error reading MMLPVideos:", err);
+      console.warn("[replaceHeroVideoSrc] Error reading MMLPVideos:", err);
     }
 
-    // Apply the URL
-    videoEl.src = finalVideoUrl;
-    videoEl.setAttribute("src", finalVideoUrl);
-    videoEl.setAttribute("data-src", finalVideoUrl);
+    // Apply the video URL
+    if (finalVideoUrl) {
+      videoEl.src = finalVideoUrl;
+      videoEl.setAttribute("data-src", finalVideoUrl);
+    }
 
+    // Reload and restart video playback
     videoEl.load();
+
+    // Try to autoplay
+    const playPromise = videoEl.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        console.warn("Autoplay failed, will rely on user interaction.");
+      });
+    }
 
     customLog("[replaceHeroVideoSrc] Video src replaced:", finalVideoUrl);
   };
-
 
   function insertSliderContainerBefore(targetEl, position = 'beforebegin', className) {
     if (!(targetEl instanceof Element)) {
@@ -526,14 +553,14 @@
               highlightAmount: "£1,000,000"
             },
             {
-              image: TESTIMONIAL_IMAGE_URL,
+              image: TESTIMONIAL_IMAGE_URL_2,
               quote: "It's just lifted such a weight. We can pay off our overdraft and stop worrying about money every month - it's the best feeling in the world.",
               meta: "Mark from Dundee won £1,000,000 cash in the September Monthly Millionaire Draw.",
               highlightName: "Mark",
               highlightAmount: "£1,000,000"
             },
             {
-              image: TESTIMONIAL_IMAGE_URL,
+              image: TESTIMONIAL_IMAGE_URL_3,
               quote: "I just can't believe it's happened to us. You don't think it's ever going to be you. Seeing the money land in my account was a moment I'll never forget!",
               meta: "Christian from Teesside won £1,000,000 cash in the October Monthly Millionaire Draw.",
               highlightName: "Christian",
@@ -621,6 +648,10 @@
           customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
 
           replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
+
+          window.addEventListener("resize", () => {
+            replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
+          });
         }
       );
 
