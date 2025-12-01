@@ -71,9 +71,8 @@
     /* ===============================
     CONTROL ELEMENTS
     =============================== */
-    .banner-controls {
-      flex-flow: column;
-      gap: 1rem;
+    #main-nav .trustpilot-widget {
+      display: none !important;
     }
     /* ===============================
     UTILITY CLASSES
@@ -121,7 +120,6 @@
     .ccx-guarantee-container-mobile__item.ccx-guarantee-container-mobile__item--info {
       display: flex;
       align-items: center;
-      cursor: pointer;
       height: 42px;
       gap: 8px;
       opacity: 1;
@@ -155,6 +153,10 @@
     }
     
     @media screen and (min-width: 768px) {
+      .banner-controls {
+        flex-flow: column;
+        gap: 1rem;
+      }
       .ccx-guarantee-container-desktop {
         display: flex;
         align-items: center;
@@ -165,7 +167,6 @@
         display: flex;
         align-items: center;
         color: white;
-        cursor: pointer;
       }
       .ccx-guarantee-container-desktop__text {
         margin-left: 0.5rem;
@@ -224,6 +225,7 @@
         letter-spacing: 0px;
         text-align: center;
         vertical-align: middle;
+        margin: 0 auto;
       }
     }
 
@@ -281,6 +283,7 @@
       line-height: 100%;
       letter-spacing: 0px;
       vertical-align: middle;
+      text-transform: none;
     }
 
     .ccx-odds-modal__content {
@@ -382,6 +385,7 @@
 
   .ccx-odds-modal__cta {
     width: 100%;
+    line-height: 100%;
     padding: 1rem;
     background: #FFD400;
     border: none;
@@ -427,6 +431,12 @@
       align-items: flex-start;
       background: #FFFFFF;
       border: 1px solid #F5F5F5;
+    }
+    .ccx-odds-modal__bundle-title {
+      font-size: 24px;
+    }
+    .ccx-odds-modal__bundle-odds {
+      font-size: 22px;
     }
     .ccx-odds-modal__footer {
       text-align: right;
@@ -746,6 +756,21 @@
     });
   };
 
+  const removeExistingOddsModal = () => {
+    customLog('[removeExistingOddsModal]');
+    try {
+      const overlays = document.querySelectorAll('.ccx-odds-modal-overlay');
+      if (!overlays || overlays.length === 0) return;
+
+      overlays.forEach(overlay => {
+        overlay.remove();
+      });
+
+    } catch (err) {
+      console.warn('[removeExistingOddsModal] Failed gracefully:', err);
+    }
+  };
+
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -795,7 +820,7 @@
           initDesktopOddsObserver(CONTROL_DESKTOP_BANNER_CONTROLS);
         }
       );
-      
+
       // Wait for CONTROL_DESKTOP_BANNER_CONTROLS to load
       waitForElements(
         [
@@ -840,6 +865,7 @@
                 DY.API("event", {
                   name: "mm_modal_cta"
                 });
+                removeExistingOddsModal();
                 setTimeout(() => {
                   window.location.href = yellowBtnHref;
                 }, 500);
