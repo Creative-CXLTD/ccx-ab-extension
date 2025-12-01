@@ -2,11 +2,12 @@
   const LOG_ENABLED = true;
   const TEST_ID = "DE16";
   const TEST_NAME = "BV CLOSEDATE IN THE NAVBAR";
-  const VARIATION = "variation-2";
+  const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
     CONTROL_NAVBAR_TOGGLE_MENU: '#mainNavbar > .nav.house-nav',
+    CONTROL_MOBILE_CTA: '.visible-xs.sticky-cta.hide-on-desktop',
   }
 
   const SVG_THUNDERBOLT = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -390,7 +391,6 @@
     }
 
     .ccx-de16-variation-3 .ccx-desktop-countdown-container .ccx-bottom-container .ccx-bottom-left {
-      min-width: 117px;
       height: 38px;
       min-width: 44px;
       opacity: 1;
@@ -560,7 +560,7 @@
       .then(results => {
         if (typeof callback === 'function') callback(results);
       })
-      .catch(() => {
+      .catch(err => {
         console.error('[waitForElements] error:', err);
       });
   }
@@ -762,7 +762,7 @@
     CONTROL_NAVBAR_TOGGLE_MENU.insertAdjacentElement('beforebegin', countdownContainer);
   };
 
-  const createMobileCountdownContainer = () => {
+  const createMobileCountdownContainer = (CONTROL_MOBILE_CTA) => {
     const mobileBox = document.createElement("div");
     mobileBox.classList.add("ccx-mobile-countdown");
 
@@ -787,7 +787,8 @@
 
     // Insert depending on variation
     if (VARIATION === "variation-1" || VARIATION === "variation-3") {
-      const anchor = document.querySelector(".visible-xs.sticky-cta.hide-on-desktop");
+      // const anchor = document.querySelector(".visible-xs.sticky-cta.hide-on-desktop");
+      const anchor = CONTROL_MOBILE_CTA;
       if (anchor) {
         mobileBox.classList.add("ccx-mobile-position-abs");
         anchor.insertAdjacentElement("beforebegin", mobileBox);
@@ -795,7 +796,8 @@
     }
 
     if (VARIATION === "variation-2") {
-      const anchor = document.querySelector(".hero-mobile-addendum > .hma-content > h3");
+      // const anchor = document.querySelector(".hero-mobile-addendum > .hma-content > h3");
+      const anchor = CONTROL_MOBILE_CTA;
       if (anchor) {
         mobileBox.classList.add("ccx-mobile-position-rel");
         anchor.insertAdjacentElement("afterend", mobileBox);
@@ -818,20 +820,35 @@
 
           customLog(CONTROL_NAVBAR_TOGGLE_MENU);
 
-          const desktopCountdownContainer = document.querySelector('.ccx-desktop-countdown-container');
+          addStyles(STYLES, VARIATION);
+          addBodyClass();
 
+          const desktopCountdownContainer = document.querySelector('.ccx-desktop-countdown-container');
           if (!desktopCountdownContainer) {
-            addStyles(STYLES, VARIATION);
-            addBodyClass();
             createDesktopCountdownContainer(CONTROL_NAVBAR_TOGGLE_MENU);
             updateCountdownText();
             attachEventListeners();
           }
+        }
+      );
 
-          const mobileCountdownContainer = document.querySelector('.ccx-mobile-countdown');
+      waitForElements(
+        [
+          { selector: SELECTORS.CONTROL_MOBILE_CTA, count: 1 },
+        ],
+        function (results) {
+          const CONTROL_MOBILE_CTA = results[0].elements[0];
+          if (!CONTROL_MOBILE_CTA) return;
 
-          if (!mobileCountdownContainer) {
-            createMobileCountdownContainer();
+          console.log('hello')
+          customLog(CONTROL_MOBILE_CTA);
+
+          addStyles(STYLES, VARIATION);
+          addBodyClass();
+
+          const mobileCountdownContainer = document.querySelectorAll('.ccx-mobile-countdown');
+          if (mobileCountdownContainer.length === 0) {
+            createMobileCountdownContainer(CONTROL_MOBILE_CTA);
           }
         }
       );

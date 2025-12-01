@@ -117,7 +117,7 @@
       .then(results => {
         if (typeof callback === 'function') callback(results);
       })
-      .catch(() => {
+      .catch((err) => {
         console.error('[waitForElements] error:', err);
       });
   }

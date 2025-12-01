@@ -8,6 +8,7 @@ const ENVIRONMENT = IS_STAGING_ENV ? "staging" : "production";
 
 const images = {
   logo: 'https://cdn-eu.dynamicyield.com/api/9880449/images/55caf913cc71.png',
+  logo_white: 'https://cdn-eu.dynamicyield.com/api/9881830/images/1d36e71bd0a3.png',
   logoFinal: 'https://cdn-eu.dynamicyield.com/api/9880449/images/3713eb6555ad.png',
   stepFourConfetti: 'https://cdn-eu.dynamicyield.com/api/9880449/images/19015f46aaed.gif',
   stepFourImage: 'https://cdn-eu.dynamicyield.com/api/9881830/images/3ed31da7de8b.png',
@@ -71,7 +72,10 @@ const styles = `
   color: #081F28;
   text-transform: none;
 }
-.step-4 .oz29-hero {
+.step-2 .oz29-hero {
+  color: white;
+}
+.step-5 .oz29-hero {
   color: white;
 }
 .oz29-hero span {
@@ -88,6 +92,12 @@ const styles = `
   align-items:center; justify-content:center;
 }
 .oz29-icon { width:110px; height:110px; object-fit:contain; }
+.oz29-card.step-2 .oz29-icon-container {
+  background: initial;
+}
+.oz29-card.step-2 .oz29-icon-container img {
+  width: 221px;
+}
 .oz29-card.step-3 .oz29-icon-container img {
   object-fit: cover;
   width: 100%;
@@ -95,16 +105,34 @@ const styles = `
   border-radius: 50%;
   border: 5px solid white;
 }
+.oz29-card.step-4 .oz29-icon-container {
+  height: 180px;
+  margin: 32px auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid white;
+}
+.oz29-card.step-4 .oz29-icon-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-size: cover;
+}
 .oz29-subcopy {
   font-family: Gellix;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 23px;
   line-height: 32px;
   text-align: center;
   color: #081F28;
   margin-bottom: 0;
 }
-.oz29-slider .step-4 .oz29-subcopy {
+.oz29-slider .oz29-card.step-2 .oz29-subcopy {
+  color: white;
+}
+.oz29-slider .step-5 .oz29-subcopy {
   display: none;
 }
 .oz29-cta {
@@ -128,7 +156,11 @@ const styles = `
   background: #081F28;
   color: white;
 }
-.oz29-card.step-4 .oz29-cta {
+.oz29-card.step-2 .oz29-cta {
+  background-color: #FFDD00;
+  color: #090F15;
+}
+.oz29-card.step-5 .oz29-cta {
   width: auto;
   background: #FFDD00;
   color: #081F28;
@@ -146,7 +178,7 @@ const styles = `
   text-align: center;
   text-decoration: none;
 }
-.oz29-card.step-4 {
+.oz29-card.step-5 {
   color:#fff;
   background-position: center center !important;
 }
@@ -161,10 +193,10 @@ const styles = `
   z-index: -1;
   display: none;
 }
-.oz29-card.step-4 .oz29-bg-video {
+.oz29-card.step-5 .oz29-bg-video {
   display: block;
 }
-.oz29-card.step-4 {
+.oz29-card.step-5 {
   position: relative;
   color: #fff;
 }
@@ -173,10 +205,10 @@ const styles = `
   text-align: center;
   margin: 32px auto;
 }
-.oz29-card.step-4 .oz29-step-4-content {
+.oz29-card.step-5 .oz29-step-4-content {
   display: block;
 }
-.oz29-card.step-4 .oz29-icon-container {
+.oz29-card.step-5 .oz29-icon-container {
   display: none;
 }
 .oz29-step-4-boost,
@@ -392,6 +424,16 @@ const sliderSteps = [
   },
   {
     name: 'Step 2',
+    heroCopy: 'That\'s not all!',
+    subCopy: 'You\'re in with a chance to win £1,000,000 in the Omaze Monthly Millionaire draw.',
+    icon: 'https://cdn-eu.dynamicyield.com/api/9881830/images/f3eb597e41ab.png',
+    buttonText: 'Continue',
+    progressColor: '#FFDD00',
+    background: 'url(https://iili.io/fxaJTl9.gif)',
+    topLogo: images.logo_white,
+  },
+  {
+    name: 'Step 3',
     heroCopy: 'Did you know?',
     subCopy: 'With your monthly subscription, you\'ve helped raise over £100M for UK charities.',
     icon: 'https://cdn-eu.dynamicyield.com/api/9880449/images/1fe709902e09.gif',
@@ -401,7 +443,7 @@ const sliderSteps = [
     topLogo: images.logo,
   },
   {
-    name: 'Step 3',
+    name: 'Step 4',
     heroCopy: 'You could be the next winner!',
     subCopy: 'Like Hannah, who\'s monthly subscription won her the keys to a £4M Lake District House.',
     // icon: 'https://cdn-eu.dynamicyield.com/api/9880449/images/379e4a3f8854.jpg',
@@ -412,7 +454,7 @@ const sliderSteps = [
     topLogo: images.logo,
   },
   {
-    name: 'Step 4',
+    name: 'Step 5',
     heroCopy: 'Nice one!',
     icon: '',
     buttonText: 'I want 45 FREE Entries',
