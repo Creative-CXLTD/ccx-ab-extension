@@ -64,10 +64,6 @@
     /* ===============================
     CONTROL ELEMENTS
     =============================== */
-    .banner-controls {
-      flex-flow: column;
-      gap: 1rem;
-    }
     #main-nav .trustpilot-widget {
       display: none !important;
     }
@@ -131,6 +127,10 @@
     }
     
     @media screen and (min-width: 768px) {
+      .banner-controls {
+        flex-flow: column;
+        gap: 1rem;
+      }
       .ccx-odds-container-desktop {
         display: flex;
         align-items: center;
