@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "DE16";
   const TEST_NAME = "BV CLOSEDATE IN THE NAVBAR";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-3";
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
@@ -195,6 +195,7 @@
     }
 
     .ccx-de16-variation-3 .ccx-mobile-countdown {
+      z-index: 10;
       position: fixed;
       text-align: center;
       padding-top: 8px;
@@ -575,7 +576,9 @@
 
     // Otherwise extract the number
     const match = remaining.match(/\d+/);
-    return match ? match[0] : "0";
+    if (!match) return "00";
+    const num = match[0];
+    return num.length < 2 ? "0" + num : num;
   };
 
   const getRemainingTimeText = () => {
@@ -796,8 +799,7 @@
     }
 
     if (VARIATION === "variation-2") {
-      // const anchor = document.querySelector(".hero-mobile-addendum > .hma-content > h3");
-      const anchor = CONTROL_MOBILE_CTA;
+      const anchor = document.querySelector(".hero-mobile-addendum > .hma-content > h3");
       if (anchor) {
         mobileBox.classList.add("ccx-mobile-position-rel");
         anchor.insertAdjacentElement("afterend", mobileBox);
@@ -840,7 +842,6 @@
           const CONTROL_MOBILE_CTA = results[0].elements[0];
           if (!CONTROL_MOBILE_CTA) return;
 
-          console.log('hello')
           customLog(CONTROL_MOBILE_CTA);
 
           addStyles(STYLES, VARIATION);
