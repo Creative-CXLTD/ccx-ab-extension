@@ -193,6 +193,31 @@
     }
   }
 
+  /**
+ * Waits up to `maxWaitMs` for window.MMLPVideos.variant1 to exist.
+ * Retries every 250ms via recursive setTimeout.
+ */
+  function waitForVariant(maxWaitMs = 10000, interval = 250) {
+    return new Promise(resolve => {
+      const start = Date.now();
+
+      function check() {
+        if (window.MMLPVideos && window.MMLPVideos.variant1) {
+          return resolve(true);
+        }
+
+        if (Date.now() - start >= maxWaitMs) {
+          console.warn("[waitForVariant] Timed out waiting for MMLPVideos.variant1");
+          return resolve(false);
+        }
+
+        setTimeout(check, interval);
+      }
+
+      check();
+    });
+  }
+
   const replaceHeroVideoSrc = (videoEl, variant = "variant1") => {
     // fallback video URL if something fails
     let fallback = typeof MM_VIDEO_URL !== "undefined" ? MM_VIDEO_URL : "";
@@ -281,14 +306,11 @@
         [
           { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
         ],
-        function (results) {
+        async function (results) {
 
           addStyles(STYLES, VARIATION);
           addBodyClass();
 
-          console.log(results);
-
-          // SECOND .shopify-section
           const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
           if (!CONTROL_HERO_VIDEO_ELEMENT) {
             customLog("CONTROL_HERO_VIDEO_ELEMENT NOT found");
@@ -297,7 +319,14 @@
 
           customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
 
-          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
+          // 🔐 NEW: Wait up to 10 seconds for MMLPVideos.variant1
+          const variantReady = await waitForVariant(10000);
+
+          if (!variantReady) {
+            console.warn("[init] MMLPVideos.variant1 not available — using fallback video");
+          }
+
+          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT, "variant1");
         }
       );
 

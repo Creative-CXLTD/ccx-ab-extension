@@ -564,31 +564,31 @@
       );
 
       // Wait for CONTROL_DESKTOP_HERO_CTA to load
-      waitForElements(
-        [
-          { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
-        ],
-        function (results) {
+      // waitForElements(
+      //   [
+      //     { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
+      //   ],
+      //   function (results) {
 
-          addStyles(STYLES, VARIATION);
-          addBodyClass();
+      //     addStyles(STYLES, VARIATION);
+      //     addBodyClass();
 
-          console.log(results);
+      //     console.log(results);
 
-          // return;
+      //     // return;
 
-          // SECOND .shopify-section
-          const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
-          if (!CONTROL_HERO_VIDEO_ELEMENT) {
-            customLog("CONTROL_HERO_VIDEO_ELEMENT NOT found");
-            return;
-          }
+      //     // SECOND .shopify-section
+      //     const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
+      //     if (!CONTROL_HERO_VIDEO_ELEMENT) {
+      //       customLog("CONTROL_HERO_VIDEO_ELEMENT NOT found");
+      //       return;
+      //     }
 
-          customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
+      //     customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
 
-          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
-        }
-      );
+      //     replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
+      //   }
+      // );
 
     } catch (error) {
       customLog(error);

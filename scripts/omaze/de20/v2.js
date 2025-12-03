@@ -45,7 +45,7 @@
     opacity: 1;
     border-bottom-right-radius: 99px;
     border-bottom-left-radius: 99px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .ccx-content-wrapper {
@@ -64,13 +64,12 @@
   .ccx-info-icon {
     font-size: 20px;
     line-height: 1;
-    background: #F5F5F5;
-    width: 35px;
-    height: 35px;
+    background: #f5f5f5;
+    min-width: 35px;
+    min-height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-basis: 10%;
     border-radius: 50%;
   }
 
@@ -232,43 +231,26 @@
     {
       icon: `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 21V13C15 12.4481 14.5519 12 14 12H10C9.44808 12 9 12.4481 9 13V21" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path
-            d="M3 9.99999C2.99986 9.41112 3.25924 8.85211 3.709 8.47199L10.709 2.47199C11.4544 1.84202 12.5456 1.84202 13.291 2.47199L20.291 8.47199C20.7408 8.85211 21.0001 9.41112 21 9.99999V19C21 20.1038 20.1038 21 19 21H5C3.89617 21 3 20.1038 3 19V9.99999"
-            stroke="#081F28"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            />
-        </svg>`,
+<path d="M15 21V13C15 12.4481 14.5519 12 14 12H10C9.44808 12 9 12.4481 9 13V21" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3 9.99999C2.99986 9.41112 3.25924 8.85211 3.709 8.47199L10.709 2.47199C11.4544 1.84202 12.5456 1.84202 13.291 2.47199L20.291 8.47199C20.7408 8.85211 21.0001 9.41112 21 9.99999V19C21 20.1038 20.1038 21 19 21H5C3.89617 21 3 20.1038 3 19V9.99999" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`,
       text: 'Gewinne das Landhaus in Oberbayern im Wert von über 2,7 Mio. € - plus 100.000 € Startkapital'
     },
     {
       icon: `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 2V6M16 2V6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5 4H19C20.1038 4 21 4.89617 21 6V20C21 21.1038 20.1038 22 19 22H5C3.89617 22 3 21.1038 3 20V6C3 4.89617 3.89617 4 5 4V4"
-            stroke="#081F28"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            />
-          <path d="M3 10H21M8 14H8.01M12 14H12.01M16 14H16.01M8 18H8.01M12 18H12.01M16 18H16.01" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`,
+<path d="M8 2V6M16 2V6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5 4H19C20.1038 4 21 4.89617 21 6V20C21 21.1038 20.1038 22 19 22H5C3.89617 22 3 21.1038 3 20V6C3 4.89617 3.89617 4 5 4V4" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3 10H21M8 14H8.01M12 14H12.01M16 14H16.01M8 18H8.01M12 18H12.01M16 18H16.01" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`,
       text: 'Haus-Verlosung endet am 27/12/2025'
     },
     {
       icon: `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 2V6M16 2V6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5 4H19C20.1038 4 21 4.89617 21 6V20C21 21.1038 20.1038 22 19 22H5C3.89617 22 3 21.1038 3 20V6C3 4.89617 3.89617 4 5 4V4"
-            stroke="#081F28"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path d="M3 10H21M8 14H8.01M12 14H12.01M16 14H16.01M8 18H8.01M12 18H12.01M16 18H16.01" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`,
+<path d="M10 14.66V16.286C9.99232 16.9828 9.62256 17.6253 9.024 17.982C7.75705 18.9204 7.00691 20.4014 7 21.978M14 14.66V16.286C14.0077 16.9828 14.3774 17.6253 14.976 17.982C16.243 18.9204 16.9931 20.4014 17 21.978M18 9H19.5C20.8798 9 22 7.87979 22 6.5C22 5.12021 20.8798 4 19.5 4H18M4 22H20" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 9C6 12.3115 8.68851 15 12 15C15.3115 15 18 12.3115 18 9V3C18 2.44808 17.5519 2 17 2H7C6.44808 2 6 2.44808 6 3V9M6 9H4.5C3.12021 9 2 7.87979 2 6.5C2 5.12021 3.12021 4 4.5 4H6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`,
       text: 'Garantierter Gewinner. Chance: 1 zu allen teilnehmenden Losen'
     },
   ]

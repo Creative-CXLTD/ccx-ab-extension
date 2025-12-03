@@ -15,8 +15,15 @@
   }
 
   const STYLES = `
+  #enter-now-material-tab-buttons-design > [id*=nav-latest] [data-tab-container] {
+    background: white;
+    padding-top: 1rem;
+  }
   .ccx-container {
-    padding: 16px;
+    padding: 1rem;
+    background: white;
+    margin: 0 !important;
+    width: 100% !important;
   }
 
   .ccx-main-heading {
@@ -35,6 +42,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 30rem;
+    margin: 0 auto;
   }
 
   @media (min-width: 991px) {
@@ -46,6 +55,11 @@
       flex-direction: row;
       justify-content: center;
       width: 100%;
+      max-width: 100%;
+    }
+    .ccx-content-wrapper > div {
+      flex: 1;
+      max-width: 204px;
     }
     .ccx-info-item {
       flex-flow: column;
@@ -61,6 +75,13 @@
   .ccx-info-icon {
     font-size: 20px;
     line-height: 1;
+    background: #FFDD00;
+    min-width: 35px;
+    min-height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
   }
 
   .ccx-info-text {
@@ -155,31 +176,27 @@
 
   const containerData = [
     {
-      icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="32" height="32" rx="16" fill="#FFDD00"/>
-<rect width="32" height="32" rx="16" stroke="#4ADE80"/>
-<path d="M19 25V17C19 16.4481 18.5519 16 18 16H14C13.4481 16 13 16.4481 13 17V25" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 14C6.99986 13.4111 7.25924 12.8521 7.709 12.472L14.709 6.47199C15.4544 5.84202 16.5456 5.84202 17.291 6.47199L24.291 12.472C24.7408 12.8521 25.0001 13.4111 25 14V23C25 24.1038 24.1038 25 23 25H9C7.89617 25 7 24.1038 7 23V14" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 21V13C15 12.4481 14.5519 12 14 12H10C9.44808 12 9 12.4481 9 13V21" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3 9.99999C2.99986 9.41112 3.25924 8.85211 3.709 8.47199L10.709 2.47199C11.4544 1.84202 12.5456 1.84202 13.291 2.47199L20.291 8.47199C20.7408 8.85211 21.0001 9.41112 21 9.99999V19C21 20.1038 20.1038 21 19 21H5C3.89617 21 3 20.1038 3 19V9.99999" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,
       text: 'Gewinne das Landhaus in Oberbayern im Wert von über 2,7 Mio. € – plus 100.000 € Startkapital'
     },
     {
-      icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="32" height="32" rx="16" fill="#FFDD00"/>
-<rect width="32" height="32" rx="16" stroke="#C084FC"/>
-<path d="M12 6V10M20 6V10" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9 8H23C24.1038 8 25 8.89617 25 10V24C25 25.1038 24.1038 26 23 26H9C7.89617 26 7 25.1038 7 24V10C7 8.89617 7.89617 8 9 8V8" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 14H25M12 18H12.01M16 18H16.01M20 18H20.01M12 22H12.01M16 22H16.01M20 22H20.01" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 2V6M16 2V6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5 4H19C20.1038 4 21 4.89617 21 6V20C21 21.1038 20.1038 22 19 22H5C3.89617 22 3 21.1038 3 20V6C3 4.89617 3.89617 4 5 4V4" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3 10H21M8 14H8.01M12 14H12.01M16 14H16.01M8 18H8.01M12 18H12.01M16 18H16.01" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`,
       text: 'Haus-Verlosung endet am 27/12/2025'
     },
     {
-      icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="32" height="32" rx="16" fill="#FFDD00"/>
-<rect width="32" height="32" rx="16" stroke="#FB923C"/>
-<path d="M14 18.66V20.286C13.9923 20.9828 13.6226 21.6253 13.024 21.982C11.757 22.9204 11.0069 24.4014 11 25.978M18 18.66V20.286C18.0077 20.9828 18.3774 21.6253 18.976 21.982C20.243 22.9204 20.9931 24.4014 21 25.978M22 13H23.5C24.8798 13 26 11.8798 26 10.5C26 9.12021 24.8798 8 23.5 8H22M8 26H24" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10 13C10 16.3115 12.6885 19 16 19C19.3115 19 22 16.3115 22 13V7C22 6.44808 21.5519 6 21 6H11C10.4481 6 10 6.44808 10 7V13M10 13H8.5C7.12021 13 6 11.8798 6 10.5C6 9.12021 7.12021 8 8.5 8H10" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>`,
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 14.66V16.286C9.99232 16.9828 9.62256 17.6253 9.024 17.982C7.75705 18.9204 7.00691 20.4014 7 21.978M14 14.66V16.286C14.0077 16.9828 14.3774 17.6253 14.976 17.982C16.243 18.9204 16.9931 20.4014 17 21.978M18 9H19.5C20.8798 9 22 7.87979 22 6.5C22 5.12021 20.8798 4 19.5 4H18M4 22H20" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6 9C6 12.3115 8.68851 15 12 15C15.3115 15 18 12.3115 18 9V3C18 2.44808 17.5519 2 17 2H7C6.44808 2 6 2.44808 6 3V9M6 9H4.5C3.12021 9 2 7.87979 2 6.5C2 5.12021 3.12021 4 4.5 4H6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`,
       text: 'Garantierter Gewinner. Chance: 1 zu allen teilnehmenden Losen'
     },
   ]
@@ -297,9 +314,6 @@
     const ccxContainer = document.createElement('div');
     ccxContainer.classList.add(
       'ccx-container',
-      'w-11/12',
-      'max-w-[380px]',
-      'mx-auto',
       'lg:max-w-full'
     );
 

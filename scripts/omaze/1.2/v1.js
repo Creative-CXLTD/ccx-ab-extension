@@ -472,6 +472,32 @@
     renderSlide(currentIndex);
   }
 
+  /**
+ * Waits up to `maxWaitMs` for window.MMLPVideos.variant1 to exist.
+ * If not found, retries every 250ms (recursive setTimeout).
+ */
+  function waitForVariant(maxWaitMs = 10000, interval = 250) {
+    return new Promise(resolve => {
+      const start = Date.now();
+
+      function check() {
+        if (window.MMLPVideos && window.MMLPVideos.variant1) {
+          return resolve(true);
+        }
+
+        if (Date.now() - start >= maxWaitMs) {
+          console.warn("[waitForVariant] Timed out waiting for MMLPVideos.variant1");
+          return resolve(false);
+        }
+
+        setTimeout(check, interval);
+      }
+
+      check();
+    });
+  }
+
+
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -629,16 +655,11 @@
         [
           { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
         ],
-        function (results) {
+        async function (results) {
 
           addStyles(STYLES, VARIATION);
           addBodyClass();
 
-          console.log(results);
-
-          // return;
-
-          // SECOND .shopify-section
           const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
           if (!CONTROL_HERO_VIDEO_ELEMENT) {
             customLog("CONTROL_HERO_VIDEO_ELEMENT NOT found");
@@ -647,9 +668,17 @@
 
           customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
 
-          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
+          // 🔐 NEW: Wait for window.MMLPVideos.variant1 before replacing video
+          const variantReady = await waitForVariant(10000); // 10 seconds
+
+          if (!variantReady) {
+            console.warn("[init] MMLPVideos.variant1 not available after 10s — using fallback video");
+          }
+
+          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT, "variant1");
         }
       );
+
 
     } catch (error) {
       customLog(error);
