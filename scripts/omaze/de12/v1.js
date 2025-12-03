@@ -713,7 +713,7 @@
       ICON_INFORMATION +
       '</div>' +
       '<div class="ccx-odds__text">' +
-      '<span>Gewinnchancen prüfen: 1 zu X</span>' +
+      '<span>Gewinnchancen prüfen</span>' +
       '</div>' +
       '</div>';
 

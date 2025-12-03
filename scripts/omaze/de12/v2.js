@@ -1224,7 +1224,7 @@
       iconHTML +
       '</div>' +
       '<div class="ccx-checkodds__text">' +
-      'Gewinnchancen prüfen: <span class="ccx-checkodds__value">1 zu X' + oddsValue + '</span>' +
+      'Gewinnchancen prüfen' +
       '</div>' +
       '</div>';
 
@@ -1310,7 +1310,6 @@
       console.warn('[GuaranteedWinners] Desktop banner controls target not found');
     }
   }
-
 
   // Function to create and show the modal
   function createCCXWinningChanceModal(bgImageUrl) {

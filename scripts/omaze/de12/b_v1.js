@@ -535,7 +535,7 @@
       '<span class="ccx-odds-container-mobile__icon">' +
       ASSETS.MOBILE_ICON_INFORMATION +
       '</span>' +
-      '<span class="ccx-odds-container-mobile__text">Gewinnchancen prüfen: 1 zu X</span>';
+      '<span class="ccx-odds-container-mobile__text">Gewinnchancen prüfen</span>';
 
     container.appendChild(first);
     container.appendChild(second);
@@ -563,7 +563,7 @@
       '<span class="ccx-odds-container-desktop__icon">' +
       ASSETS.DESKTOP_ICON_INFORMATION +
       '</span>' +
-      '<span class="ccx-odds-container-desktop__text">Gewinnchancen prüfen: 1 zu X</span>';
+      '<span class="ccx-odds-container-desktop__text">Gewinnchancen prüfen</span>';
 
     container.appendChild(first);
     container.appendChild(second);
@@ -641,8 +641,8 @@
 
       '<div class="ccx-odds-modal__highlight">' +
       '<p>' +
-      'Bei der Ziehung des <strong>Alpen-Hauses</strong> gab es ' +
-      '<strong>4.5 mio Lose</strong>. Daraus ergaben sich die folgenden Gewinnwahrscheinlichkeiten:' +
+      'Bei der Ziehung des <strong>Alpen-Hauses</strong> haben ' +
+      '<strong>4.47 Mio Lose teilgenommen</strong>. Daraus ergaben sich die folgenden Gewinnwahrscheinlichkeiten:' +
       '</p>' +
       '</div>' +
 

@@ -212,6 +212,7 @@
         backdrop-filter: blur(20px);
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.25rem;
         cursor: pointer;
       }
@@ -225,7 +226,7 @@
         letter-spacing: 0px;
         text-align: center;
         vertical-align: middle;
-        margin: 0 auto;
+        margin: 0;
       }
     }
 
@@ -570,7 +571,7 @@
       '<span class="ccx-guarantee-container-mobile__icon">' +
       ASSETS.MOBILE_ICON_TROPHY +
       '</span>' +
-      '<span class="ccx-guarantee-container-mobile__text">Gewinnchancen prüfen: 1 zu X</span>';
+      '<span class="ccx-guarantee-container-mobile__text">Gewinnchancen prüfen</span>';
 
     // Second Block
     var second = document.createElement("div");
@@ -599,7 +600,7 @@
       '<span class="ccx-odds-container-desktop__icon">' +
       ASSETS.DESKTOP_ICON_TROPHY_TOP +
       '</span>' +
-      '<span class="ccx-odds-container-desktop__text">Gewinnchancen prüfen: 1 zu X</span>';
+      '<span class="ccx-odds-container-desktop__text">Gewinnchancen prüfen</span>';
 
     container.appendChild(second);
 
@@ -694,8 +695,8 @@
 
       '<div class="ccx-odds-modal__highlight">' +
       '<p>' +
-      'Bei der Ziehung des <strong>Alpen-Hauses</strong> gab es ' +
-      '<strong>4.5 mio Lose</strong>. Daraus ergaben sich die folgenden Gewinnwahrscheinlichkeiten:' +
+      'Bei der Ziehung des <strong>Alpen-Hauses</strong> haben ' +
+      '<strong>4.47 Mio Lose teilgenommen</strong>. Daraus ergaben sich die folgenden Gewinnwahrscheinlichkeiten:' +
       '</p>' +
       '</div>' +
 

@@ -1,4 +1,4 @@
-const LOG_ENABLED = true;
+const LOG_ENABLED = false;
 const TEST_NAME = "1.3 - Subscription Cancellation Friction V2 - Winner Testimonial & MM Copy Brief";
 const SOURCE_TYPE = "SOURCE = NO SOURCE";
 const VARIATION = "VARIATION 2";
@@ -94,6 +94,10 @@ const styles = `
 .oz29-icon { width:110px; height:110px; object-fit:contain; }
 .oz29-card.step-2 .oz29-icon-container {
   background: initial;
+}
+.oz29-card.step-2 {
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .oz29-card.step-2 .oz29-icon-container img {
   width: 221px;
@@ -478,7 +482,7 @@ const sendDYEvent = (stepIndex, stepName = '') => {
         timestamp: Date.now(),
       },
     });
-    console.log('[oz29] DY event sent: ' + eventName);
+    customLog('[oz29] DY event sent: ' + eventName);
   } catch (err) {
     console.warn('[oz29] DY tracking failed', err);
   }
@@ -587,11 +591,11 @@ const init = () => {
 
     waitForElements(
       [
-        // { selector: '[onclick*=cancelSubscription]', count: 1 },
-        { selector: '#subscription-management__cards [id*=subscription-] .text-center > div:nth-child(3)', count: 1 },
+        { selector: '[onclick*=cancelSubscription]', count: 1 },
+        // { selector: '#subscription-management__cards [id*=subscription-] .text-center > div:nth-child(3)', count: 1 },
       ],
       function (results) {
-        console.log(results);
+        customLog(results);
         addStyles(styles);
 
         const CONTROL_CANCEL_SUBSCRIPTION_LINK = results[0]?.elements[0];
@@ -643,7 +647,7 @@ const init = () => {
                   DY.API('event', {
                     name: eventName,
                   });
-                  console.log('[oz29] DY event sent: ' + eventName);
+                  customLog('[oz29] DY event sent: ' + eventName);
                 } catch (err) {
                   console.warn('[oz29] DY tracking failed', err);
                 }
@@ -662,7 +666,7 @@ const init = () => {
                 DY.API('event', {
                   name: eventName,
                 });
-                console.log('[oz29] DY event sent: ' + eventName);
+                customLog('[oz29] DY event sent: ' + eventName);
               } catch (err) {
                 console.warn('[oz29] DY tracking failed', err);
               }

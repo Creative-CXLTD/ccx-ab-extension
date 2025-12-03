@@ -115,13 +115,16 @@
       border-radius: 16px;
       border-width: 1px;
       padding: 16px;
+      padding-bottom: 12px;
+      display: flex;
+      flex-flow: column;
+      gap: 0.5rem;
     }
 
     .ccx-de16-variation-2 .ccx-mobile-title {
       font-family: Gellix;
       font-weight: 400;
       font-size: 14px;
-      line-height: 100%;
       letter-spacing: 0;
       text-align: center;
       vertical-align: middle;
@@ -131,7 +134,6 @@
       font-family: Gellix;
       font-weight: 400;
       font-size: clamp(14px, 2vw + 8px, 18px);
-      line-height: clamp(20px, 3vw + 12px, 30px);
       white-space: nowrap;
       letter-spacing: 0;
       text-align: center;
@@ -181,6 +183,7 @@
       color: #081F28;
       font-size: 16px;
       font-weight: 700;
+      margin-left: 0.5rem;
     }
 
     .ccx-de16-variation-3 .ccx-mobile-btn span:nth-child(2) {

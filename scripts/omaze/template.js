@@ -138,7 +138,6 @@
 
           const FIRST_ELEMENT = results[0].elements[0];
           if (!FIRST_ELEMENT) return;
-
           customLog(FIRST_ELEMENT);
         }
       );
