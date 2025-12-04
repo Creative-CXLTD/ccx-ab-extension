@@ -7,16 +7,6 @@
 
   const MM_LOGO = 'https://cdn-eu.dynamicyield.com/api/9881830/images/5c8c4934af20.png';
   const MM_VIDEO_URL = 'https://cdn.shopify.com/videos/c/o/v/b88b027eb08e4cfb8a15a2a86b0b53ea.mp4';
-  const SVG_ARROW_LEFT = `<svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.82747 6.50414L6.75663 1.47199C6.92428 1.30083 7.00532 1.09829 6.99973 0.864366C6.99414 0.630445 6.90752 0.427904 6.73986 0.256742C6.5722 0.0855808 6.37381 0 6.14467 0C5.91554 0 5.71714 0.0855808 5.54949 0.256742L0.402379 5.52852C0.268252 5.66545 0.167658 5.81949 0.100595 5.99066C0.0335312 6.16182 0 6.33298 0 6.50414C0 6.6753 0.0335312 6.84646 0.100595 7.01763C0.167658 7.18879 0.268252 7.34283 0.402379 7.47976L5.56625 12.7515C5.73391 12.9227 5.92951 13.0054 6.15306 12.9997C6.3766 12.994 6.5722 12.9056 6.73986 12.7344C6.90752 12.5633 6.99135 12.3607 6.99135 12.1268C6.99135 11.8929 6.90752 11.6903 6.73986 11.5192L1.82747 6.50414Z" fill="white"/>
-</svg>`;
-
-  const SVG_ARROW_RIGHT = `<svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5.17253 6.50414L0.243375 1.47199C0.0757166 1.30083 -0.00531819 1.09829 0.000270416 0.864366C0.00585902 0.630445 0.0924824 0.427904 0.260141 0.256742C0.427799 0.0855808 0.626194 0 0.855327 0C1.08446 0 1.28286 0.0855808 1.45051 0.256742L6.59762 5.52852C6.73175 5.66545 6.83234 5.81949 6.89941 5.99066C6.96647 6.16182 7 6.33298 7 6.50414C7 6.6753 6.96647 6.84646 6.89941 7.01763C6.83234 7.18879 6.73175 7.34283 6.59762 7.47976L1.43375 12.7515C1.26609 12.9227 1.07049 13.0054 0.846944 12.9997C0.6234 12.994 0.427799 12.9056 0.260141 12.7344C0.0924824 12.5633 0.00865333 12.3607 0.00865333 12.1268C0.00865333 11.8929 0.0924824 11.6903 0.260141 11.5192L5.17253 6.50414Z" fill="white"/>
-</svg>
-`;
-
-  const TESTIMONIAL_IMAGE_URL = `https://cdn-eu.dynamicyield.com/api/9881830/images/88a919c5cf4c.jpg`;
 
   const SELECTORS = {
     CONTROL_HERO_VIDEO_ELEMENT: '.campaign-hero-video-container video',
@@ -193,6 +183,26 @@
     }
   }
 
+  function createInjectedHeroVideo(src) {
+    const video = document.createElement("video");
+
+    video.src = src;
+    video.muted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    video.style.width = "100%";
+    video.style.height = "100%";
+    video.style.position = "absolute";
+    video.style.top = "0";
+    video.style.left = "0";
+    video.style.zIndex = "2";
+
+    video.setAttribute("data-ccx-injected-video", "true");
+    return video;
+  }
+
   /**
  * Waits up to `maxWaitMs` for window.MMLPVideos.variant1 to exist.
  * Retries every 250ms via recursive setTimeout.
@@ -303,30 +313,43 @@
 
       // Wait for CONTROL_HERO_VIDEO_ELEMENT to load
       waitForElements(
-        [
-          { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
-        ],
-        async function (results) {
+        [{ selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 }],
+        async results => {
+          const originalVideo = results[0].elements[0];
+          if (!originalVideo) return;
 
-          addStyles(STYLES, VARIATION);
-          addBodyClass();
+          customLog("FOUND ORIGINAL VIDEO:", originalVideo);
 
-          const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
-          if (!CONTROL_HERO_VIDEO_ELEMENT) {
-            customLog("CONTROL_HERO_VIDEO_ELEMENT NOT found");
+          // Prevent double injection
+          if (document.querySelector("video[data-ccx-injected-video='true']")) {
+            customLog("[HERO] Already injected video — skipping.");
             return;
           }
 
-          customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
+          // Wait for variant data
+          const variantReady = await waitForVariant();
+          let finalSrc = MM_VIDEO_URL;
 
-          // 🔐 NEW: Wait up to 10 seconds for MMLPVideos.variant1
-          const variantReady = await waitForVariant(10000);
-
-          if (!variantReady) {
-            console.warn("[init] MMLPVideos.variant1 not available — using fallback video");
+          if (variantReady && window.MMLPVideos?.variant1) {
+            const v = window.MMLPVideos.variant1;
+            const isMobile = window.innerWidth <= 768;
+            finalSrc = isMobile ? v.mobile || MM_VIDEO_URL : v.desktop || MM_VIDEO_URL;
           }
 
-          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT, "variant1");
+          customLog("[HERO] Final video src:", finalSrc);
+
+          // Hide original video
+          originalVideo.style.opacity = "0";
+          originalVideo.style.pointerEvents = "none";
+
+          // Inject new video
+          const newVideo = createInjectedHeroVideo(finalSrc);
+          originalVideo.insertAdjacentElement("afterend", newVideo);
+
+          // Autoplay
+          requestAnimationFrame(() => {
+            newVideo.play().catch(() => { });
+          });
         }
       );
 

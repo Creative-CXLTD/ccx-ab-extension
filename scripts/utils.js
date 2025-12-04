@@ -5,3 +5,5 @@ function createCookie(name, value) {
 
   document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
 }
+
+createCookie('CCX_QA', '1_2_NEW_CONTROL');

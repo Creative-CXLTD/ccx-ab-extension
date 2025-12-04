@@ -339,45 +339,26 @@
     }
   }
 
-  const replaceHeroVideoSrc = (videoEl, variant = "variant1") => {
-    // fallback video URL if something fails
-    let fallback = typeof MM_VIDEO_URL !== "undefined" ? MM_VIDEO_URL : "";
+  function createInjectedHeroVideo(src) {
+    const video = document.createElement("video");
 
-    let finalVideoUrl = fallback;
+    video.src = src;
+    video.muted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
 
-    try {
-      const isMobile = window.innerWidth <= 768;
+    // Match original dimensions
+    video.style.width = "100%";
+    video.style.height = "100%";
+    video.style.zIndex = "2"; // Above original video
+    video.style.position = "absolute";
+    video.style.top = "0";
+    video.style.left = "0";
 
-      if (window.MMLPVideos && window.MMLPVideos[variant]) {
-        const variantObj = window.MMLPVideos[variant];
-
-        finalVideoUrl = isMobile
-          ? (variantObj.mobile || fallback)
-          : (variantObj.desktop || fallback);
-      }
-    } catch (err) {
-      console.warn("[replaceHeroVideoSrc] Error reading MMLPVideos:", err);
-    }
-
-    // Apply the video URL
-    if (finalVideoUrl) {
-      videoEl.src = finalVideoUrl;
-      videoEl.setAttribute("data-src", finalVideoUrl);
-    }
-
-    // Reload and restart video playback
-    videoEl.load();
-
-    // Try to autoplay
-    const playPromise = videoEl.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        console.warn("Autoplay failed, will rely on user interaction.");
-      });
-    }
-
-    customLog("[replaceHeroVideoSrc] Video src replaced:", finalVideoUrl);
-  };
+    video.setAttribute("data-ccx-injected-video", "true");
+    return video;
+  }
 
   function insertSliderContainerBefore(targetEl, position = 'beforebegin', className) {
     if (!(targetEl instanceof Element)) {
@@ -497,7 +478,6 @@
     });
   }
 
-
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -569,7 +549,7 @@
 
           // Insert slider container before target
           const sliderContainer = insertSliderContainerBefore(CONTROL_SECOND_MAIN_CONTAINER, 'beforebegin', 'ccx-slider-container--mobile');
-          console.log(sliderContainer);          
+          console.log(sliderContainer);
 
           // Create slider inside the inserted container
           createSlider(sliderContainer, [
@@ -657,9 +637,7 @@
 
       // Wait for CONTROL_HERO_VIDEO_ELEMENT to load
       waitForElements(
-        [
-          { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
-        ],
+        [{ selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 }],
         async function (results) {
 
           addStyles(STYLES, VARIATION);
@@ -673,14 +651,39 @@
 
           customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
 
-          // 🔐 NEW: Wait for window.MMLPVideos.variant1 before replacing video
-          const variantReady = await waitForVariant(10000); // 10 seconds
-
-          if (!variantReady) {
-            console.warn("[init] MMLPVideos.variant1 not available after 10s — using fallback video");
+          // Ensure we never double-inject
+          if (document.querySelector("video[data-ccx-injected-video='true']")) {
+            customLog("[HERO VIDEO] Already injected — skipping.");
+            return;
           }
 
-          replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT, "variant1");
+          const variantReady = await waitForVariant(10000);
+
+          let finalSrc = MM_VIDEO_URL; // default fallback
+
+          if (variantReady && window.MMLPVideos?.variant1) {
+            const v = window.MMLPVideos.variant1;
+            const isMobile = window.innerWidth <= 768;
+
+            finalSrc = isMobile ? (v.mobile || MM_VIDEO_URL) : (v.desktop || MM_VIDEO_URL);
+          }
+
+          customLog("[HERO VIDEO] Injecting new video with src:", finalSrc);
+
+          // Hide original video
+          CONTROL_HERO_VIDEO_ELEMENT.style.opacity = "0";
+          CONTROL_HERO_VIDEO_ELEMENT.style.pointerEvents = "none";
+
+          // Create injected video
+          const newVideo = createInjectedHeroVideo(finalSrc);
+
+          // Insert right after original video
+          CONTROL_HERO_VIDEO_ELEMENT.insertAdjacentElement("afterend", newVideo);
+
+          // Attempt autoplay
+          requestAnimationFrame(() => {
+            newVideo.play().catch(() => console.warn("[HERO VIDEO] Autoplay blocked"));
+          });
         }
       );
 
