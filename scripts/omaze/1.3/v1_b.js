@@ -97,7 +97,7 @@ const styles = `
 }
 .oz29-card.step-2 {
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover !important;
 }
 .oz29-card.step-2 .oz29-icon-container img {
   width: 221px;
