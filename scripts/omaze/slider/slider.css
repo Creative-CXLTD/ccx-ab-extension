@@ -1,0 +1,194 @@
+
+  /* ----------------------------- */
+/* ROOT STRUCTURE */
+/* ----------------------------- */
+
+.ccx-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+}
+
+.ccx-slider__wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  background: #081F28;
+}
+
+/* ----------------------------- */
+/* SLIDES */
+/* ----------------------------- */
+
+/* Each slide is absolutely positioned for fade transitions */
+.ccx-slider__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  background: #081F28 !important;
+  border-radius: 20px;
+}
+
+/* The active slide is visible */
+.ccx-slider__slide--active {
+  opacity: 1;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* Keeps your desktop layout intact */
+.ccx-slider__content {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+}
+
+/* LEFT = IMAGE */
+.ccx-slider__left {
+  flex-shrink: 0;
+}
+
+.shopify-section .ccx-slider__image {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 !important;
+}
+
+.ccx-slider__initials {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #FFDD00;
+  color: #081F28;
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
+}
+
+/* RIGHT = TEXT */
+.ccx-slider__right {
+  flex: 1;
+}
+
+.ccx-slider__main-text {
+  color: #FFFCF8;
+  font-size: 14px;
+  line-height: normal;
+  margin-bottom: 12px;
+  font-style: italic;
+  text-align: left;
+  font-weight: 500;
+}
+
+.ccx-slider__user {
+  font-size: 13px;
+  text-align: left;
+  line-height: normal;
+  color: #FFFCF8;
+}
+
+/* Trustpilot */
+.ccx-slider__trustpilot {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ccx-slider__trustpilot svg {
+  /* margin-left: auto; */
+}
+
+/* ----------------------------- */
+/* ARROWS */
+/* ----------------------------- */
+
+.ccx-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  z-index: 10
+}
+
+.ccx-slider__arrow--left {
+  left: 12px;
+}
+
+.ccx-slider__arrow--right {
+  right: 12px;
+}
+
+/* ----------------------------- */
+/* DESKTOP LAYOUT */
+/* ----------------------------- */
+@media (min-width: 768px) {
+  .ccx-slider {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 2px solid #FFDD00;
+  }
+
+  /* make wrapper transparent on desktop */
+  .ccx-slider__wrapper {
+    background: transparent !important;
+  }
+
+  /* and apply translucent background only to each slide */
+  .ccx-slider__slide {
+    background: #081F28A6 !important;
+  }
+}
+
+/* ----------------------------- */
+/* MOBILE LAYOUT */
+/* ----------------------------- */
+
+@media (max-width: 767px) {
+  .ccx-slider {
+    margin: 2rem 0;
+  }
+
+  .ccx-slider__content {
+    text-align: left;
+    color: #FFFCF8;
+  }
+
+  .ccx-slider__left {
+    margin-bottom: 12px;
+  }
+
+  .ccx-slider__image {
+    margin: 0 auto;
+  }
+
+  .ccx-slider__right {
+    text-align: center;
+  }
+}
+
+/* ----------------------------- */
+/* TABLET LAYOUT */
+/* ----------------------------- */
+@media (min-width: 769px) and (max-width: 991px) {
+  .ccx-slider {
+    display: none !important;
+  }
+}

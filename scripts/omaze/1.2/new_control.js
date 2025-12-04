@@ -334,17 +334,6 @@
     }
   }
 
-  const replaceHeroVideoSrc = (videoEl) => {
-
-    videoEl.src = MM_VIDEO_URL;
-    videoEl.setAttribute("src", MM_VIDEO_URL);
-    videoEl.setAttribute("data-src", MM_VIDEO_URL);
-
-    videoEl.load();
-
-    customLog('[replaceHeroVideoSrc] Video src replaced:', videoEl);
-  };
-
   function insertSliderContainerBefore(targetEl, position = 'beforebegin', className) {
     if (!(targetEl instanceof Element)) {
       console.error("insertSliderContainerBefore: targetEl is not a valid Element");
@@ -438,7 +427,6 @@
     renderSlide(currentIndex);
   }
 
-
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -505,7 +493,9 @@
 
           customLog("FOUND CONTROL_SECOND_MAIN_CONTAINER:", CONTROL_SECOND_MAIN_CONTAINER);
 
-          // insertSliderContainerBefore(CONTROL_SECOND_MAIN_CONTAINER);
+          const ccxMobileSliderContainer = document.querySelector('.ccx-slider-container.ccx-slider-container--mobile');
+          if (ccxMobileSliderContainer) return;
+
           // Insert slider container before target
           const sliderContainer = insertSliderContainerBefore(CONTROL_SECOND_MAIN_CONTAINER, 'beforebegin', 'ccx-slider-container--mobile');
           console.log(sliderContainer);
@@ -546,6 +536,9 @@
 
           customLog("FOUND CONTROL_DESKTOP_HERO_CTA:", CONTROL_DESKTOP_HERO_CTA);
 
+          const ccxDesktopSliderContainer = document.querySelector('.ccx-slider-container.ccx-slider-container--desktop');
+          if (ccxDesktopSliderContainer) return;
+
           // Insert slider container before target
           const sliderContainer = insertSliderContainerBefore(CONTROL_DESKTOP_HERO_CTA, 'beforebegin', 'ccx-slider-container--desktop');
           console.log(sliderContainer);
@@ -562,33 +555,6 @@
           ]);
         }
       );
-
-      // Wait for CONTROL_DESKTOP_HERO_CTA to load
-      // waitForElements(
-      //   [
-      //     { selector: SELECTORS.CONTROL_HERO_VIDEO_ELEMENT, count: 1 },
-      //   ],
-      //   function (results) {
-
-      //     addStyles(STYLES, VARIATION);
-      //     addBodyClass();
-
-      //     console.log(results);
-
-      //     // return;
-
-      //     // SECOND .shopify-section
-      //     const CONTROL_HERO_VIDEO_ELEMENT = results[0].elements[0];
-      //     if (!CONTROL_HERO_VIDEO_ELEMENT) {
-      //       customLog("CONTROL_HERO_VIDEO_ELEMENT NOT found");
-      //       return;
-      //     }
-
-      //     customLog("FOUND CONTROL_HERO_VIDEO_ELEMENT:", CONTROL_HERO_VIDEO_ELEMENT);
-
-      //     replaceHeroVideoSrc(CONTROL_HERO_VIDEO_ELEMENT);
-      //   }
-      // );
 
     } catch (error) {
       customLog(error);

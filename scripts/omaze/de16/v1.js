@@ -1,5 +1,5 @@
 (function () {
-  const LOG_ENABLED = true;
+  const LOG_ENABLED = false;
   const TEST_ID = "DE16";
   const TEST_NAME = "BV CLOSEDATE IN THE NAVBAR";
   const VARIATION = "variation-3";
@@ -585,7 +585,6 @@
   };
 
   const getRemainingTimeText = () => {
-    // const endDate = new Date(Date.UTC(2025, 10, 28, 13, 59, 59));
     const endDate = new Date(Date.UTC(2025, 11, 7, 22, 59, 59));  // Sunday 7th Dec at 23:59:59pm
 
     const now = new Date();
@@ -600,6 +599,9 @@
 
     const diffDays = Math.floor(diffHours / 24);
 
+    if (VARIATION === 'variation-3') {
+      return diffDays + ' Tage';
+    }
     return diffDays + ' Tagen';
   };
 
@@ -739,7 +741,7 @@
       const leftSide = document.createElement('div');
       leftSide.classList.add('ccx-bottom-left');
       const leftP = document.createElement('p');
-      leftP.innerHTML = 'Noch <span>03</span> <span>Tagen</span>';
+      leftP.innerHTML = 'Noch <span>03</span> <span>Tage</span>';
       leftSide.appendChild(leftP);
 
       const rightSide = document.createElement('button');
@@ -783,7 +785,7 @@
     }
 
     if (VARIATION === "variation-3") {
-      const unitLabel = remaining.includes("< 24") ? "Std." : "Tagen";
+      const unitLabel = remaining.includes("< 24") ? "Std." : "Tage";
 
       mobileBox.innerHTML = '<p class="ccx-mobile-title">Gewinne 250.000 € Weihnachtsgeld</p>' +
         '<button class="ccx-mobile-btn">' +

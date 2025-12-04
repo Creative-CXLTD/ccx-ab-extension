@@ -30,7 +30,7 @@
   }
 
   const STYLES = `
-    img[src="https://cdn-eu.dynamicyield.com/api/9881830/images/6545cc842df2.png"] {
+    .ccx-slide-image img[src="https://cdn-eu.dynamicyield.com/api/9881830/images/6545cc842df2.png"] {
       border: none;
     }
     .ccx-slider-container--mobile + .shopify-section > .section-text-container {
@@ -564,10 +564,12 @@
 
           customLog("FOUND CONTROL_SECOND_MAIN_CONTAINER:", CONTROL_SECOND_MAIN_CONTAINER);
 
-          // insertSliderContainerBefore(CONTROL_SECOND_MAIN_CONTAINER);
+          const ccxMobileSliderContainer = document.querySelector('.ccx-slider-container.ccx-slider-container--mobile');
+          if (ccxMobileSliderContainer) return;
+
           // Insert slider container before target
           const sliderContainer = insertSliderContainerBefore(CONTROL_SECOND_MAIN_CONTAINER, 'beforebegin', 'ccx-slider-container--mobile');
-          console.log(sliderContainer);
+          console.log(sliderContainer);          
 
           // Create slider inside the inserted container
           createSlider(sliderContainer, [
@@ -619,6 +621,9 @@
 
           customLog("FOUND CONTROL_DESKTOP_HERO_CTA:", CONTROL_DESKTOP_HERO_CTA);
 
+          const ccxDesktopSliderContainer = document.querySelector('.ccx-slider-container.ccx-slider-container--desktop');
+          if (ccxDesktopSliderContainer) return;
+
           // Insert slider container before target
           const sliderContainer = insertSliderContainerBefore(CONTROL_DESKTOP_HERO_CTA, 'beforebegin', 'ccx-slider-container--desktop');
           console.log(sliderContainer);
@@ -633,14 +638,14 @@
               highlightAmount: "£1,000,000"
             },
             {
-              image: TESTIMONIAL_IMAGE_URL,
+              image: TESTIMONIAL_IMAGE_URL_2,
               quote: "It's just lifted such a weight. We can pay off our overdraft and stop worrying about money every month - it's the best feeling in the world.",
               meta: "Mark from Dundee won £1,000,000 cash in the September Monthly Millionaire Draw.",
               highlightName: "Mark",
               highlightAmount: "£1,000,000"
             },
             {
-              image: TESTIMONIAL_IMAGE_URL,
+              image: TESTIMONIAL_IMAGE_URL_3,
               quote: "I just can't believe it's happened to us. You don't think it's ever going to be you. Seeing the money land in my account was a moment I'll never forget!",
               meta: "Christian from Teesside won £1,000,000 cash in the October Monthly Millionaire Draw.",
               highlightName: "Christian",
