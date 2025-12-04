@@ -195,53 +195,53 @@
       .then(results => {
         if (typeof callback === 'function') callback(results);
       })
-      .catch(() => {
+      .catch((err) => {
         console.error('[waitForElements] error:', err);
       });
   }
 
-const attachNewStickyBanner = (controlMainNav) => {
-  customLog('[attachNewStickyBanner] Attaching new sticky banner...');
+  const attachNewStickyBanner = (controlMainNav) => {
+    customLog('[attachNewStickyBanner] Attaching new sticky banner...');
 
-  const stickBannerExists = document.querySelector('.ccx-sticky-banner');
-  if (stickBannerExists) return;
+    const stickBannerExists = document.querySelector('.ccx-sticky-banner');
+    if (stickBannerExists) return;
 
-  // Main wrapper
-  const ccxStickyBanner = document.createElement('div');
-  ccxStickyBanner.classList.add('ccx-sticky-banner');
+    // Main wrapper
+    const ccxStickyBanner = document.createElement('div');
+    ccxStickyBanner.classList.add('ccx-sticky-banner');
 
-  // --- LEFT SIDE ---
-  const ccxStickyBannerLeft = document.createElement('div');
-  ccxStickyBannerLeft.classList.add('ccx-sticky-banner-left');
+    // --- LEFT SIDE ---
+    const ccxStickyBannerLeft = document.createElement('div');
+    ccxStickyBannerLeft.classList.add('ccx-sticky-banner-left');
 
-  // Wrapper for text
-  const textWrapper = document.createElement('div');
-  textWrapper.insertAdjacentHTML('afterbegin', SVG_TRUSTPILOT_TEXT);
+    // Wrapper for text
+    const textWrapper = document.createElement('div');
+    textWrapper.insertAdjacentHTML('afterbegin', SVG_TRUSTPILOT_TEXT);
 
-  // Wrapper for star & label
-  const starLabelWrapper = document.createElement('div');
-  starLabelWrapper.insertAdjacentHTML('afterbegin', SVG_TRUSTPILOT_STAR_AND_LABEL);
+    // Wrapper for star & label
+    const starLabelWrapper = document.createElement('div');
+    starLabelWrapper.insertAdjacentHTML('afterbegin', SVG_TRUSTPILOT_STAR_AND_LABEL);
 
-  // Insert in correct order
-  ccxStickyBannerLeft.insertAdjacentElement('beforeend', textWrapper);
-  ccxStickyBannerLeft.insertAdjacentElement('beforeend', starLabelWrapper);
+    // Insert in correct order
+    ccxStickyBannerLeft.insertAdjacentElement('beforeend', textWrapper);
+    ccxStickyBannerLeft.insertAdjacentElement('beforeend', starLabelWrapper);
 
-  // --- RIGHT SIDE ---
-  const ccxStickyBannerRight = document.createElement('div');
-  ccxStickyBannerRight.classList.add('ccx-sticky-banner-right');
+    // --- RIGHT SIDE ---
+    const ccxStickyBannerRight = document.createElement('div');
+    ccxStickyBannerRight.classList.add('ccx-sticky-banner-right');
 
-  const starsWrapper = document.createElement('div');
-  starsWrapper.insertAdjacentHTML('afterbegin', SVG_TRUSTPILOT_STARS);
+    const starsWrapper = document.createElement('div');
+    starsWrapper.insertAdjacentHTML('afterbegin', SVG_TRUSTPILOT_STARS);
 
-  ccxStickyBannerRight.insertAdjacentElement('beforeend', starsWrapper);
+    ccxStickyBannerRight.insertAdjacentElement('beforeend', starsWrapper);
 
-  // Combine left + right
-  ccxStickyBanner.insertAdjacentElement('beforeend', ccxStickyBannerLeft);
-  ccxStickyBanner.insertAdjacentElement('beforeend', ccxStickyBannerRight);
+    // Combine left + right
+    ccxStickyBanner.insertAdjacentElement('beforeend', ccxStickyBannerLeft);
+    ccxStickyBanner.insertAdjacentElement('beforeend', ccxStickyBannerRight);
 
-  // Insert banner after main nav
-  controlMainNav.insertAdjacentElement('afterend', ccxStickyBanner);
-};
+    // Insert banner after main nav
+    controlMainNav.insertAdjacentElement('afterend', ccxStickyBanner);
+  };
 
   const init = () => {
     try {
