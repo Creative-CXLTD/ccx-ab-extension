@@ -187,7 +187,6 @@
   const createContainer = (targetEl, type = 'mobile') => {
     if (!targetEl) return;
 
-    // Convert VARIATION ("variation-1") → CONTENT_DATA key ("variation1")
     const variationKey = VARIATION.replace(/-/g, '');
     const contentList = CONTENT_DATA[variationKey];
 
@@ -199,7 +198,14 @@
     // Base block name WITHOUT variation
     const baseBlock = `ccx-${TEST_ID}`;
 
-    // Outer container, variation as modifier
+    // Check if container already exists
+    const existing = document.querySelector(`.${baseBlock}--${type}`);
+    if (existing) {
+      customLog(`[createContainer] Container already exists for type "${type}", skipping.`);
+      return;
+    }
+
+    // Create outer container
     const container = document.createElement("div");
     container.className = `${baseBlock} ${baseBlock}--${VARIATION} ${baseBlock}--${type}`;
 
@@ -208,7 +214,7 @@
       const row = document.createElement("div");
       row.className = `${baseBlock}__item`;
 
-      // Insert SVG (no wrapper div)
+      // Insert SVG directly
       row.insertAdjacentHTML('beforeend', SVG_CHECKMARK);
 
       // Text span
@@ -220,7 +226,7 @@
       container.appendChild(row);
     });
 
-    // Insert the entire component after target element
+    // Insert after target element
     targetEl.insertAdjacentElement("afterend", container);
 
     customLog('[createContainer] Injected container:', container);
@@ -248,7 +254,7 @@
           createContainer(CONTROL_MOBILE_CART_TABLE_LINK, 'mobile');
         }
       );
-      
+
       // Wait for tablet cart table link
       waitForElements(
         [
