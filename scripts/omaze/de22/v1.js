@@ -34,7 +34,7 @@
   }
 
   // ---------------------------------------
-  // 🔥 NEW: Create injected hero video (minimal attrs only)
+  // NEW: Create injected hero video (minimal attrs only)
   // ---------------------------------------
   function createInjectedVideo(src) {
     const video = document.createElement("video");
@@ -59,7 +59,7 @@
   }
 
   // ---------------------------------------
-  // 🔥 Replace original video by injecting new one
+  // Replace original video by injecting new one
   // ---------------------------------------
   function injectVideo(originalVideo) {
     if (!window.omazeVideos) {
