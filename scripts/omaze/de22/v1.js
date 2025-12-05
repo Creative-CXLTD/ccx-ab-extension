@@ -21,7 +21,7 @@
   };
 
   // ---------------------------------------
-  // 🔥 NEW: Mapping VARIATION → omazeVideos key
+  // NEW: Mapping VARIATION → omazeVideos key
   // ---------------------------------------
   const VARIANT_MAP = {
     "variation-1": "variant_a",
@@ -75,7 +75,6 @@
       return;
     }
 
-    // Decide mobile/desktop strictly on first load
     const isMobile = window.innerWidth <= 767;
     const finalSrc = isMobile ? variantObj.mobile : variantObj.desktop;
 
@@ -86,25 +85,40 @@
 
     customLog("[injectVideo] Final video src:", finalSrc);
 
-    // Prevent duplicate injection
-    if (originalVideo.nextElementSibling?.dataset?.ccxInjectedVideo === "true") {
-      customLog("[injectVideo] Video already injected");
+    // Prevent duplicate runs
+    if (originalVideo.dataset.ccxReplaced === "true") {
+      customLog("[injectVideo] Already handled");
       return;
     }
+    originalVideo.dataset.ccxReplaced = "true";
 
-    // Hide original video
-    originalVideo.style.opacity = "0";
-    originalVideo.style.pointerEvents = "none";
+    // --- Create new video element ---
+    const newVideo = document.createElement("video");
+    newVideo.src = finalSrc;
+    newVideo.muted = true;
+    newVideo.autoplay = true;
+    newVideo.loop = true;
+    newVideo.playsInline = true;
+    newVideo.setAttribute("playsinline", "");
 
-    // Inject new video
-    const newVideo = createInjectedVideo(finalSrc);
-    originalVideo.insertAdjacentElement("afterend", newVideo);
+    // Style it safely
+    newVideo.style.width = "100%";
+    newVideo.style.height = "100%";
+    newVideo.style.objectFit = "cover";
+    newVideo.style.display = "block";
 
-    // Autoplay attempt
+    newVideo.dataset.ccxInjectedVideo = "true";
+
+    // --- Replace original video node cleanly ---
+    const parent = originalVideo.parentNode;
+    parent.replaceChild(newVideo, originalVideo);
+
+    // Force autoplay
     requestAnimationFrame(() => {
-      newVideo.play().catch(() => { });
+      newVideo.play().catch(err => console.warn("Play failed:", err));
     });
   }
+
 
   // ---------------------------------------
   // Attach click analytics
