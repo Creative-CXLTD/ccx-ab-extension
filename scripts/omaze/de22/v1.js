@@ -34,31 +34,6 @@
   }
 
   // ---------------------------------------
-  // NEW: Create injected hero video (minimal attrs only)
-  // ---------------------------------------
-  function createInjectedVideo(src) {
-    const video = document.createElement("video");
-
-    // minimal, stable attributes
-    video.src = src;
-    video.muted = true;
-    video.autoplay = true;
-    video.loop = true;
-    video.playsInline = true;
-
-    video.style.width = "100%";
-    video.style.height = "100%";
-    video.style.position = "absolute";
-    video.style.top = "0";
-    video.style.left = "0";
-    video.style.zIndex = "2";
-
-    video.setAttribute("data-ccx-injected-video", "true");
-
-    return video;
-  }
-
-  // ---------------------------------------
   // Replace original video by injecting new one
   // ---------------------------------------
   function injectVideo(originalVideo) {
@@ -119,20 +94,33 @@
     });
   }
 
-
   // ---------------------------------------
   // Attach click analytics
   // ---------------------------------------
-  function attachEventListeners(results) {
-    const buttonResult = results.find(r => r.selector === SELECTORS.enterNowButtons);
-    if (!buttonResult?.elements) return;
+function attachEventListeners() {
+  document.body.addEventListener("click", function (e) {
+    const btn = e.target.closest(".yellow-btn");
 
-    buttonResult.elements.forEach(button => {
-      button.addEventListener("click", () => {
-        DY?.API("event", { name: "click-home-enter-now-button" });
-      });
-    });
-  }
+    if (!btn) return;
+
+    // Stop the default navigation
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    const href = btn.getAttribute("href");
+
+    customLog("[Event] Yellow button clicked:", btn, " → delaying nav to:", href);
+
+    // Fire the analytics event
+    DY?.API("event", { name: "click-home-enter-now-button" });
+
+    // Delay navigation slightly to ensure event queues
+    setTimeout(() => {
+      window.location.assign(href);
+    }, 120); // 120ms is ideal
+  });
+}
 
   // ---------------------------------------
   // INIT
@@ -155,7 +143,7 @@
         }
 
         injectVideo(originalVideo);
-        attachEventListeners(results);
+        attachEventListeners();
       }
     );
   };
