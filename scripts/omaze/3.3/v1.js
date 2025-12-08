@@ -1,14 +1,16 @@
 (function () {
   const LOG_ENABLED = true;
-  const TEST_ID = "DE21";
-  const TEST_NAME = "Ambassador Image with non-Ambassadors [Mobile Only]";
+  const TEST_ID = "3_3";
+  const TEST_NAME = "PROD 3.3 - House CTA Visibility on MM LP";
   const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
-  const VARIATION_1_NEW_IMAGE = 'https://cdn-eu.dynamicyield.com/api/9881146/images/006f92189f41.jpg';
 
   const SELECTORS = {
-  CONTROL_LIVE_RENT_SELL_IMAGE: 'live-rent-sell img',
-};
+    CONTROL_MM_MOBILE_HOME_BANNER_CTA: '.home--banner .campaign-hero-cta2',
+    CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER: '#main-nav > .flex',
+  }
+
+  const STYLES = ``;
 
   const customLog = (...messages) => {
     if (!LOG_ENABLED) return;
@@ -73,6 +75,20 @@
     console.log(parts.join(" "), ...values);
   };
 
+  const addStyles = (cssString = '', variation = 'control') => {
+    if (!cssString) return;
+    if (!variation) variation = 'control';
+    const styleClass = 'ccx-styles-' + TEST_ID.toLowerCase() + '-' + variation.toLowerCase().replace(/\s+/g, '-') + '';
+
+    // if styles for this variation already exist, don't add again
+    if (document.querySelector('.' + styleClass)) return;
+
+    const style = document.createElement('style');
+    style.classList.add(styleClass);
+    style.appendChild(document.createTextNode(cssString));
+    document.head.appendChild(style);
+  };
+
   const addBodyClass = () => {
     const bodyClass = 'ccx-' + TEST_ID.toLowerCase() + '-' + VARIATION.toLowerCase().replace(/\s+/g, '-') + '';
 
@@ -105,6 +121,18 @@
       });
   }
 
+  const attachEventListener = (element) => {
+    customLog('[attachEventListener] element:', element);
+
+    element.addEventListener('click', () => {
+      customLog('[CCX]CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER button clicked.');
+      DY.API("event", {
+        name: "mm-cta_lastest_house_draw",
+      });
+      customLog('[bindEvents] Logged mm-cta_lastest_house_draw", event for controlInput.');
+    });
+  };
+
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -112,18 +140,36 @@
 
       waitForElements(
         [
-          { selector: SELECTORS.CONTROL_LIVE_RENT_SELL_IMAGE, count: 1 },
+          { selector: SELECTORS.CONTROL_MM_MOBILE_HOME_BANNER_CTA, count: 1 },
         ],
         function (results) {
+
+          addStyles(STYLES, VARIATION);
           addBodyClass();
 
-          const CONTROL_LIVE_RENT_SELL_IMAGE = results[0].elements[0];
-          if (!CONTROL_LIVE_RENT_SELL_IMAGE) return;
-          customLog(CONTROL_LIVE_RENT_SELL_IMAGE);
+          const CONTROL_MM_MOBILE_HOME_BANNER_CTA = results[0].elements[0];
+          if (!CONTROL_MM_MOBILE_HOME_BANNER_CTA) return;
+          customLog(CONTROL_MM_MOBILE_HOME_BANNER_CTA);
 
-          CONTROL_LIVE_RENT_SELL_IMAGE.src = VARIATION_1_NEW_IMAGE;
-          CONTROL_LIVE_RENT_SELL_IMAGE.srcset = '';
-          CONTROL_LIVE_RENT_SELL_IMAGE.removeAttribute('srcset');
+          attachEventListener(CONTROL_MM_MOBILE_HOME_BANNER_CTA);
+
+        }
+      );
+
+      waitForElements(
+        [
+          { selector: SELECTORS.CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER, count: 1 },
+        ],
+        function (results) {
+
+          addStyles(STYLES, VARIATION);
+          addBodyClass();
+
+          const CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER = results[0].elements[0];
+          if (!CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER) return;
+          customLog(CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER);
+
+          attachEventListener(CONTROL_MM_DESKTOP_VIEW_LATEST_HOUSE_CONTAINER);
         }
       );
 

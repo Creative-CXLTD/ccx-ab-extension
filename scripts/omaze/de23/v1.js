@@ -17,26 +17,35 @@
   const CONTENT_DATA = {
     variation1: [
       {
-        text: 'Draw date XXX'
+        text: 'Die Ziehung der Oberbayern Hausverlosung findet am 30. Dezember 2025 statt.'
       },
       {
-        text: 'X% goes to [x]'
+        text: 'Staatlich lizenzierte Soziallotterie, Ziehung unter notarieller Aufsicht.'
       },
     ],
     variation2: [
       {
-        text: 'Draw date XXX'
+        text: 'Die Ziehung der Oberbayern Hausverlosung findet am 30. Dezember 2025 statt.'
       },
       {
-        text: 'X% goes to [x]'
+        text: 'Staatlich lizenzierte Soziallotterie, Ziehung unter notarieller Aufsicht.'
+      },
+      {
+        text: 'Inkl. Servicegebühren & MwSt.'
       },
     ],
     variation3: [
       {
-        text: 'Draw date XXX'
+        text: 'Die Ziehung der Oberbayern Hausverlosung findet am 30. Dezember 2025 statt.'
       },
       {
-        text: 'X% goes to [x]'
+        text: 'Staatlich lizenzierte Soziallotterie, Ziehung unter notarieller Aufsicht.'
+      },
+      {
+        text: 'Dein Los unterstützt die garantierte Mindestspende von 500.000 € an den Deutschen Tierschutzbund.'
+      },
+      {
+        text: 'Inkl. Servicegebühren & MwSt.'
       },
     ]
   }
@@ -184,42 +193,47 @@
       });
   }
 
-  const createContainer = (targetEl, type = 'mobile') => {
+  const createContainer = function (targetEl, type) {
     if (!targetEl) return;
 
-    const variationKey = VARIATION.replace(/-/g, '');
-    const contentList = CONTENT_DATA[variationKey];
+    type = type || 'mobile';
+
+    var variationKey = VARIATION.replace(/-/g, '');
+    var contentList = CONTENT_DATA[variationKey];
 
     if (!contentList || !Array.isArray(contentList)) {
-      customLog(`[createContainer] No CONTENT_DATA found for variationKey: ${variationKey}`);
+      customLog('[createContainer] No CONTENT_DATA found for variationKey: ' + variationKey);
       return;
     }
 
     // Base block name WITHOUT variation
-    const baseBlock = `ccx-${TEST_ID}`;
+    var baseBlock = 'ccx-' + TEST_ID;
 
     // Check if container already exists
-    const existing = document.querySelector(`.${baseBlock}--${type}`);
+    var existing = document.querySelector('.' + baseBlock + '--' + type);
     if (existing) {
-      customLog(`[createContainer] Container already exists for type "${type}", skipping.`);
+      customLog('[createContainer] Container already exists for type "' + type + '", skipping.');
       return;
     }
 
     // Create outer container
-    const container = document.createElement("div");
-    container.className = `${baseBlock} ${baseBlock}--${VARIATION} ${baseBlock}--${type}`;
+    var container = document.createElement("div");
+    container.className =
+      baseBlock + ' ' +
+      baseBlock + '--' + VARIATION + ' ' +
+      baseBlock + '--' + type;
 
     // Build inner rows
-    contentList.forEach(item => {
-      const row = document.createElement("div");
-      row.className = `${baseBlock}__item`;
+    contentList.forEach(function (item) {
+      var row = document.createElement("div");
+      row.className = baseBlock + '__item';
 
       // Insert SVG directly
       row.insertAdjacentHTML('beforeend', SVG_CHECKMARK);
 
       // Text span
-      const textSpan = document.createElement("span");
-      textSpan.className = `${baseBlock}__text`;
+      var textSpan = document.createElement("span");
+      textSpan.className = baseBlock + '__text';
       textSpan.textContent = item.text;
 
       row.appendChild(textSpan);

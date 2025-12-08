@@ -2,9 +2,9 @@
   const LOG_ENABLED = true;
   const TEST_ID = "DE21";
   const TEST_NAME = "Ambassador Image with non-Ambassadors [Mobile Only]";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-2";
   const CURRENT_URL = window.location.href;
-  const VARIATION_1_NEW_IMAGE = 'https://cdn-eu.dynamicyield.com/api/9881146/images/006f92189f41.jpg';
+  const VARIATION_2_NEW_IMAGE = 'https://cdn-eu.dynamicyield.com/api/9881146/images/6a4759c5e9ac.png';
 
   const SELECTORS = {
   CONTROL_LIVE_RENT_SELL_IMAGE: 'live-rent-sell img',
@@ -121,7 +121,7 @@
           if (!CONTROL_LIVE_RENT_SELL_IMAGE) return;
           customLog(CONTROL_LIVE_RENT_SELL_IMAGE);
 
-          CONTROL_LIVE_RENT_SELL_IMAGE.src = VARIATION_1_NEW_IMAGE;
+          CONTROL_LIVE_RENT_SELL_IMAGE.src = VARIATION_2_NEW_IMAGE;
           CONTROL_LIVE_RENT_SELL_IMAGE.srcset = '';
           CONTROL_LIVE_RENT_SELL_IMAGE.removeAttribute('srcset');
         }
