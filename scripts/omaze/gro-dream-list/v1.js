@@ -6,7 +6,7 @@
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
-    CONTROL_SHOPIFY_SECTION_FIRST: 'main .shopify-section:first-of-type',
+    CONTROL_SECTION_LIVE_RENT_SELL: 'main .shopify-section[id*=live-rent-sell]',
   }
 
   const ASSETS = {
@@ -38,7 +38,6 @@
       font-style: italic;
       color: #FFFCF8;
       font-size: 20px;
-      line-height: 15.79px;
       letter-spacing: 0;
       text-align: center;
       vertical-align: middle;
@@ -275,17 +274,17 @@
 
       waitForElements(
         [
-          { selector: SELECTORS.CONTROL_SHOPIFY_SECTION_FIRST, count: 1 },
+          { selector: SELECTORS.CONTROL_SECTION_LIVE_RENT_SELL, count: 1 },
         ],
         function (results) {
 
           addStyles(STYLES, VARIATION);
           addBodyClass();
 
-          const CONTROL_SHOPIFY_SECTION_FIRST = results[0].elements[0];
-          if (!CONTROL_SHOPIFY_SECTION_FIRST) return;
+          const CONTROL_SECTION_LIVE_RENT_SELL = results[0].elements[0];
+          if (!CONTROL_SECTION_LIVE_RENT_SELL) return;
 
-          customLog(CONTROL_SHOPIFY_SECTION_FIRST);
+          customLog(CONTROL_SECTION_LIVE_RENT_SELL);
 
           console.log('hello');
 
@@ -295,7 +294,7 @@
           // I want to insert the dream list container after the first shopify section
           const dreamListElement = createDreamListDrawContainer();
           console.log(createDreamListDrawContainer);
-          CONTROL_SHOPIFY_SECTION_FIRST.insertAdjacentElement('afterend', dreamListElement);
+          CONTROL_SECTION_LIVE_RENT_SELL.insertAdjacentElement('afterend', dreamListElement);
 
           attachEventListeners(dreamListElement);
         }
