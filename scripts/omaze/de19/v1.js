@@ -7,6 +7,7 @@
 
   const SELECTORS = {
     CONTROL_PRIZE_DETAILS: 'main .prize-details',
+    CONTROL_MOBILE_FLOATING_CTA_CONTAINER: '.visible-xs.sticky-cta.hide-on-desktop',
   };
 
   const IMAGE_URLS = [
@@ -29,169 +30,289 @@
 </svg>
 `;
 
-  const STYLES = `
-  /* ===============================
-  CONTROL STYLES
-  =============================== */
-  .prize-details {
-    display: none;
-  }
-
-  /* ===============================
-  SLIDER STYLES
-  =============================== */
-  .ccx-slider-container {
-    position: relative;
-    width: 100%;
-  }
-
-  .ccx-slider-container .swiper {
-    width: 100%;
-    height: auto;
-  }
-
-  /* MAIN SLIDER - FIXED IMAGE SIZE */
-  .ccx-main-slider .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ccx-main-slider img {
-    width: 1200px !important;
-    height: 675px !important;
-    object-fit: cover;
-    margin: 0 auto;
-    display: block;
-  }
-
-  /* THUMBNAIL STRIP — SCROLLABLE BUT SCROLLBAR HIDDEN */
-  .ccx-thumb-slider {
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    white-space: nowrap;
-    scrollbar-width: none;     /* Firefox */
-  }
-
-  .ccx-thumb-slider::-webkit-scrollbar {
-    display: none;             /* Chrome, Safari, Edge */
-  }
-
-  .ccx-thumb-slider .swiper-wrapper {
-    gap: 2px !important;
-  }
-
-  /* THUMB STRIP — 2PX SPACING */
-  .ccx-thumb-slider .swiper-wrapper {
-    gap: 2px !important;
-  }
-
-  /* THUMBNAIL SLIDES */
-  .ccx-thumb-slider .swiper-slide {
-    width: 160px !important;
-    height: 124px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .ccx-thumb-slider .swiper-slide img {
-    width: 160px !important;
-    height: 124px !important;
-    object-fit: cover;
-    border-radius: 0;
-    opacity: 0.5;
-    cursor: pointer;
-    display: block;
-  }
-
-  .ccx-slide-inner-wrapper {
-    position: relative;
-    width: 1200px;
-    height: 675px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* IMAGE WRAPPER */
-  .ccx-image-wrapper {
-    position: relative;
-    width: 1200px;
-    height: 675px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ccx-image-wrapper img {
-    width: 1200px !important;
-    height: 675px !important;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* ACTIVE THUMB OUTLINE */
-  .ccx-thumb-slider .swiper-slide-thumb-active img {
-    opacity: 1;
-    border: 8px solid #FFDD00
-  }
-
-  /* COUNTDOWN OVERLAY CONTAINER */
-  .ccx-overlay-container {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: white;
-    font-family: inherit;
-    z-index: 10;
-  }
-
-  /* TRUSTPILOT OVERLAY ON MAIN SLIDES */
-  .ccx-slide {
-    position: relative;
-  }
-
-  /* TOP PART (ICON + 'Ends in') */
-  .ccx-overlay-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  .ccx-overlay-top svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* BOTTOM PART ('5 Days') */
-  .ccx-overlay-bottom {
-    font-size: 32px;
-    font-weight: 700;
-    margin-top: 4px;
-  }
-
-  .ccx-main-slider .ccx-trustpilot-stars {
-    width: 141px !important;
-    height: 82px !important;
-    left: 0;
-    bottom: 2rem;
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 240px;
-    height: auto;
-    z-index: 12;
-    pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-  }
+  const SVG_INFORMATION_ICON = `<svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 15C10.2833 15 10.521 14.904 10.713 14.712C10.905 14.52 11.0007 14.2827 11 14V10C11 9.71667 10.904 9.47933 10.712 9.288C10.52 9.09667 10.2827 9.00067 10 9C9.71733 8.99933 9.48 9.09533 9.288 9.288C9.096 9.48067 9 9.718 9 10V14C9 14.2833 9.096 14.521 9.288 14.713C9.48 14.905 9.71733 15.0007 10 15ZM10 7C10.2833 7 10.521 6.904 10.713 6.712C10.905 6.52 11.0007 6.28267 11 6C10.9993 5.71733 10.9033 5.48 10.712 5.288C10.5207 5.096 10.2833 5 10 5C9.71667 5 9.47933 5.096 9.288 5.288C9.09667 5.48 9.00067 5.71733 9 6C8.99933 6.28267 9.09533 6.52033 9.288 6.713C9.48067 6.90567 9.718 7.00133 10 7ZM10 20C8.61667 20 7.31667 19.7373 6.1 19.212C4.88334 18.6867 3.825 17.9743 2.925 17.075C2.025 16.1757 1.31267 15.1173 0.788001 13.9C0.263335 12.6827 0.000667933 11.3827 1.26582e-06 10C-0.000665401 8.61733 0.262001 7.31733 0.788001 6.1C1.314 4.88267 2.02633 3.82433 2.925 2.925C3.82367 2.02567 4.882 1.31333 6.1 0.788C7.318 0.262667 8.618 0 10 0C11.382 0 12.682 0.262667 13.9 0.788C15.118 1.31333 16.1763 2.02567 17.075 2.925C17.9737 3.82433 18.6863 4.88267 19.213 6.1C19.7397 7.31733 20.002 8.61733 20 10C19.998 11.3827 19.7353 12.6827 19.212 13.9C18.6887 15.1173 17.9763 16.1757 17.075 17.075C16.1737 17.9743 15.1153 18.687 13.9 19.213C12.6847 19.739 11.3847 20.0013 10 20Z" fill="#0090B1"/>
+</svg>
 `;
 
+  const DESCRIPTION_CONTAINER = {
+    header: 'Audi SQ7 + 50 000 € in bar',
+    paragraph: 'Der Audi SQ7 vereint kraftvolle Performance mit luxuriösem Komfort – und dazu bekommst du 50.000€ in bar. Mach bis Sonntag, den 09. November, bei der Haus-Verlosung mit – und schon bald könnten dir dieser High-Performance-SUV und das Extra-Geld gehören. 50.000€ für unvergessliche Roadtrips, jahrelanges Tanken oder die erste große Alpen-Tour im neuen SQ7 – du entscheidest, wie du deinen Gewinn genießt. Jedes Los bringt dich außerdem dem Landhaus in Oberbayern näher und unterstützt den Deutschen Tierschutzbund.',
+    buttonText: 'Jetzt Mitmachen',
+  }
+
+  const STYLES = `
+/* ===============================
+CONTROL STYLES
+=============================== */
+.prize-details {
+  display: none;
+}
+
+/* ===============================
+SLIDER (BEM)
+=============================== */
+
+.ccx-slider {
+  position: relative;
+  width: 100%;
+}
+
+.ccx-slider .swiper {
+  width: 100%;
+  height: auto;
+}
+
+/* MAIN SLIDER */
+.ccx-slider__main .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* IMAGE WRAPPER */
+.ccx-slider__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 675px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* MAIN IMAGE */
+.ccx-slider__image--main {
+  width: 100% !important;
+  height: 675px !important;
+  object-fit: cover;
+}
+
+/* OVERLAY ROOT */
+.ccx-slider__overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* OVERLAY LEFT */
+.ccx-slider__overlay-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccx-slider__trustpilot {
+  width: 160px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+@media screen and (max-width: 768px) {
+  .ccx-slider__image-wrapper {
+    height: 380px;
+  }
+  .ccx-slider__image--main {
+    width: 100% !important;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ccx-slider__trustpilot {
+    min-width: 102px;
+  }
+  .ccx-description__button {
+    display: none;
+  }
+}
+
+/* OVERLAY RIGHT */
+.ccx-slider__overlay-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TOP ROW ('Ends in') */
+.ccx-slider__overlay-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.ccx-slider__overlay-top svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ccx-slider__overlay-top span {
+    font-size: 1rem;
+}
+
+/* BOTTOM ROW ('5 days') */
+.ccx-slider__overlay-bottom p {
+  margin: 0;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  gap: 6px;
+}
+
+/* THUMBNAIL STRIP */
+.ccx-slider__thumbs {
+  overflow-x: auto !important;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.ccx-slider__thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.ccx-slider__thumbs .swiper-wrapper {
+  gap: 2px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ccx-slider__thumbs .swiper-slide {
+  width: 160px !important;
+  height: 124px !important;
+}
+
+.ccx-slider__image--thumb {
+  width: 160px !important;
+  height: 124px !important;
+  object-fit: cover;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.swiper-slide-thumb-active .ccx-slider__image--thumb {
+  opacity: 1;
+  border: 8px solid #FFDD00;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper.ccx-slider__thumbs {
+    display: none;
+  }
+}
+
+/* ===============================
+DESCRIPTION CONTAINER (BEM)
+=============================== */
+.ccx-description {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-family: inherit;
+  background: #232020;
+  margin: 0;
+  width: 100%;
+  color: #F5F5F5;
+  gap: 1rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ccx-description__header {
+  font-family: Showtime;
+  font-weight: 500;
+  font-size: 48px;
+  letter-spacing: 0;
+  line-height: 52px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: #F5F5F5;
+  margin-bottom: 1rem;
+}
+
+.ccx-description__paragraph {
+  font-family: Gellix;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  max-width: 750px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.ccx-description__button {
+  width: 224px;
+  height: 56px;
+  opacity: 1;
+  padding: 0;
+  border-radius: 76px;
+  font-family: Gellix;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #090F15;
+  text-transform: none;
+  background: #ffdd00;
+  border: none;
+}
+
+.ccx-description__button:hover {
+  color: #000;
+  background-color: #fdee8c;
+  outline: none;
+  text-decoration: none;
+}
+
+/* ===============================
+DESCRIPTION CONTAINER (BEM)
+=============================== */
+.ccx-how-it-works {
+  background: #FFFFFF;
+  border-style: solid;
+  border-color: #D0D0D0;
+  box-shadow: 0px 4px 28px 0px #00000040;
+  width: 90%;
+  height: 56px;
+  opacity: 1;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  gap: 0.5rem;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ccx-how-it-works__text {
+  font-family: Gellix;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  vertical-align: middle;
+  color: #0090B1;
+  box-shadow: 0px 0px 0px 0px #FFCC00;
+}
+`;
 
   const customLog = (...messages) => {
     if (!LOG_ENABLED) return;
@@ -263,72 +384,98 @@
 
   function injectSlider(afterElement) {
 
-    // Create wrapper container
+    if (document.querySelector(".ccx-slider")) {
+      customLog("[Slider] Already injected, skipping");
+      return;
+    }
+
     const container = document.createElement("div");
-    container.className = "ccx-slider-container";
+    container.className = "ccx-slider";
 
-    // Build main slider slides
-    const mainSlides = IMAGE_URLS.map(url => `
-  <div class="swiper-slide ccx-slide">
+    /* MAIN SLIDES */
+    const mainSlides = IMAGE_URLS.map(function (url, index) {
+      return (
+        '<div class="swiper-slide ccx-slider__slide">' +
 
-    <div class="ccx-slide-inner-wrapper">
+        '<div class="ccx-slider__image-wrapper">' +
+        '<img ' +
+        'class="ccx-slider__image ccx-slider__image--main" ' +
+        'src="' + url + '" ' +
+        'alt="" ' +
+        (index === 0 ? '' : 'loading="lazy"') +
+        '>' +
+        '</div>' +
 
-      <div class="ccx-image-wrapper">
-        <img src="${url}" alt="">
-      </div>
+        '<div class="ccx-slider__overlay">' +
 
-      <div class="ccx-overlay-container">
-        <div class="ccx-overlay-top">
-          ${SVG_CLOCK_ICON}
-          <span>Ends in</span>
-        </div>
-        <div class="ccx-overlay-bottom">
-          5 Days
-        </div>
-      </div>
+        '<div class="ccx-slider__overlay-left">' +
+        '<img ' +
+        'class="ccx-slider__trustpilot ccx-slider__image ccx-slider__image--overlay" ' +
+        'src="' + TRUSTPILOT_STARS + '" ' +
+        'alt="Trustpilot Rating"' +
+        '>' +
+        '</div>' +
 
-    </div>
+        '<div class="ccx-slider__overlay-right">' +
 
-    <img class="ccx-trustpilot-stars" src="${TRUSTPILOT_STARS}" alt="Trustpilot Rating">
+        '<div class="ccx-slider__overlay-top">' +
+        SVG_CLOCK_ICON +
+        '<span>Ends in</span>' +
+        '</div>' +
 
-  </div>
-`).join("");
+        '<div class="ccx-slider__overlay-bottom">' +
+        '<p>' +
+        '<span>5</span>' +
+        '<span>days</span>' +
+        '</p>' +
+        '</div>' +
 
-    // Build thumb slider slides (same images)
-    const thumbSlides = IMAGE_URLS.map((url, index) => `
-    <div class="swiper-slide">
-      <img src="${url}" alt="thumb ${index + 1}">
-    </div>
-  `).join("");
+        '</div>' +
 
-    // Inject slider HTML using the dynamic slide lists
-    container.innerHTML = `
-    <div class="swiper ccx-main-slider">
-      <div class="swiper-wrapper">
-        ${mainSlides}
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+        '</div>' +
 
-    <div class="swiper ccx-thumb-slider">
-      <div class="swiper-wrapper">
-        ${thumbSlides}
-      </div>
-    </div>
-  `;
+        '</div>'
+      );
+    }).join('');
 
-    // Insert slider after the prize details element
+    /* THUMBS */
+    const thumbSlides = IMAGE_URLS.map(function (url, i) {
+      return (
+        '<div class="swiper-slide ccx-slider__slide">' +
+        '<img class="ccx-slider__image ccx-slider__image--thumb" ' +
+        'src="' + url + '" ' +
+        'alt="Thumbnail ' + (i + 1) + '">' +
+        '</div>'
+      );
+    }).join('');
+
+    container.innerHTML =
+      '<div class="swiper ccx-slider__main">' +
+      '<div class="swiper-wrapper">' +
+      mainSlides +
+      '</div>' +
+      '<div class="swiper-button-next"></div>' +
+      '<div class="swiper-button-prev"></div>' +
+      '</div>' +
+
+      '<div class="swiper ccx-slider__thumbs">' +
+      '<div class="swiper-wrapper">' +
+      thumbSlides +
+      '</div>' +
+      '</div>';
+
     afterElement.insertAdjacentElement("afterend", container);
 
-    // Initialize Swiper 11
-    const thumbs = new Swiper(".ccx-thumb-slider", {
-      spaceBetween: 0,   // ← NEW
-      slidesPerView: 'auto',
-      watchSlidesProgress: true
+    /* Swiper Init */
+    const thumbs = new Swiper(".ccx-slider__thumbs", {
+      spaceBetween: 0,
+      slidesPerView: "auto",
+      // preloadImages: false,
+      lazy: true,
+      // watchSlidesProgress: true
     });
 
-    const mainSlider = new Swiper(".ccx-main-slider", {
+    const mainSlider = new Swiper(".ccx-slider__main", {
       spaceBetween: 10,
       navigation: {
         nextEl: ".swiper-button-next",
@@ -336,10 +483,89 @@
       },
       thumbs: {
         swiper: thumbs
-      }
+      },
+      // preloadImages: false,
+      lazy: true,
     });
 
-    customLog("[Slider] Injected and initialized", { container, thumbs, mainSlider });
+    customLog("[Slider] Injected and initialized");
+  }
+
+  function injectDescriptionContainer(afterElement) {
+
+    if (document.querySelector(".ccx-description")) {
+      customLog("[Description] Already injected, skipping");
+      return;
+    }
+
+    const container = document.createElement("div");
+    container.className = "ccx-description";
+
+    container.innerHTML =
+      '<h2 class="ccx-description__header">' +
+      DESCRIPTION_CONTAINER.header +
+      '</h2>' +
+
+      '<p class="ccx-description__paragraph">' +
+      DESCRIPTION_CONTAINER.paragraph +
+      '</p>' +
+
+      '<button class="ccx-description__button">' +
+      DESCRIPTION_CONTAINER.buttonText +
+      '</button>';
+
+    afterElement.insertAdjacentElement("afterend", container);
+
+    customLog("[Description] Injected description container");
+  }
+
+  function attachHowItWorksScroll() {
+    const howItWorksEl = document.querySelector(".ccx-how-it-works");
+    const descriptionEl = document.querySelector(".ccx-description");
+
+    if (!howItWorksEl || !descriptionEl) {
+      customLog("[Scroll] Missing elements, cannot attach scroll listener");
+      return;
+    }
+
+    // Smooth scroll with adjustable speed
+    function slowScrollTo(targetY, duration = 1200) {
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+      const startTime = performance.now();
+
+      function easeOutQuad(t) {
+        return t * (2 - t);
+      }
+
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutQuad(progress);
+
+        window.scrollTo(0, startY + distance * eased);
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    howItWorksEl.addEventListener("click", () => {
+      const offsetRem = 2; // 2rem
+      const offsetPx = offsetRem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      const elementTop = descriptionEl.getBoundingClientRect().top + window.scrollY;
+      const targetY = elementTop - offsetPx;
+
+      slowScrollTo(targetY, 500); // slow 0.5 second scroll
+
+      customLog("[Scroll] Slow-scrolling to description container (2rem above)");
+    });
+
+    customLog("[Scroll] Slow scroll listener added");
   }
 
   const init = () => {
@@ -362,6 +588,42 @@
           customLog(CONTROL_PRIZE_DETAILS);
 
           injectSlider(CONTROL_PRIZE_DETAILS);
+          const sliderEl = document.querySelector(".ccx-slider");
+          if (sliderEl) injectDescriptionContainer(sliderEl);
+
+        }
+      );
+
+      waitForElements(
+        [
+          { selector: SELECTORS.CONTROL_MOBILE_FLOATING_CTA_CONTAINER, count: 1 },
+        ],
+        function (results) {
+
+          addStyles(STYLES, VARIATION);
+          addBodyClass();
+
+          const CONTROL_MOBILE_FLOATING_CTA_CONTAINER = results[0].elements[0];
+          if (!CONTROL_MOBILE_FLOATING_CTA_CONTAINER) return;
+
+          customLog('Found CONTROL_MOBILE_FLOATING_CTA_CONTAINER');
+
+          // INSERT NEW CONTAINER BEFORE THE MOBILE FLOATING CTA
+          const howItWorksContainer = document.createElement('div');
+          howItWorksContainer.className = "ccx-how-it-works";
+          CONTROL_MOBILE_FLOATING_CTA_CONTAINER.insertAdjacentElement("afterbegin", howItWorksContainer);
+          // add SVG_INFORMATION_ICON inside howItWorksContainer via methods not line innerHTML
+          const infoIconWrapper = document.createElement('div');
+          infoIconWrapper.innerHTML = SVG_INFORMATION_ICON;
+          infoIconWrapper.classList.add('ccx-how-it-works__icon');
+          howItWorksContainer.appendChild(infoIconWrapper);
+          // add text node
+          const textNode = document.createElement('span');
+          textNode.className = "ccx-how-it-works__text";
+          textNode.textContent = "How It Works";
+          howItWorksContainer.appendChild(textNode);
+
+          attachHowItWorksScroll();
         }
       );
 

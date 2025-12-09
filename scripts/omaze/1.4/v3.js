@@ -12,7 +12,12 @@
   }
 
   const STYLES = `
-
+/* ----------------------------- */
+/* CONTROL
+/* ----------------------------- */
+.campaign-testimonials-carousel {
+  display: none !important;
+}
 /* ----------------------------- */
 /* SLIDER - ROOT STRUCTURE */
 /* ----------------------------- */
@@ -227,6 +232,10 @@
     .ccx-sticky-banner > .ccx-sticky-banner-left > div:nth-child(1) {
       display: none;
     }
+    .ccx-sticky-banner-right svg {
+      width: 104px;
+      height: 18px;
+    }
     @media screen and (min-width: 576px) {
       .ccx-sticky-banner {
         justify-content: space-around;
@@ -249,6 +258,10 @@
         justify-content: flex-start;
         flex: 1;
       }
+    .ccx-sticky-banner-right svg {
+       width: 142px;
+      height: 25px;
+    }
     }
   `;
 
@@ -265,7 +278,7 @@
 </g>
 </svg>`;
 
-  const SVG_TRUSTPILOT_STARS = `<svg width="85" height="19" viewBox="0 0 105 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+  const SVG_TRUSTPILOT_STARS = `<svg width="142" height="25" viewBox="0 0 105 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2076_190)">
 <mask id="mask0_2076_190" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="105" height="19">
 <path d="M104.746 0.378418H0.369141V18.5406H104.746V0.378418Z" fill="white"/>
