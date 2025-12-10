@@ -209,12 +209,15 @@
     }
     .ccx-card__label-item.ccx-card__label-item--prize {
       flex: 2;
+      padding: 0.5rem 1rem;
     }
     .ccx-card__label-item.ccx-card__label-item--price {
       flex: 1;
+      padding: 0.5rem 1rem;
     }
     .ccx-card__label-item.ccx-card__label-item--date {
       flex: 1;
+      padding: 0.5rem 1rem;
     }
 
 
@@ -284,6 +287,37 @@
     .ccx-container__cta {
       display: none;
     }
+
+
+  /* ===============================
+  VIDEO BACKDROP AND MODAL
+  =============================== */
+  .ccx-video-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  .ccx-video-modal {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  .ccx-video-backdrop iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
   `;
 
   const customLog = (...messages) => {
@@ -470,16 +504,51 @@
       .join("");
   }
 
+  function addVideoModal() {
+    // Prevent adding twice
+    if (document.querySelector('.ccx-video-backdrop')) return;
+
+    const modalHTML = `
+    <div class="ccx-video-backdrop" style="display:none;">
+      <div class="ccx-video-modal">
+        <iframe 
+          src=""
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  `;
+
+    // Insert at the end of <body>
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
+
+    const backdrop = document.querySelector('.ccx-video-backdrop');
+    const iframe = backdrop.querySelector('iframe');
+
+    // Close when clicking outside the iframe
+    backdrop.addEventListener('click', (e) => {
+      if (e.target.classList.contains('ccx-video-backdrop')) {
+        iframe.src = ""; // stop playback
+        backdrop.style.display = "none";
+      }
+    });
+
+    return backdrop; // optional: in case you want a reference
+  }
+
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
       customLog('[init] Current URL: ' + CURRENT_URL);
 
       waitForElements(
-        [{
-          selector: SELECTORS.CONTROL_HOME_BANNER,
-          count: 1
-        },],
+        [
+          {
+            selector: SELECTORS.CONTROL_HOME_BANNER,
+            count: 1
+          }
+        ],
         function (results) {
 
           addStyles(STYLES, VARIATION);
@@ -515,6 +584,8 @@
             </button>
           `;
 
+          addVideoModal();
+
           // Activate image → video player
           document.querySelectorAll('.ccx-card__video').forEach(wrapper => {
             const iframe = wrapper.querySelector('iframe');
@@ -522,25 +593,32 @@
             const playBtn = wrapper.querySelector('.ccx-play-button');
             const ytId = wrapper.dataset.video;
 
-            const playVideo = () => {
-              img.style.display = 'none';
-              playBtn.style.display = 'none';
+            const backdrop = document.querySelector('.ccx-video-backdrop');
+            const modalIframe = backdrop.querySelector('iframe');
 
-              iframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&showinfo=0`;
-              iframe.style.display = 'block';
+            const playVideo = () => {
+              modalIframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+              backdrop.style.display = "flex";
             };
+
+            document.querySelector('.ccx-video-backdrop').addEventListener('click', (e) => {
+              if (e.target.classList.contains('ccx-video-backdrop')) {
+                const iframe = e.target.querySelector('iframe');
+                iframe.src = "";   // stops the video
+                e.target.style.display = "none";
+              }
+            });
 
             img.addEventListener('click', playVideo);
             playBtn.addEventListener('click', playVideo);
           });
-
         }
       );
 
     } catch (error) {
       customLog(error);
     }
-  }
+  };
 
   init();
 })();

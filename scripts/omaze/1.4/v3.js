@@ -493,7 +493,7 @@
 
       var leftContent =
         showImage
-          ? '<img class="ccx-slider__image" src="' + slide.image + '" alt="' + slide.name + '">'
+          ? '<img class="ccx-slider__image" src="' + slide.image + '" alt="' + slide.name + '" style="width: 60px !important; height: 60px !important; max-width: initial !important;">'
           : '<div class="ccx-slider__initials">' + getInitials(slide.name) + '</div>';
 
       var trustpilotHTML = "";

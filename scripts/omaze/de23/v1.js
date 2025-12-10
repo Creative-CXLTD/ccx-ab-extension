@@ -59,6 +59,9 @@
   align-items: center;
   gap: 0.5rem;
 }
+.ccx-DE23__item svg {
+  flex-shrink: 0;
+}
 .ccx-DE23__text {
   font-family: Gellix;
   font-weight: 400;
@@ -67,6 +70,7 @@
   line-height: 21px;
   letter-spacing: 0px;
   vertical-align: middle;
+  flex: 7;
 }
 
 @media screen and (min-width: 768px) {
@@ -210,11 +214,11 @@
     var baseBlock = 'ccx-' + TEST_ID;
 
     // Check if container already exists
-    var existing = document.querySelector('.' + baseBlock + '--' + type);
-    if (existing) {
-      customLog('[createContainer] Container already exists for type "' + type + '", skipping.');
-      return;
-    }
+    // var existing = document.querySelector('.' + baseBlock + '--' + type);
+    // if (existing) {
+    //   customLog('[createContainer] Container already exists for type "' + type + '", skipping.');
+    //   return;
+    // }
 
     // Create outer container
     var container = document.createElement("div");

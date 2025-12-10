@@ -43,10 +43,13 @@
   .ccx-sticky-banner-left {
     display: flex;
     gap: 0.25rem;
-    align-items: center;
     flex: 1;
     justify-content: flex-end;
     margin-right: 10rem;
+  }
+  .ccx-sticky-banner-left svg {
+    width: 104px;
+    height: 25px;
   }
   .ccx-sticky-banner > .ccx-sticky-banner-left > div:nth-child(1) {
     display: initial;

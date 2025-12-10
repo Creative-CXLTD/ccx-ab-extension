@@ -382,6 +382,20 @@ DESCRIPTION CONTAINER (BEM)
     });
   };
 
+  function getDaysLeft() {
+    // Target: Jan 1 at 23:59 in Germany (Europe/Berlin)
+    const target = new Date("2026-01-01T23:59:00+01:00");
+    const now = new Date();
+
+    // Calculate the difference in ms
+    const diffMs = target - now;
+
+    // Convert ms → full days
+    const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+    return Math.max(daysLeft, 0); // no negative values
+  }
+
   function injectSlider(afterElement) {
 
     if (document.querySelector(".ccx-slider")) {
@@ -425,7 +439,7 @@ DESCRIPTION CONTAINER (BEM)
 
         '<div class="ccx-slider__overlay-bottom">' +
         '<p>' +
-        '<span>5</span>' +
+        '<span>' + getDaysLeft() + '</span>' +
         '<span>days</span>' +
         '</p>' +
         '</div>' +
@@ -554,7 +568,7 @@ DESCRIPTION CONTAINER (BEM)
     }
 
     howItWorksEl.addEventListener("click", () => {
-      const offsetRem = 2; // 2rem
+      const offsetRem = 5; // 5rem
       const offsetPx = offsetRem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 
       const elementTop = descriptionEl.getBoundingClientRect().top + window.scrollY;
@@ -566,6 +580,18 @@ DESCRIPTION CONTAINER (BEM)
     });
 
     customLog("[Scroll] Slow scroll listener added");
+  }
+
+  function attachCTAEventListener() {
+    const cccxButton = document.querySelector('.ccx-description__button');
+    if (cccxButton) {
+      cccxButton.addEventListener('click', () => {
+        window.location.href = 'https://omaze.de/';
+        DY.API("event", {
+            name: "de19_cta",
+        });
+      });
+    }
   }
 
   const init = () => {
@@ -590,6 +616,9 @@ DESCRIPTION CONTAINER (BEM)
           injectSlider(CONTROL_PRIZE_DETAILS);
           const sliderEl = document.querySelector(".ccx-slider");
           if (sliderEl) injectDescriptionContainer(sliderEl);
+
+          const ccxDescriptionButton = document.querySelector('.ccx-description__button');
+          if (ccxDescriptionButton) attachCTAEventListener();
 
         }
       );
