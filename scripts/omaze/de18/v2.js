@@ -2,7 +2,7 @@
   const LOG_ENABLED = true;
   const TEST_ID = "de18";
   const TEST_NAME = "Winner content on Homepage";
-  const VARIATION = "variation-1";
+  const VARIATION = "variation-2";
   const CURRENT_URL = window.location.href;
 
   const SELECTORS = {
@@ -12,7 +12,7 @@
 
   // Note in the designs the cards' content doesn't match for some cards between mobile and desktop
   const CONTENT_DATA = {
-    heading: 'UNSERE BISHERIGEN GEWINNER UND GEWINNERINNEN',
+    heading: 'UNSERE GEWINNER',
     subHeading: 'Could you be our next winners?',
     buttonText: 'Jetzt mitmachen',
     cardsData: [{
@@ -32,7 +32,7 @@
         year: '2025'
       },
       cardTitle: 'JONAS G. - GEWINNER VOM ALPEN-HAUS',
-      cardCopy: 'Genau in dieser Gegend wollten wir eigentlich Urlaub machen - und jetzt besitze ich hier ein Haus. Es ist einfach unglaublich!',
+      cardCopy: '"Genau in dieser Gegend wollten wir eigentlich Urlaub machen - und jetzt besitze ich hier ein Haus. Es ist einfach unglaublich!"',
     },
     {
       videoUrl: 'https://youtu.be/iqUZ4PwjqJk',
@@ -51,7 +51,7 @@
         year: '2025'
       },
       cardTitle: 'BURAK B. - GEWINNER VOM HAUS AM PLAUER SEE',
-      cardCopy: 'Wir hatten ein gutes Leben. Jetzt haben wir das perfekte Zuhause - und keine Sorgen mehr.',
+      cardCopy: '"Wir hatten ein gutes Leben. Jetzt haben wir das perfekte Zuhause - und keine Sorgen mehr."',
     },
     {
       videoUrl: 'https://youtu.be/EPjqmbCtpCQ',
@@ -70,7 +70,7 @@
         year: '2025'
       },
       cardTitle: 'FANNY - GEWINNERIN DES MERCEDES AMG GT63',
-      cardCopy: 'Ich habe noch nie etwas so Großes gewonnen. Ich konnte es kaum glauben, als ich die Nachricht bekam. Ein Gewinn wie dieser ist etwas, wovon man nur träumen kann - und jetzt steht dieses Traumauto einfach vor meiner Tür.',
+      cardCopy: '"Ich habe noch nie etwas so Großes gewonnen. Ich konnte es kaum glauben, als ich die Nachricht bekam. Ein Gewinn wie dieser ist etwas, wovon man nur träumen kann - und jetzt steht dieses Traumauto einfach vor meiner Tür."',
     },
     {
       videoUrl: 'https://youtu.be/BVE4clYBz78',
@@ -89,7 +89,7 @@
         year: '2025'
       },
       cardTitle: 'RAINER - GEWINNER DES PORSCHE MACAN 4S',
-      cardCopy: 'Zuerst war ich etwas skeptisch und dachte: Das kann nicht echt sein - das ist bestimmt ein Scherz. Aber dann hatte ich schnell ein gutes Gefühl bei Omaze. Und als das Team mit dem Porsche vor meiner Tür stand - das war überwältigend.',
+      cardCopy: '"Zuerst war ich etwas skeptisch und dachte: Das kann nicht echt sein - das ist bestimmt ein Scherz. Aber dann hatte ich schnell ein gutes Gefühl bei Omaze. Und als das Team mit dem Porsche vor meiner Tür stand - das war überwältigend."',
     },
     {
       videoUrl: 'https://youtu.be/b5LLVBAxoJg',
@@ -108,7 +108,7 @@
         year: '2025'
       },
       cardTitle: 'RENÉ - GEWINNER VON 200.000 €',
-      cardCopy: 'Am Anfang fühlt es sich sehr unwirklich an, besonders wenn man noch nie mit solchen Geldbeträgen zu tun hatte. Gleichzeitig ist man unglaublich stolz, gewonnen zu haben. Danke, Omaze.',
+      cardCopy: '"Am Anfang fühlt es sich sehr unwirklich an, besonders wenn man noch nie mit solchen Geldbeträgen zu tun hatte. Gleichzeitig ist man unglaublich stolz, gewonnen zu haben. Danke, Omaze."',
     },
     {
       videoUrl: 'https://youtu.be/BM2QL-dnj9A',
@@ -127,7 +127,7 @@
         year: '2025'
       },
       cardTitle: 'JOHANNES - GEWINNER DES PORSCHE 911',
-      cardCopy: 'Ich kann es immer noch kaum glauben. Meine Hotelgäste fahren normalerweise Autos wie dieses - und jetzt sitze ich selbst am Steuer eines Porsche 911. Meine Oma bekommt die erste Spritztour!',
+      cardCopy: '"Ich kann es immer noch kaum glauben. Meine Hotelgäste fahren normalerweise Autos wie dieses - und jetzt sitze ich selbst am Steuer eines Porsche 911. Meine Oma bekommt die erste Spritztour!"',
     },
     ]
   }
@@ -150,12 +150,47 @@
 <path d="M22.4475 36.1418C22.4477 36.4131 22.5212 36.6793 22.6606 36.9127C22.8 37.146 22.9999 37.3379 23.2396 37.4683C23.4793 37.5987 23.7499 37.6628 24.0231 37.6538C24.2963 37.6448 24.5621 37.5632 24.7926 37.4174L38.6264 28.6783C39.5669 28.0825 39.5669 26.7183 38.6264 26.124L24.7926 17.3849C24.5621 17.2395 24.2965 17.1582 24.0236 17.1495C23.7506 17.1407 23.4803 17.2049 23.2408 17.3352C23.0014 17.4655 22.8016 17.6573 22.6623 17.8904C22.523 18.1235 22.4494 18.3895 22.4491 18.6605V36.1418H22.4475ZM29.0595 54.4554C25.3334 54.4554 21.8127 53.7445 18.4957 52.3243C15.2517 50.953 12.3018 48.9788 9.80509 46.508C7.31518 44.0305 5.32573 41.1032 3.94395 37.884C2.51276 34.5925 1.79639 31.0987 1.79639 27.4011C1.79639 23.6585 2.51276 20.1414 3.94395 16.8498C5.37514 13.5583 7.3299 10.696 9.80666 8.26004C12.2834 5.82559 15.1787 3.89826 18.4957 2.47804C21.8127 1.05781 25.335 0.346924 29.0611 0.346924C32.8311 0.346924 36.3754 1.05781 39.6923 2.47804C43.0093 3.89826 45.8952 5.82559 48.3484 8.26004C50.8017 10.696 52.7455 13.5583 54.1766 16.8498C55.6078 20.1414 56.3242 23.6585 56.3242 27.4011C56.3242 31.0987 55.6078 34.5925 54.1766 37.8856C52.7455 41.1756 50.8017 44.0503 48.3484 46.508C45.8952 48.9658 43.0093 50.904 39.6923 52.3258C36.3754 53.7445 32.8311 54.4554 29.0595 54.4554Z" fill="#FFDD00"/>
 </svg>`;
 
-  const STYLES = `
-/* Desktop Main container */
-.ccx-de18-desktop__container {
-  display: none;
-}
+  const SVG_ICON_ARROW_LEFT = `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_7262_1972)">
+<rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 52 8)" fill="white" shape-rendering="crispEdges"/>
+<path d="M36.0603 37.5459C36.3415 37.2646 36.4995 36.8832 36.4995 36.4854C36.4995 36.0877 36.3415 35.7062 36.0603 35.4249L28.6353 27.9999L36.0603 20.5749C36.3336 20.292 36.4848 19.9131 36.4813 19.5198C36.4779 19.1265 36.3202 18.7503 36.0421 18.4722C35.7639 18.1941 35.3877 18.0363 34.9944 18.0329C34.6011 18.0295 34.2222 18.1807 33.9393 18.4539L25.4538 26.9394C25.1726 27.2207 25.0147 27.6022 25.0147 27.9999C25.0147 28.3977 25.1726 28.7791 25.4538 29.0604L33.9393 37.5459C34.2206 37.8271 34.6021 37.9851 34.9998 37.9851C35.3976 37.9851 35.779 37.8271 36.0603 37.5459Z" fill="black"/>
+</g>
+<defs>
+<filter id="filter0_d_7262_1972" x="0" y="0" width="64" height="64" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="6"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7262_1972"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_7262_1972" result="shape"/>
+</filter>
+</defs>
+</svg>
+`;
 
+  const SVG_ICON_ARROW_RIGHT = `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_7262_1977)">
+<rect x="12" y="8" width="40" height="40" rx="20" fill="white" shape-rendering="crispEdges"/>
+<path d="M27.9397 37.5459C27.6585 37.2646 27.5005 36.8832 27.5005 36.4854C27.5005 36.0877 27.6585 35.7062 27.9397 35.4249L35.3647 27.9999L27.9397 20.5749C27.6664 20.292 27.5152 19.9131 27.5187 19.5198C27.5221 19.1265 27.6798 18.7503 27.9579 18.4722C28.2361 18.1941 28.6123 18.0363 29.0056 18.0329C29.3989 18.0295 29.7778 18.1807 30.0607 18.4539L38.5462 26.9394C38.8274 27.2207 38.9853 27.6022 38.9853 27.9999C38.9853 28.3977 38.8274 28.7791 38.5462 29.0604L30.0607 37.5459C29.7794 37.8271 29.3979 37.9851 29.0002 37.9851C28.6024 37.9851 28.221 37.8271 27.9397 37.5459Z" fill="black"/>
+</g>
+<defs>
+<filter id="filter0_d_7262_1977" x="0" y="0" width="64" height="64" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="6"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_7262_1977"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_7262_1977" result="shape"/>
+</filter>
+</defs>
+</svg>
+`;
+
+  const STYLES = `
 /* Hide Scrollbar for card wrappers  */
 .ccx-de18-mobile__cards-wrapper,
 .ccx-de18-desktop__cards-wrapper {
@@ -170,152 +205,136 @@
 
 
 /* Main container */
+.ccx-de18-mobile__container {
+  background: white;
+}
 .ccx-de18-mobile__container > * {
   margin: 0;
   padding: 0;
 }
-.ccx-de18-mobile__container {
-  padding: 2rem 1rem;
-}
 
-/* Header */
-.ccx-de18-mobile__header {
+h2.ccx-de18-mobile__heading {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-/* Cards wrapper */
-.ccx-de18-mobile__cards-wrapper {
-  display: flex;
-  gap: 1rem;
-  overflow: scroll;
+/* ===============================
+MOBILE SLIDER — UPDATED STYLING
+=============================== */
+
+:root .swiper-button-next, :root .swiper-button-prev {
+  background-image: none !important;
 }
 
-/* Card */
-.ccx-de18-mobile__card {
-  /* box-shadow: 0px 4px 34px 0px #0000001A; */
-  border-radius: 0.75rem;
-  min-width: 340px;
-}
-
-/* Card top (image area) */
-.ccx-de18-mobile__card-top {
+.swiper-container,
+.swiper {
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
-.ccx-de18-mobile__card-image {
-  display: block;
-  height: 214px;
-  border-radius: 0.75rem 0.75rem 0 0;
-  object-fit: cover;
+
+.swiper-wrapper {
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%; /* ensures ONLY ONE slide is visible */
+  height: auto;
+}
+
+.ccx-de18-mobile__slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+.ccx-de18-mobile__swiper {
   width: 100%;
 }
-.ccx-de18-mobile__card-play-button {
+
+.ccx-de18-mobile__swiper-wrapper {}
+
+.ccx-de18-mobile__swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===============================
+IMAGE + OVERLAYS
+=============================== */
+
+.ccx-de18-mobile__slide-image-wrapper {
+  position: relative;
+  width: 390px;
+  height: 260px;
+}
+
+.ccx-de18-mobile__slide-image {
+  width: 390px;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+}
+
+/* Center play button */
+.ccx-de18-mobile__slide-play-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 5;
 }
 
-/* Card middle (3 columns) */
-.ccx-de18-mobile__card-middle {
-  display: flex;
-  width: 100%;
-}
-.ccx-de18-mobile__card-col {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  position: relative;
-}
-.ccx-de18-mobile__card-col.ccx-de18-mobile__card-col--1 {
-  flex: 0 0 50%;
-  background: #FFDD00;
-  padding: 0.5rem 1rem;
-  padding-right: 0;
-}
-.ccx-de18-mobile__card-col.ccx-de18-mobile__card-col--1::after {
-  content: "";
+/* ===============================
+ARROWS
+=============================== */
+
+.ccx-de18-mobile__swiper-arrow {
   position: absolute;
-  right: 0;
-  top: 10%;
-  height: 70%;
-  width: 2px;
-  background-color: #ebcb00;
-  z-index: 1000;
-}
-.ccx-de18-mobile__card-col.ccx-de18-mobile__card-col--2 {
-  flex: 0 0 30%;
-  background: #FFDD00;
-  padding: 0.5rem;
-  padding-right: 0;
-}
-.ccx-de18-mobile__card-col.ccx-de18-mobile__card-col--3 {
-  flex: 0 0 20%;
-  background: #081F28;
-  color: #FFFFFF;
-  padding: 0.5rem;
+  top: 50%;
+  transform: translateY(190%);
+  z-index: 6;
+  cursor: pointer;
 }
 
-.ccx-de18-mobile__card-col.ccx-de18-mobile__card-col--3 .ccx-de18-mobile__card-col-title {
-  font-family: Showtime;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0;
-  vertical-align: middle;
-  text-transform: uppercase;
-  color: #FFF;
+.ccx-de18-mobile__swiper-arrow--left {
+  left: 8px;
 }
 
-.ccx-de18-mobile__card-col.ccx-de18-mobile__card-col--3 .ccx-de18-mobile__card-col-amount {
-  color: #FFFFFF;
-  font-family: Gellix;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0;
-  vertical-align: middle;
+.ccx-de18-mobile__swiper-arrow--right {
+  right: 8px;
 }
 
-.ccx-de18-mobile__card-col-title {
-  font-family: Showtime;
-  font-weight: 500;
-  font-size: 14px;
-  color: #081F28;
-  line-height: 16px;
-  letter-spacing: 0;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-.ccx-de18-mobile__card-col-amount {
-  font-family: Gellix;
-  font-weight: 600;
-  font-size: 16px;
-  color: #081F28;
-  line-height: 22px;
-  letter-spacing: 0;
-  vertical-align: middle;
+/* Remove default Swiper arrow icons */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  display: none !important;
 }
 
-/* Card bottom (title + copy) */
-.ccx-de18-mobile__card-bottom {
-  background: white;
-  padding: 1rem;
-  border-radius: 0 0 0.75rem 0.75rem;
-}
-.ccx-de18-mobile__card-bottom-title {
+/* ===============================
+TEXT BELOW SLIDE
+=============================== */
+
+.ccx-de18-mobile__card-title {
   font-family: Gellix;
   font-weight: 700;
-  font-size: 21px;
+  font-size: 24px;
   line-height: 100%;
   letter-spacing: -0.16px;
   text-align: center;
-  vertical-align: middle;
   text-transform: uppercase;
   color: #081F28;
-  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
 }
-.ccx-de18-mobile__card-bottom-copy {
+
+.ccx-de18-mobile__card-copy {
   font-family: Gellix;
   font-weight: 500;
   font-size: 16px;
@@ -323,8 +342,35 @@
   line-height: 22px;
   letter-spacing: -0.16px;
   text-align: center;
-  vertical-align: middle;
+  padding: 1rem 2rem 2rem;
 }
+
+/* ===============================
+PAGINATION DOTS — BELOW SLIDER
+=============================== */
+
+/* default Swiper placement (bottom centered) is correct, only restyle bullets */
+.ccx-de18-mobile__swiper-pagination {
+  margin-top: 1rem;
+}
+
+.ccx-de18-mobile__swiper-pagination .swiper-pagination-bullet {
+  background: #626262;
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+}
+
+.ccx-de18-mobile__swiper-pagination .swiper-pagination-bullet-active {
+  background: #FFDD00 !important;
+  width: 36px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+/* ===============================
+PAGINATION DOTS — BELOW SLIDER
+=============================== */
 
 @media screen and (min-width: 768px) {
   .ccx-de18-mobile__container {
@@ -336,208 +382,156 @@
   }
 }
 
-
-
-/* =============================== */
-/* DESKTOP CONTAINER STYLES        */
-/* =============================== */
+/* ===============================
+DESKTOP SLIDER
+=============================== */
 
 .ccx-de18-desktop__container {
-  padding: 2rem;
-  padding-bottom: 0;
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: none;
 }
 
-/* Header */
-.ccx-de18-desktop__header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* Cards wrapper */
-.ccx-de18-desktop__cards-wrapper-outer {
+.ccx-de18-desktop__swiper {
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
 }
-.ccx-de18-desktop__cards-wrapper-outer::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 100%;
-  pointer-events: none;
-  z-index: 10;
-  background: linear-gradient(
-    270deg,
-    rgba(254, 251, 251, 1) 0%,
-    rgba(254, 251, 251, 0) 100%
-  );
-}
-.ccx-de18-desktop__cards-wrapper {
-  display: flex;
-  gap: 2.5rem;
-  overflow: scroll;
-  background: white;
-  padding-bottom: 2rem;
-}
 
-/* Card */
-.ccx-de18-desktop__card {
-  border-radius: 0.75rem;
-  width: 340px;
-  min-width: 340px;
-  background: white;
-  box-shadow: 0px 4px 34px 0px #0000001A;
-}
+.ccx-de18-desktop__swiper-wrapper {}
 
-/* Card top */
-.ccx-de18-desktop__card-top {
+.ccx-de18-desktop__swiper-slide {
+  width: 100%;
+  height: 100vh;
   position: relative;
 }
-.ccx-de18-desktop__card-image {
-  display: block;
-  height: 214px;
-  width: 100%;
+
+.ccx-de18-desktop__slide-image {
+  width: 1440px;
+  height: 810px;
   object-fit: cover;
-  border-radius: 0.75rem 0.75rem 0 0;
+  will-change: transform;
 }
-.ccx-de18-desktop__card-play-button {
+
+/* ===============================
+DESKTOP OVERLAY
+=============================== */
+
+.ccx-de18-desktop__overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Card middle */
-.ccx-de18-desktop__card-middle {
-  display: flex;
-  width: 100%;
-}
-
-.ccx-de18-desktop__card-col {
+  top: 2rem;
+  right: 2rem;
+  width: 360px;
+  background: #FFDD00;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  padding: 0.5rem 1rem;
-  position: relative;
+  gap: 0.75rem;
+  z-index: 10;
 }
 
-.ccx-de18-desktop__card-col--1 {
-  flex: 0 0 50%;
-  background: #FFDD00;
-  padding-left: 1rem;
-}
-.ccx-de18-desktop__card-col--1::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 10%;
-  height: 70%;
-  width: 2px;
-  background-color: #ebcb00;
-  z-index: 1000;
-}
-.ccx-de18-desktop__card-col--2 {
-  flex: 0 0 30%;
-  background: #FFDD00;
-  padding-left: 0.5rem;
-}
-.ccx-de18-desktop__card-col--3 {
-  flex: 0 0 20%;
-  background: #081F28;
-  color: #FFFFFF;
-  padding-left: 0.5rem;
-}
-
-.ccx-de18-desktop__card-col--3 .ccx-de18-desktop__card-col-title,
-.ccx-de18-desktop__card-col--3 .ccx-de18-desktop__card-col-amount {
-  color: #FFFFFF;
-}
-
-.ccx-de18-desktop__card-col-title {
-  font-family: Showtime;
-  font-weight: 500;
-  font-size: 14px;
+.ccx-de18-desktop__overlay-label,
+.ccx-de18-desktop__overlay-title,
+.ccx-de18-desktop__overlay-copy {
   color: #081F28;
-  line-height: 16px;
-  text-transform: uppercase;
-}
-.ccx-de18-desktop__card-col-amount {
-  font-family: Gellix;
-  font-weight: 600;
-  font-size: 16px;
-  color: #081F28;
-  line-height: 22px;
+  margin: 0;
+  padding: 0;
 }
 
-/* Card bottom */
-.ccx-de18-desktop__card-bottom {
-  background: white;
-  padding: 1rem;
-  border-radius: 0 0 0.75rem 0.75rem;
-}
-.ccx-de18-desktop__card-bottom-title {
+.ccx-de18-desktop__overlay-label {
   font-family: Gellix;
   font-weight: 700;
-  font-size: 21px;
-  line-height: 100%;
-  letter-spacing: -0.16px;
-  text-align: center;
+  font-size: 15px;
+  line-height: 22.5px;
+  letter-spacing: 1px;
+  vertical-align: middle;
   text-transform: uppercase;
   color: #081F28;
-  margin-bottom: 0.5rem;
-}
-.ccx-de18-desktop__card-bottom-copy {
-  font-family: Gellix;
-  font-weight: 500;
-  font-size: 16px;
-  color: #626262;
-  line-height: 22px;
-  letter-spacing: -0.16px;
-  text-align: center;
 }
 
-/* NEXT WINNERS SECTION */
-.ccx-de18-desktop__next-winners {
-  padding: 3rem 0;
-  text-align: center;
-}
-
-.ccx-de18-desktop__next-winners-heading {
-  color: #081F28;
-  margin-bottom: 1.5rem;
+.ccx-de18-desktop__overlay-title {
   font-family: Gellix;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 32px;
-  letter-spacing: 0.3px;
-  text-align: center;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+  letter-spacing: 0;
   vertical-align: middle;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
-.ccx-de18-desktop__next-winners-cta {
-  background: #FFDD00;
-  border: none;
-  padding: 1rem 2rem;
+
+.ccx-de18-desktop__overlay-copy {
   font-family: Gellix;
-  font-weight: 600;
-  font-size: 18px;
-  color: #081F28;
-  min-width: 200px;
-  padding-top: 13px;
-  padding-right: 39.28px;
-  padding-bottom: 13px;
-  padding-left: 39.27px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  vertical-align: middle;
+  color: #626262;
+}
+
+/* Button */
+.ccx-de18-desktop__overlay-button {
+  margin-top: 0.5rem;
+  background: #081F28;
+  color: #FFFFFF;
+  padding: 0.75rem 1rem;
+  font-family: Gellix;
+  font-size: 14px;
+  width: 193px;
+  height: 48px;
+  padding-top: 12px;
+  padding-right: 32px;
+  padding-bottom: 12px;
+  padding-left: 32px;
   opacity: 1;
-  border-radius: 36px;
-  box-shadow: 0px 0px 0px 0px #081F28;
+  border-radius: 999px;
+  border-width: 1px;
+  border: 1px solid #081F28;
+  line-height: 14px;
 }
-.ccx-de18-desktop__next-winners-cta:hover {
-  color: #000;
-  background-color: #fdee8c;
-  outline: none;
-  text-decoration: none;
+
+/* ===============================
+DESKTOP ARROWS
+=============================== */
+
+.ccx-de18-desktop__swiper-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  cursor: pointer;
 }
+
+.ccx-de18-desktop__swiper-arrow--left {
+  left: 1rem;
+}
+
+.ccx-de18-desktop__swiper-arrow--right {
+  right: 1rem;
+}
+
+/* Remove default icons */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  display: none !important;
+}
+
+/* ===============================
+RESPONSIVE VISIBILITY
+=============================== */
+
+@media screen and (min-width: 768px) {
+  .ccx-de18-desktop__container {
+    display: block;
+  }
+  .ccx-de18-mobile__container {
+    display: none;
+  }
+}
+
 `;
 
   const customLog = (...messages) => {
@@ -650,252 +644,194 @@
   }
 
   const injectMobileContainer = function (referenceElement) {
-    customLog('[injectMobileContainer] Injecting mobile container');
+    customLog('[injectMobileContainer] Injecting mobile slider container');
 
-    // -------------------------------
-    // BEM base class for this module
-    // -------------------------------
     var BLOCK = 'ccx-' + TEST_ID + '-mobile';
-
-    // -------------------------------
-    // CREATE MAIN CONTAINER
-    // -------------------------------
-    var container = document.createElement("div");
-    container.className = BLOCK + '__container';
-
-    // -------------------------------
-    // HEADER
-    // -------------------------------
-    var header = document.createElement("h2");
-    header.className = BLOCK + '__header';
-    header.textContent = CONTENT_DATA.heading;
-
-    container.appendChild(header);
-
-    // -------------------------------
-    // CARDS WRAPPER
-    // -------------------------------
-    var cardsWrapper = document.createElement("div");
-    cardsWrapper.className = BLOCK + '__cards-wrapper';
-    container.appendChild(cardsWrapper);
-
-    // -------------------------------
-    // LOOP THROUGH CARDS
-    // -------------------------------
-    CONTENT_DATA.cardsData.forEach(function (cardData, index) {
-
-      var card = document.createElement("div");
-      card.className = BLOCK + '__card';
-
-      // ------------------------------------
-      // TOP AREA — IMAGE + PLAY BUTTON
-      // ------------------------------------
-      var top = document.createElement("div");
-      top.className = BLOCK + '__card-top';
-
-      var img = document.createElement("img");
-      img.className = BLOCK + '__card-image';
-      img.src = cardData.image;
-      img.alt = cardData.cardTitle;
-
-      var playButton = document.createElement("div");
-      playButton.className = BLOCK + '__card-play-button';
-      playButton.innerHTML = SVG_PLAY_BUTTON;
-      playButton.dataset.video = cardData.videoUrl;
-
-      top.appendChild(img);
-      top.appendChild(playButton);
-
-      card.appendChild(top);
-
-      // ------------------------------------
-      // MIDDLE AREA — 3 COLUMN LABELS
-      // ------------------------------------
-      var middle = document.createElement("div");
-      middle.className = BLOCK + '__card-middle';
-
-      var COLUMNS = [
-        cardData.labels[0],
-        cardData.labels[1],
-        cardData.date
-      ];
-
-      COLUMNS.forEach(function (col, colIndex) {
-        var colEl = document.createElement("div");
-        colEl.className = BLOCK + '__card-col ' + BLOCK + '__card-col--' + (colIndex + 1);
-
-        var title = document.createElement("div");
-        title.className = BLOCK + '__card-col-title';
-        title.textContent = col.title || col.month;
-
-        var amount = document.createElement("div");
-        amount.className = BLOCK + '__card-col-amount';
-        amount.textContent = col.amount || col.year;
-
-        colEl.appendChild(title);
-        colEl.appendChild(amount);
-        middle.appendChild(colEl);
-      });
-
-      card.appendChild(middle);
-
-      // ------------------------------------
-      // BOTTOM AREA — TITLE + COPY
-      // ------------------------------------
-      var bottom = document.createElement("div");
-      bottom.className = BLOCK + '__card-bottom';
-
-      var bottomTitle = document.createElement("div");
-      bottomTitle.className = BLOCK + '__card-bottom-title';
-      bottomTitle.textContent = cardData.cardTitle;
-
-      var bottomCopy = document.createElement("div");
-      bottomCopy.className = BLOCK + '__card-bottom-copy';
-      bottomCopy.textContent = cardData.cardCopy;
-
-      bottom.appendChild(bottomTitle);
-      bottom.appendChild(bottomCopy);
-
-      card.appendChild(bottom);
-
-      // ------------------------------------
-      // Append card to wrapper
-      // ------------------------------------
-      cardsWrapper.appendChild(card);
-    });
-
-    // ------------------------------------
-    // Insert container after reference element
-    // ------------------------------------
-    referenceElement.insertAdjacentElement("afterend", container);
-
-    // Log created container
-    customLog({ html: container.outerHTML });
-  };
-
-  const injectDesktopContainer = function (referenceElement) {
-    customLog('[injectDesktopContainer] Injecting desktop container');
-
-    var BLOCK = 'ccx-' + TEST_ID + '-desktop';
 
     // MAIN CONTAINER
     var container = document.createElement("div");
     container.className = BLOCK + '__container';
 
-    // HEADER
-    var header = document.createElement("h2");
-    header.className = BLOCK + '__header';
-    header.textContent = CONTENT_DATA.heading;
-    container.appendChild(header);
+    // HEADING
+    var heading = document.createElement("h2");
+    heading.className = BLOCK + '__heading';
+    heading.textContent = CONTENT_DATA.heading;
+    container.appendChild(heading);
 
-    // CARDS WRAPPER OUTER
-    var wrapperOuter = document.createElement("div");
-    wrapperOuter.className = BLOCK + '__cards-wrapper-outer';
+    // SWIPER CONTAINER
+    var sliderContainer = document.createElement("div");
+    sliderContainer.className = BLOCK + '__slider-container swiper-container ccx-de18-mobile__swiper';
 
-    // INNER SCROLL WRAPPER
-    var cardsWrapper = document.createElement("div");
-    cardsWrapper.className = BLOCK + '__cards-wrapper';
+    var wrapper = document.createElement("div");
+    wrapper.className = 'swiper-wrapper ' + BLOCK + '__swiper-wrapper';
+    sliderContainer.appendChild(wrapper);
 
-    wrapperOuter.appendChild(cardsWrapper);
-    container.appendChild(wrapperOuter);
+    // CREATE SLIDES
+    CONTENT_DATA.cardsData.forEach(function (cardData) {
 
-    // LOOP THROUGH THE SAME CARD DATA
-    CONTENT_DATA.cardsData.forEach(function (cardData, index) {
+      var slide = document.createElement("div");
+      slide.className = 'swiper-slide ' + BLOCK + '__swiper-slide';
 
-      var card = document.createElement("div");
-      card.className = BLOCK + '__card';
-
-      // TOP AREA
-      var top = document.createElement("div");
-      top.className = BLOCK + '__card-top';
+      // --- IMAGE WRAPPER ---
+      var imgWrap = document.createElement("div");
+      imgWrap.className = BLOCK + '__slide-image-wrapper';
 
       var img = document.createElement("img");
-      img.className = BLOCK + '__card-image';
+      img.className = BLOCK + '__slide-image';
       img.src = cardData.image;
       img.alt = cardData.cardTitle;
 
       var playButton = document.createElement("div");
-      playButton.className = BLOCK + '__card-play-button';
+      playButton.className = BLOCK + '__slide-play-button ccx-de18-mobile__card-play-button';
       playButton.innerHTML = SVG_PLAY_BUTTON;
       playButton.dataset.video = cardData.videoUrl;
 
-      top.appendChild(img);
-      top.appendChild(playButton);
-      card.appendChild(top);
+      imgWrap.appendChild(img);
+      imgWrap.appendChild(playButton);
 
-      // MIDDLE AREA
-      var middle = document.createElement("div");
-      middle.className = BLOCK + '__card-middle';
+      // --- LEFT ARROW ---
+      var leftArrow = document.createElement("div");
+      leftArrow.className = BLOCK + '__swiper-arrow ' + BLOCK + '__swiper-arrow--left swiper-button-prev';
+      leftArrow.innerHTML = SVG_ICON_ARROW_LEFT;
+      imgWrap.appendChild(leftArrow);
 
-      var COLUMNS = [
-        cardData.labels[0],
-        cardData.labels[1],
-        cardData.date
-      ];
+      // --- RIGHT ARROW ---
+      var rightArrow = document.createElement("div");
+      rightArrow.className = BLOCK + '__swiper-arrow ' + BLOCK + '__swiper-arrow--right swiper-button-next';
+      rightArrow.innerHTML = SVG_ICON_ARROW_RIGHT;
+      imgWrap.appendChild(rightArrow);
 
-      COLUMNS.forEach(function (col, colIndex) {
-        var colEl = document.createElement("div");
-        colEl.className = BLOCK + '__card-col ' + BLOCK + '__card-col--' + (colIndex + 1);
+      slide.appendChild(imgWrap);
 
-        var title = document.createElement("div");
-        title.className = BLOCK + '__card-col-title';
-        title.textContent = col.title || col.month;
+      // --- TITLE ---
+      var title = document.createElement("div");
+      title.className = BLOCK + '__card-title';
+      title.textContent = cardData.cardTitle.toUpperCase();
+      slide.appendChild(title);
 
-        var amount = document.createElement("div");
-        amount.className = BLOCK + '__card-col-amount';
-        amount.textContent = col.amount || col.year;
+      // --- COPY ---
+      var copy = document.createElement("div");
+      copy.className = BLOCK + '__card-copy';
+      copy.textContent = cardData.cardCopy;
+      slide.appendChild(copy);
 
-        colEl.appendChild(title);
-        colEl.appendChild(amount);
-
-        middle.appendChild(colEl);
-      });
-
-      card.appendChild(middle);
-
-      // BOTTOM AREA
-      var bottom = document.createElement("div");
-      bottom.className = BLOCK + '__card-bottom';
-
-      var bottomTitle = document.createElement("div");
-      bottomTitle.className = BLOCK + '__card-bottom-title';
-      bottomTitle.textContent = cardData.cardTitle;
-
-      var bottomCopy = document.createElement("div");
-      bottomCopy.className = BLOCK + '__card-bottom-copy';
-      bottomCopy.textContent = cardData.cardCopy;
-
-      bottom.appendChild(bottomTitle);
-      bottom.appendChild(bottomCopy);
-
-      card.appendChild(bottom);
-
-      cardsWrapper.appendChild(card);
+      // ADD SLIDE TO WRAPPER
+      wrapper.appendChild(slide);
     });
 
-    // NEXT WINNERS SECTION
-    var nextWinners = document.createElement("div");
-    nextWinners.className = BLOCK + '__next-winners';
+    // PAGINATION
+    var pagination = document.createElement("div");
+    pagination.className = 'swiper-pagination ' + BLOCK + '__swiper-pagination';
+    sliderContainer.appendChild(pagination);
 
-    var nextHeading = document.createElement("h1");
-    nextHeading.className = BLOCK + '__next-winners-heading';
-    nextHeading.textContent = CONTENT_DATA.subHeading;
+    container.appendChild(sliderContainer);
 
-    var nextCTA = document.createElement("button");
-    nextCTA.className = BLOCK + '__next-winners-cta';
-    nextCTA.textContent = CONTENT_DATA.buttonText;
-
-    nextWinners.appendChild(nextHeading);
-    nextWinners.appendChild(nextCTA);
-
-    container.appendChild(nextWinners);
-
-    // INSERT INTO DOM
+    // INSERT AFTER REFERENCE ELEMENT
     referenceElement.insertAdjacentElement("afterend", container);
 
     customLog({ html: container.outerHTML });
+
+    // INIT SWIPER
+    setTimeout(function () {
+      var swiper = new Swiper('.ccx-de18-mobile__swiper', {
+        slidesPerView: 1,
+        loop: true,
+        navigation: {
+          nextEl: '.' + BLOCK + '__swiper-arrow--right',
+          prevEl: '.' + BLOCK + '__swiper-arrow--left'
+        },
+        pagination: {
+          el: '.' + BLOCK + '__swiper-pagination',
+          clickable: true
+        },
+        lazy: true,
+      });
+    }, 50);
   };
 
+  const injectDesktopContainer = function (referenceElement) {
+    customLog('[injectDesktopContainer] Injecting desktop slider container');
+
+    var BLOCK = 'ccx-' + TEST_ID + '-desktop';
+
+    var container = document.createElement("div");
+    container.className = BLOCK + '__container';
+
+    var sliderContainer = document.createElement("div");
+    sliderContainer.className = BLOCK + '__swiper swiper-container';
+
+    var wrapper = document.createElement("div");
+    wrapper.className = 'swiper-wrapper ' + BLOCK + '__swiper-wrapper';
+    sliderContainer.appendChild(wrapper);
+
+    CONTENT_DATA.cardsData.forEach(function (cardData) {
+
+      var slide = document.createElement("div");
+      slide.className = 'swiper-slide ' + BLOCK + '__swiper-slide';
+
+      var img = document.createElement("img");
+      img.className = BLOCK + '__slide-image';
+      img.src = cardData.image;
+      img.alt = cardData.cardTitle;
+
+      slide.appendChild(img);
+
+      var overlay = document.createElement("div");
+      overlay.className = BLOCK + '__overlay';
+
+      var p1 = document.createElement("p");
+      p1.className = BLOCK + '__overlay-label';
+      p1.textContent = 'UNSERE GEWINNER';
+      overlay.appendChild(p1);
+
+      var p2 = document.createElement("p");
+      p2.className = BLOCK + '__overlay-title';
+      p2.textContent = cardData.cardTitle;
+      overlay.appendChild(p2);
+
+      var p3 = document.createElement("p");
+      p3.className = BLOCK + '__overlay-copy';
+      p3.textContent = cardData.cardCopy;
+      overlay.appendChild(p3);
+
+      var btn = document.createElement("button");
+      btn.className = BLOCK + '__overlay-button ccx-de18-desktop__card-play-button';
+      btn.textContent = 'VIDEO ABSPIELEN';
+      btn.dataset.video = cardData.videoUrl;
+      overlay.appendChild(btn);
+
+      slide.appendChild(overlay);
+
+      var leftArrow = document.createElement("div");
+      leftArrow.className = BLOCK + '__swiper-arrow ' + BLOCK + '__swiper-arrow--left swiper-button-prev';
+      leftArrow.innerHTML = SVG_ICON_ARROW_LEFT;
+      slide.appendChild(leftArrow);
+
+      var rightArrow = document.createElement("div");
+      rightArrow.className = BLOCK + '__swiper-arrow ' + BLOCK + '__swiper-arrow--right swiper-button-next';
+      rightArrow.innerHTML = SVG_ICON_ARROW_RIGHT;
+      slide.appendChild(rightArrow);
+
+      wrapper.appendChild(slide);
+    });
+
+    container.appendChild(sliderContainer);
+
+    referenceElement.insertAdjacentElement("afterend", container);
+
+    customLog({ html: container.outerHTML });
+
+    setTimeout(function () {
+      var swiper = new Swiper('.' + BLOCK + '__swiper', {
+        slidesPerView: 1,
+        loop: true,
+        navigation: {
+          nextEl: '.' + BLOCK + '__swiper-arrow--right',
+          prevEl: '.' + BLOCK + '__swiper-arrow--left'
+        }
+      });
+    }, 50);
+  };
 
   function addVideoModal() {
     if (document.querySelector('.ccx-video-backdrop')) return;
@@ -998,27 +934,6 @@
     customLog("Attached listeners to " + playButtons.length + " play buttons.");
   }
 
-  function attachDesktopCTAListener() {
-    customLog("[attachDesktopCTAListener] Attaching desktop CTA click handler");
-
-    const ctaButton = document.querySelector('.ccx-de18-desktop__next-winners-cta');
-    if (!ctaButton) {
-      customLog("Desktop CTA button not found.");
-      return;
-    }
-
-    ctaButton.addEventListener("click", () => {
-      customLog("[attachDesktopCTAListener] Desktop CTA clicked");
-      // Handle the CTA click event
-      const controlCTA = document.querySelector(".campaign-hero__content.hide-on-mobile .yellow-btn");
-      if (controlCTA) {
-        controlCTA.click();
-      } else {
-        customLog("Control CTA button not found.");
-      }
-    });
-  }
-
   const init = () => {
     try {
       customLog(TEST_ID + ' | ' + VARIATION + ' | ' + TEST_NAME);
@@ -1063,7 +978,6 @@
           injectDesktopContainer(CONTROL_DESKTOP_SECTION_LIVE_RENT_SELL);
           addVideoModal();
           attachVideoListeners();
-          attachDesktopCTAListener();
         }
       );
 

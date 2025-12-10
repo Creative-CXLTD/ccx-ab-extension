@@ -4,7 +4,6 @@
   const TEST_NAME = "PAYG Entries Economy Pricing MVT Brief";
   const VARIATION = "variation-1";
   const CURRENT_URL = window.location.href;
-  const IS_STAGING_ENV = CURRENT_URL.includes('staging');
 
   const SELECTORS = {
     // Buttons

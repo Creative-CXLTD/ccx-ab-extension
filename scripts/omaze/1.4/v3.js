@@ -18,6 +18,9 @@
 .campaign-testimonials-carousel {
   display: none !important;
 }
+.campaign-testimonials-carousel + .swiper-pagination{
+  display: none !important;
+}
 /* ----------------------------- */
 /* SLIDER - ROOT STRUCTURE */
 /* ----------------------------- */

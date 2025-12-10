@@ -42,7 +42,7 @@
         text: 'Staatlich lizenzierte Soziallotterie, Ziehung unter notarieller Aufsicht.'
       },
       {
-        text: 'Dein Los unterstützt die garantierte Mindestspende von 500.000 € an den Deutschen Tierschutzbund.'
+        text: 'Mindestens 21% deiner Ausgaben geht an wohltätige Zwecke.'
       },
       {
         text: 'Inkl. Servicegebühren & MwSt.'
