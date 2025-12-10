@@ -486,6 +486,7 @@ DESCRIPTION CONTAINER (BEM)
       slidesPerView: "auto",
       // preloadImages: false,
       lazy: true,
+      loop: true,
       // watchSlidesProgress: true
     });
 
@@ -500,6 +501,7 @@ DESCRIPTION CONTAINER (BEM)
       },
       // preloadImages: false,
       lazy: true,
+      loop: true,
     });
 
     customLog("[Slider] Injected and initialized");
@@ -588,10 +590,30 @@ DESCRIPTION CONTAINER (BEM)
       cccxButton.addEventListener('click', () => {
         window.location.href = 'https://omaze.de/';
         DY.API("event", {
-            name: "de19_cta",
+          name: "de19_cta",
         });
       });
     }
+  }
+
+  function waitForSwiper(maxWaitMs = 10000) {
+    return new Promise(resolve => {
+      const start = Date.now();
+
+      (function check() {
+        if (window.Swiper) {
+          console.log("[Swiper] Library found");
+          return resolve(true);
+        }
+
+        if (Date.now() - start >= maxWaitMs) {
+          console.warn("[Swiper] Library NOT found after 10s");
+          return resolve(false);
+        }
+
+        requestAnimationFrame(check);
+      })();
+    });
   }
 
   const init = () => {
@@ -613,7 +635,15 @@ DESCRIPTION CONTAINER (BEM)
 
           customLog(CONTROL_PRIZE_DETAILS);
 
-          injectSlider(CONTROL_PRIZE_DETAILS);
+          waitForSwiper().then(found => {
+            if (!found) {
+              customLog("[Swiper] Not available — slider not injected");
+              return;
+            }
+
+            injectSlider(CONTROL_PRIZE_DETAILS);
+          });
+
           const sliderEl = document.querySelector(".ccx-slider");
           if (sliderEl) injectDescriptionContainer(sliderEl);
 
