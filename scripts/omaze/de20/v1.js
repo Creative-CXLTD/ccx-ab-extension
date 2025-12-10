@@ -189,7 +189,7 @@
 <path d="M3 10H21M8 14H8.01M12 14H12.01M16 14H16.01M8 18H8.01M12 18H12.01M16 18H16.01" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `,
-      text: 'Haus-Verlosung endet am 27/12/2025'
+      text: 'Ziehung der Hausverlosung: 30. Dezember 2025'
     },
     {
       icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +197,7 @@
 <path d="M6 9C6 12.3115 8.68851 15 12 15C15.3115 15 18 12.3115 18 9V3C18 2.44808 17.5519 2 17 2H7C6.44808 2 6 2.44808 6 3V9M6 9H4.5C3.12021 9 2 7.87979 2 6.5C2 5.12021 3.12021 4 4.5 4H6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `,
-      text: 'Garantierter Gewinner. Chance: 1 zu allen teilnehmenden Losen'
+      text: 'Eine Person gewinnt garantiert: Die Ergebnisse der Hausverlosung werden am 02. Januar veröffentlicht'
     },
   ]
 

@@ -251,7 +251,7 @@
 <path d="M10 14.66V16.286C9.99232 16.9828 9.62256 17.6253 9.024 17.982C7.75705 18.9204 7.00691 20.4014 7 21.978M14 14.66V16.286C14.0077 16.9828 14.3774 17.6253 14.976 17.982C16.243 18.9204 16.9931 20.4014 17 21.978M18 9H19.5C20.8798 9 22 7.87979 22 6.5C22 5.12021 20.8798 4 19.5 4H18M4 22H20" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M6 9C6 12.3115 8.68851 15 12 15C15.3115 15 18 12.3115 18 9V3C18 2.44808 17.5519 2 17 2H7C6.44808 2 6 2.44808 6 3V9M6 9H4.5C3.12021 9 2 7.87979 2 6.5C2 5.12021 3.12021 4 4.5 4H6" stroke="#081F28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,
-      text: 'Garantierter Gewinner. Chance: 1 zu allen teilnehmenden Losen'
+      text: 'Eine Person gewinnt garantiert: Die Ergebnisse der Hausverlosung werden am 02. Januar veröffentlicht'
     },
   ]
 
